@@ -8,3 +8,8 @@ App-style site (landing + app hybrid) for Utkarsh Academy: Class 11, Class 12, C
 - Content is published from the admin panel (`admin.html`, shares the same Supabase project)
 
 Single file, no build step — serve `index.html` from any static host.
+
+
+## Staff console
+
+The admin panel is built into the app. Open **Staff login** in the footer (or the More menu, or `#staff`). It keeps its own sign-in session, separate from students, and access is still checked against the `admin_users` table.
