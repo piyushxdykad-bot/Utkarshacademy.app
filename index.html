@@ -14086,6 +14086,65 @@ window.uaAdminCheckSession = checkSession;
   }
 })();
 
+/* ---------- FREE FOR NOW: Class 11 Full Course ----------
+   Set UA_FREE_CLASS11_FULL to false to bring back paid enrolment
+   (prices then come back from the Staff console as before). */
+(function () {
+  var UA_FREE_CLASS11_FULL = true;
+  if (!UA_FREE_CLASS11_FULL) return;
+  var PAY_LABEL = '<i class="fas fa-unlock"></i> Enroll for Free';
+  function paintCard() {
+    var n = document.getElementById('pc-class11-full-new'); if (n) n.textContent = 'Free';
+  }
+  function paintBadge() {
+    var n = document.getElementById('pc-class11-full-new'); if (!n) return;
+    var el = n; for (var i = 0; i < 6 && el; i++) { el = el.parentElement; var b = el && el.querySelector(':scope > .plan-badge'); if (b) { b.textContent = 'Free for now'; return; } }
+  }
+  function paintCheckout() {
+    var t = document.getElementById('cko-total-price'); if (t) t.textContent = '₹0';
+    var btn = document.getElementById('checkout-pay-btn'); if (btn && !btn.disabled) btn.innerHTML = PAY_LABEL;
+  }
+  if (typeof applyPlanCards === 'function') {
+    var _ap = applyPlanCards;
+    applyPlanCards = function () { var r = _ap.apply(this, arguments); paintCard(); paintBadge(); return r; };
+    window.applyPlanCards = applyPlanCards;
+  }
+  if (typeof updateCheckoutTotal === 'function') {
+    var _ut = updateCheckoutTotal;
+    updateCheckoutTotal = function () { var r = _ut.apply(this, arguments); paintCheckout(); return r; };
+    window.updateCheckoutTotal = updateCheckoutTotal;
+  }
+  if (typeof payWithRazorpay === 'function') {
+    var _pay = payWithRazorpay;
+    payWithRazorpay = function (amount, opts) {
+      if (opts && opts.description === 'Class 11 Full Course') return Promise.resolve({ free: true });
+      return _pay.apply(this, arguments);
+    };
+    window.payWithRazorpay = payWithRazorpay;
+  }
+  if (typeof proceedToPayClass11 === 'function') {
+    var _go = proceedToPayClass11;
+    proceedToPayClass11 = async function () {
+      window._uaFreeEnroll = true;
+      try { return await _go.apply(this, arguments); }
+      finally { window._uaFreeEnroll = false; paintCheckout(); }
+    };
+    window.proceedToPayClass11 = proceedToPayClass11;
+  }
+  if (typeof showPaymentSuccessModal === 'function') {
+    var _ok = showPaymentSuccessModal;
+    showPaymentSuccessModal = function () {
+      var t = document.querySelector('#payment-success-modal .psm-title');
+      if (t) t.textContent = window._uaFreeEnroll ? 'You’re enrolled!' : 'Payment Successful!';
+      return _ok.apply(this, arguments);
+    };
+    window.showPaymentSuccessModal = showPaymentSuccessModal;
+  }
+  function boot() { paintCard(); paintBadge(); paintCheckout(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+  setTimeout(boot, 1500); setTimeout(boot, 4000);
+})();
+
 </script>
 </body>
 </html>
