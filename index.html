@@ -14000,6 +14000,54 @@ window.uaAdminCheckSession = checkSession;
   if (window.IntersectionObserver) { var bo = new IntersectionObserver(function (es) { es.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('visible'); bo.unobserve(x.target); } }); }, { threshold: .35 }); bento.forEach(function (b) { bo.observe(b); }); }
 })();
 
+/* ---------- Profile photo follows the account across devices ----------
+   Source of truth on another device: the account's row in "profiles"
+   (written on upload), falling back to the account's avatar_url metadata. */
+(function () {
+  if (typeof _supa === 'undefined' || !_supa) return;
+  var lastUid = null;
+  function paint(url) {
+    ['nav-login-avatar', 'mob-login-avatar', 'more-user-avatar', 'prof-avatar-img'].forEach(function (id) {
+      var el = document.getElementById(id); if (el && url) el.src = url;
+    });
+    var rm = document.getElementById('prof-remove-photo-btn'); if (rm) rm.style.display = url ? '' : 'none';
+  }
+  async function pull() {
+    try {
+      var r = await _supa.auth.getUser(); var user = r && r.data && r.data.user;
+      if (!user) return;
+      var url = null;
+      try {
+        var q = await _supa.from('profiles').select('avatar_url').eq('id', user.id).maybeSingle();
+        if (q && q.data && q.data.avatar_url) url = q.data.avatar_url;
+      } catch (e) {}
+      if (!url && user.user_metadata && user.user_metadata.avatar_url) url = user.user_metadata.avatar_url;
+      if (!url) return;
+      if (url !== localStorage.getItem('ua_user_photo_url')) {
+        localStorage.removeItem('ua_user_photo');   // newer photo from another device wins
+        localStorage.setItem('ua_user_photo_url', url);
+      }
+      if (!localStorage.getItem('ua_user_photo')) paint(url);
+    } catch (e) {}
+  }
+  window.uaPullAvatar = pull;
+  _supa.auth.onAuthStateChange(function (event, session) {
+    var uid = session && session.user ? session.user.id : null;
+    if (uid && uid !== lastUid) { lastUid = uid; setTimeout(pull, 400); }
+    if (event === 'SIGNED_OUT') { lastUid = null; localStorage.removeItem('ua_user_photo'); localStorage.removeItem('ua_user_photo_url'); }
+  });
+  if (typeof renderProfilePage === 'function') {
+    var _rp = renderProfilePage;
+    renderProfilePage = async function () { var out = await _rp.apply(this, arguments); pull(); return out; };
+    window.renderProfilePage = renderProfilePage;
+  }
+  if (typeof supaSignOut === 'function') {
+    var _so = supaSignOut;
+    supaSignOut = async function () { localStorage.removeItem('ua_user_photo'); localStorage.removeItem('ua_user_photo_url'); return _so.apply(this, arguments); };
+    window.supaSignOut = supaSignOut;
+  }
+})();
+
 </script>
 </body>
 </html>
