@@ -9241,15 +9241,15 @@ function updateAuthUI() {
   // This device doesn't have a cached photo yet — check whether the account
   // has one synced from another device, and adopt it if so, without
   // blocking the fast synchronous render above.
-  if (loggedIn && typeof supaGetUser === 'function') {
-    supaGetUser().then(function (user) {
-      const remoteUrl = user && user.user_metadata && user.user_metadata.avatar_url;
-      if (!remoteUrl || remoteUrl === localStorage.getItem('ua_user_photo_url')) return; /* newer photo from another device wins */
-      localStorage.removeItem('ua_user_photo'); localStorage.setItem('ua_user_photo_url', remoteUrl); ['more-user-avatar', 'prof-avatar-img'].forEach(function (id) { const el = document.getElementById(id); if (el) el.src = remoteUrl; });
-      if (navAvatar) navAvatar.src = remoteUrl;
-      if (mobAvatar) mobAvatar.src = remoteUrl;
-    }).catch(function () {});
-  }
+  // Cross-device photo sync is handled in one place: uaPullAvatar() (app.js).
+  // (Two separate syncers used to race each other and flip the photo back.)
+  //
+  //
+  //
+  //
+  //
+  //
+  if (loggedIn && typeof window.uaPullAvatar === 'function') window.uaPullAvatar();
 }
 
 // Run on every page show
@@ -14001,41 +14001,69 @@ window.uaAdminCheckSession = checkSession;
 })();
 
 /* ---------- Profile photo follows the account across devices ----------
-   Source of truth on another device: the account's row in "profiles"
-   (written on upload), falling back to the account's avatar_url metadata. */
+   ONE syncer. The newest photo wins, judged by the upload time stamped in
+   the URL (?t=...). A photo just picked on this device is never replaced
+   by an older copy from the account. */
 (function () {
   if (typeof _supa === 'undefined' || !_supa) return;
-  var lastUid = null;
-  function paint(url) {
+  var lastUid = null, seq = 0, busy = false;
+  function ts(url) { var m = /[?&]t=(\d+)/.exec(url || ''); return m ? Number(m[1]) : 0; }
+  function localTs() { return Number(localStorage.getItem('ua_user_photo_ts') || 0) || ts(localStorage.getItem('ua_user_photo_url')); }
+  function paint(src) {
+    if (!src) return;
     ['nav-login-avatar', 'mob-login-avatar', 'more-user-avatar', 'prof-avatar-img'].forEach(function (id) {
-      var el = document.getElementById(id); if (el && url) el.src = url;
+      var el = document.getElementById(id); if (el && el.getAttribute('src') !== src) el.src = src;
     });
-    var rm = document.getElementById('prof-remove-photo-btn'); if (rm) rm.style.display = url ? '' : 'none';
+    var rm = document.getElementById('prof-remove-photo-btn'); if (rm) rm.style.display = '';
   }
   async function pull() {
+    if (busy) return;
+    var my = ++seq;
     try {
       var r = await _supa.auth.getUser(); var user = r && r.data && r.data.user;
-      if (!user) return;
-      var url = null;
+      if (!user || my !== seq || busy) return;
+      var cands = [];
       try {
         var q = await _supa.from('profiles').select('avatar_url').eq('id', user.id).maybeSingle();
-        if (q && q.data && q.data.avatar_url) url = q.data.avatar_url;
+        if (q && q.data && q.data.avatar_url) cands.push(q.data.avatar_url);
       } catch (e) {}
-      if (!url && user.user_metadata && user.user_metadata.avatar_url) url = user.user_metadata.avatar_url;
-      if (!url) return;
-      if (url !== localStorage.getItem('ua_user_photo_url')) {
-        localStorage.removeItem('ua_user_photo');   // newer photo from another device wins
-        localStorage.setItem('ua_user_photo_url', url);
+      if (user.user_metadata && user.user_metadata.avatar_url) cands.push(user.user_metadata.avatar_url);
+      if (my !== seq || busy) return;
+      if (!cands.length) return;
+      var best = cands.sort(function (a, b) { return ts(b) - ts(a); })[0];
+      if (ts(best) > localTs() || !(localStorage.getItem('ua_user_photo') || localStorage.getItem('ua_user_photo_url'))) {
+        localStorage.removeItem('ua_user_photo');
+        localStorage.setItem('ua_user_photo_url', best);
+        localStorage.setItem('ua_user_photo_ts', String(ts(best)));
       }
-      if (!localStorage.getItem('ua_user_photo')) paint(url);
+      paint(localStorage.getItem('ua_user_photo') || localStorage.getItem('ua_user_photo_url'));
     } catch (e) {}
   }
   window.uaPullAvatar = pull;
   _supa.auth.onAuthStateChange(function (event, session) {
     var uid = session && session.user ? session.user.id : null;
     if (uid && uid !== lastUid) { lastUid = uid; setTimeout(pull, 400); }
-    if (event === 'SIGNED_OUT') { lastUid = null; localStorage.removeItem('ua_user_photo'); localStorage.removeItem('ua_user_photo_url'); }
+    if (event === 'SIGNED_OUT') { lastUid = null; ['ua_user_photo', 'ua_user_photo_url', 'ua_user_photo_ts'].forEach(function (k) { localStorage.removeItem(k); }); }
   });
+  if (typeof handleProfilePhotoSelected === 'function') {
+    var _hp = handleProfilePhotoSelected;
+    handleProfilePhotoSelected = async function () {
+      busy = true; seq++;                       // cancel any pull in flight
+      localStorage.setItem('ua_user_photo_ts', String(Date.now()));
+      try { return await _hp.apply(this, arguments); }
+      finally {
+        var u = localStorage.getItem('ua_user_photo_url');
+        if (ts(u)) localStorage.setItem('ua_user_photo_ts', String(ts(u)));
+        busy = false;
+      }
+    };
+    window.handleProfilePhotoSelected = handleProfilePhotoSelected;
+  }
+  if (typeof removeProfilePhoto === 'function') {
+    var _rm = removeProfilePhoto;
+    removeProfilePhoto = async function () { busy = true; seq++; localStorage.removeItem('ua_user_photo_ts'); try { return await _rm.apply(this, arguments); } finally { busy = false; } };
+    window.removeProfilePhoto = removeProfilePhoto;
+  }
   if (typeof renderProfilePage === 'function') {
     var _rp = renderProfilePage;
     renderProfilePage = async function () { var out = await _rp.apply(this, arguments); pull(); return out; };
@@ -14043,7 +14071,7 @@ window.uaAdminCheckSession = checkSession;
   }
   if (typeof supaSignOut === 'function') {
     var _so = supaSignOut;
-    supaSignOut = async function () { localStorage.removeItem('ua_user_photo'); localStorage.removeItem('ua_user_photo_url'); return _so.apply(this, arguments); };
+    supaSignOut = async function () { ['ua_user_photo', 'ua_user_photo_url', 'ua_user_photo_ts'].forEach(function (k) { localStorage.removeItem(k); }); return _so.apply(this, arguments); };
     window.supaSignOut = supaSignOut;
   }
 })();
