@@ -2767,6 +2767,113 @@ body.staff-open #wa-widget,body.staff-open .back-top{display:none!important}
 #ua-admin #app-shell{width:100%}
 #ua-admin .main{flex:1;min-width:0}
 
+/* ---------- Courses & Pricing ---------- */
+#ua-admin .cp-classes{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+#ua-admin .cp-class{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:16px;border-radius:18px;border:1px solid var(--line);background:var(--card);text-align:left;box-shadow:var(--sh-1);transition:transform .35s var(--ease),box-shadow .35s,border-color .25s}
+#ua-admin .cp-class:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
+#ua-admin .cp-class.on{background:linear-gradient(160deg,var(--ink-3,#1B2A6B),var(--ink));border-color:transparent;color:#fff}
+#ua-admin .cp-class-name{font-weight:800;font-size:13.5px;color:inherit}
+#ua-admin .cp-class-price{font-family:var(--f-d);font-size:30px;font-weight:500;letter-spacing:-.03em;line-height:1.05;color:var(--ink)}
+#ua-admin .cp-class.on .cp-class-price{color:var(--gold-2)}
+#ua-admin .cp-class-meta{font-size:11.5px;color:var(--muted)}
+#ua-admin .cp-class.on .cp-class-meta{color:rgba(233,236,247,.6)}
+#ua-admin .cp-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.85fr);gap:18px;align-items:start}
+#ua-admin .cp-side{position:sticky;top:96px;min-width:0}
+#ua-admin .cp-edit{min-width:0}
+#ua-admin .cp-note i{margin-top:3px}
+#ua-admin .cp-mode{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:5px;border-radius:16px;background:var(--paper);border:1px solid var(--line);margin-bottom:14px}
+#ua-admin .cp-mode button{display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px;border-radius:12px;border:0;background:none;font-weight:800;font-size:14px;color:var(--muted);transition:all .25s}
+#ua-admin .cp-mode button i{font-size:15px;margin-bottom:2px}
+#ua-admin .cp-mode button small{font-weight:600;font-size:11px;opacity:.75}
+#ua-admin .cp-mode button.on{background:#fff;color:var(--ink);box-shadow:var(--sh-1)}
+#ua-admin .cp-mode button[data-mode="free"].on{background:linear-gradient(160deg,#EEF8F1,#fff);color:#1F8A4C}
+#ua-admin .cp-note{display:flex;gap:10px;padding:12px 14px;border-radius:14px;background:var(--ok-soft);color:#1F6B40;font-size:12.5px;line-height:1.55;margin-bottom:14px}
+#ua-admin .cp-subjs{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+#ua-admin .cp-subj{display:grid;grid-template-columns:28px 1fr 140px auto;gap:8px;align-items:center;padding:8px;border-radius:14px;background:var(--paper);border:1px solid var(--line)}
+#ua-admin .cp-grip{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:#fff;font-family:var(--f-m);font-size:11px;color:var(--muted)}
+#ua-admin .cp-subj input{height:40px;border-radius:10px;border:1px solid var(--line-2);background:#fff;padding:0 11px;font-size:14px;outline:none;width:100%;min-width:0}
+#ua-admin .cp-subj input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(46,86,230,.1)}
+#ua-admin .cp-sprice{position:relative;margin:0}
+#ua-admin .cp-sprice span{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:700;font-size:13px}
+#ua-admin .cp-sprice input{padding-left:24px;font-family:var(--f-m)}
+#ua-admin .cp-sbtns{display:flex;gap:4px}
+#ua-admin .cp-ic{width:32px;height:32px;border-radius:9px;border:1px solid var(--line);background:#fff;color:var(--muted);font-size:11px;transition:all .2s}
+#ua-admin .cp-ic:hover:not(:disabled){color:var(--ink);border-color:var(--ink)}
+#ua-admin .cp-ic.del:hover{background:var(--bad);color:#fff;border-color:var(--bad)}
+#ua-admin .cp-ic:disabled{opacity:.35;cursor:default}
+#ua-admin .cp-sum{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;padding:16px;border-radius:16px;background:linear-gradient(160deg,#FBF3DE,#F6EBCB);border:1px solid rgba(198,151,47,.3)}
+#ua-admin .cp-sum > div{display:flex;flex-direction:column;gap:4px;min-width:0}
+#ua-admin .cp-sum span,#ua-admin .cp-sum label{font-size:12px;font-weight:700;color:var(--ink)}
+#ua-admin .cp-sum b{font-family:var(--f-d);font-size:36px;font-weight:500;letter-spacing:-.03em;line-height:1;color:var(--ink)}
+#ua-admin .cp-sum small{font-size:11.5px;color:var(--muted)}
+#ua-admin .cp-sum input{height:42px;border-radius:11px;border:1px solid rgba(198,151,47,.4);background:#fff;padding:0 12px;font-family:var(--f-m);font-size:14px;outline:none}
+#ua-admin .cp-chips{display:flex;flex-wrap:wrap;gap:6px;padding:8px;border-radius:14px;border:1px solid var(--line-2);background:var(--paper);min-height:52px;align-items:center}
+#ua-admin .cp-chip{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 4px 0 10px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:12.5px;font-weight:700;color:var(--ink)}
+#ua-admin .cp-chip > i{color:var(--gold);font-size:11px}
+#ua-admin .cp-chip button{width:22px;height:22px;border-radius:50%;border:0;background:none;color:var(--faint);font-size:10px;display:grid;place-items:center}
+#ua-admin .cp-chip button:hover:not(:disabled){background:var(--paper);color:var(--ink)}
+#ua-admin .cp-chip button:disabled{opacity:.3}
+#ua-admin .cp-chip-add{flex:1;min-width:170px;height:32px;border:0!important;background:transparent!important;box-shadow:none!important;outline:none;font-size:13px;padding:0 6px}
+#ua-admin .cp-mini{padding:0;overflow:hidden}
+#ua-admin .cp-mini summary{list-style:none;display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer}
+#ua-admin .cp-mini summary::-webkit-details-marker{display:none}
+#ua-admin .cp-mini summary b{display:block;font-size:14.5px;color:var(--ink)}
+#ua-admin .cp-mini summary small{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:46ch}
+#ua-admin .cp-mini summary > span:nth-child(2){flex:1;min-width:0}
+#ua-admin .cp-mini-ic{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:var(--ink);color:var(--gold-2)}
+#ua-admin .cp-chev{color:var(--muted);transition:transform .3s}
+#ua-admin .cp-mini[open] .cp-chev{transform:rotate(180deg)}
+#ua-admin .cp-mini[open] > :not(summary){padding:0 20px}
+#ua-admin .cp-mini[open]{padding-bottom:20px}
+/* preview */
+#ua-admin .cp-prev-label{font-family:var(--f-m);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:flex;gap:8px;align-items:center}
+#ua-admin .cp-pcard{position:relative;overflow:hidden;padding:24px;border-radius:24px;color:#fff;background:radial-gradient(80% 60% at 100% 0%,rgba(231,195,107,.22),transparent 60%),linear-gradient(165deg,var(--ink-3,#1B2A6B),var(--ink));box-shadow:var(--sh-3)}
+#ua-admin .cp-pbadge{position:absolute;top:16px;right:16px;padding:6px 12px;border-radius:999px;background:var(--gold-2);color:var(--ink);font-family:var(--f-m);font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+#ua-admin .cp-picon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:rgba(255,255,255,.1);color:var(--gold-2);font-size:18px}
+#ua-admin .cp-pcard h4{font-family:var(--f-d);font-weight:500;font-size:30px;letter-spacing:-.02em;margin:14px 0 6px}
+#ua-admin .cp-pcard p{margin:0 0 14px;font-size:13px;line-height:1.55;color:rgba(233,236,247,.7)}
+#ua-admin .cp-pcard ul{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-direction:column;gap:8px}
+#ua-admin .cp-pcard li{display:flex;gap:10px;align-items:center;font-size:13.5px;font-weight:600}
+#ua-admin .cp-pcard li i{color:var(--gold-2)}
+#ua-admin .cp-pprice{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+#ua-admin .cp-pprice s{color:rgba(233,236,247,.5);font-size:15px}
+#ua-admin .cp-pprice b{font-family:var(--f-d);font-size:44px;font-weight:500;letter-spacing:-.03em;line-height:1}
+#ua-admin .cp-pprice em{font-style:normal;font-size:11.5px;font-weight:800;padding:4px 9px;border-radius:999px;background:rgba(45,179,106,.2);color:#7FE0A8}
+#ua-admin .cp-pbtn{display:flex;align-items:center;justify-content:center;gap:9px;height:48px;border-radius:15px;background:linear-gradient(135deg,var(--gold-2),var(--gold));color:var(--ink);font-weight:800;font-size:14px}
+#ua-admin .cp-pcheck{margin-top:14px;padding:18px;border-radius:22px;background:var(--card);border:1px solid var(--line);box-shadow:var(--sh-1)}
+#ua-admin .cp-pline{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+#ua-admin .cp-pline span{display:flex;gap:9px;align-items:center;color:var(--ink);font-weight:600;min-width:0}
+#ua-admin .cp-pline span i{color:var(--blue)}
+#ua-admin .cp-pline b{font-family:var(--f-m);font-weight:600;color:var(--ink)}
+#ua-admin .cp-pline s{color:var(--faint)}
+#ua-admin .cp-ptotal{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0 14px}
+#ua-admin .cp-ptotal span{font-weight:800;color:var(--ink)}
+#ua-admin .cp-ptotal b{font-family:var(--f-d);font-size:28px;font-weight:500;color:var(--ink)}
+#ua-admin .cp-pcheck .cp-pbtn{background:var(--ink);color:#fff}
+#ua-admin .cp-pcheck .cp-pbtn.free{background:linear-gradient(135deg,#2DB36A,#1F8A4C)}
+/* save bar */
+#ua-admin .cp-save{position:sticky;bottom:12px;z-index:6;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px;padding:12px 14px;border-radius:18px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border:1px solid var(--line);box-shadow:var(--sh-2)}
+#ua-admin .cp-save.dirty{border-color:rgba(198,151,47,.5);box-shadow:0 18px 40px -18px rgba(198,151,47,.6)}
+#ua-admin .cp-state{flex:1;font-size:13px;font-weight:700;color:var(--ok);display:flex;gap:8px;align-items:center}
+#ua-admin .cp-save.dirty .cp-state{color:var(--gold)}
+#ua-admin .cp-save.dirty .cp-state i{font-size:8px;animation:udPulseDot 1.4s infinite}
+@keyframes udPulseDot{50%{opacity:.3}}
+#ua-admin .cp-problems{flex-basis:100%;font-size:12.5px;color:var(--bad);background:var(--bad-soft);padding:9px 12px;border-radius:12px;line-height:1.5}
+@media (max-width:1100px){#ua-admin .cp-grid{grid-template-columns:minmax(0,1fr)}#ua-admin .cp-side{position:static}#ua-admin .cp-classes{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){
+  #ua-admin .cp-subj{grid-template-columns:1fr 110px;grid-template-areas:"n n" "p b"}
+  #ua-admin .cp-grip{display:none}
+  #ua-admin .cp-sname{grid-column:1/-1}
+  #ua-admin .cp-sbtns{justify-content:flex-end}
+  #ua-admin .cp-sum{grid-template-columns:1fr}
+  #ua-admin .cp-class-price{font-size:24px}
+  #ua-admin .cp-save{bottom:8px}
+  #ua-admin .cp-state{flex-basis:100%}
+  #ua-admin .cp-save .btn{flex:1}
+  #ua-admin .cp-classes{gap:8px}
+  #ua-admin .cp-class{padding:13px}
+}
+
 /* ============================== STUDENT DASHBOARD ============================== */
 body.has-dash #page-home > *:not(#ua-dash):not(footer){display:none!important}
 #ua-dash:empty{display:none}
@@ -5287,8 +5394,7 @@ body.has-dash #page-home > *:not(#ua-dash):not(footer){display:none!important}
     <div class="nav-section-label">Site content</div>
     <div class="nav-item" data-panel="site-text"><i class="fas fa-align-left"></i> Hero / About / Results</div>
     <div class="nav-item" data-panel="courses"><i class="fas fa-tags"></i> Individual Pricing</div>
-    <div class="nav-item" data-panel="full-course-pricing"><i class="fas fa-file-invoice-dollar"></i> Full Course Pricing</div>
-    <div class="nav-item" data-panel="plan-cards"><i class="fas fa-id-card"></i> Plan Cards</div>
+    <div class="nav-item" data-panel="course-plans"><i class="fas fa-tags"></i> Courses &amp; Pricing</div>
     <div class="nav-item" data-panel="subjects"><i class="fas fa-book"></i> Subjects</div>
     <div class="nav-item" data-panel="announcements"><i class="fas fa-bullhorn"></i> Announcements</div>
     <div class="nav-item" data-panel="media"><i class="fas fa-images"></i> Logo / Photos / Faculty</div>
@@ -5341,6 +5447,7 @@ body.has-dash #page-home > *:not(#ua-dash):not(footer){display:none!important}
     <div id="panel-videos" class="panel"></div>
     <div id="panel-quiz-results" class="panel"></div>
     <div id="panel-goals" class="panel"></div>
+    <div id="panel-course-plans" class="panel"></div>
     <div id="panel-leads" class="panel"></div>
     <div id="panel-messages" class="panel"></div>
     <div id="panel-account" class="panel"></div>
@@ -14228,6 +14335,229 @@ function downloadQuizCsv(rows) {
 }
 PANEL_TITLES['quiz-results'] = 'Quiz Results';
 PANEL_LOADERS['quiz-results'] = renderQuizResults;
+
+// ============================================================
+//  COURSES & PRICING — one place for each class's plan cards AND the
+//  Full Course checkout pricing. The card price is always the sum of
+//  the subject prices, so what students see on the card is exactly
+//  what checkout charges. Saves: ua_plan_cards + ua_full_course_pricing
+// ============================================================
+let _cp = null;
+function _cpSum(list) { return (list || []).reduce(function (a, s) { return a + (Number(s.price) || 0); }, 0); }
+function _cpINR(n) { return '₹' + (Number(n) || 0).toLocaleString('en-IN'); }
+async function renderCoursePlans() {
+  const el = document.getElementById('panel-course-plans');
+  el.innerHTML = '<div class="card"><p class="empty-note"><i class="fas fa-spinner fa-spin"></i> Loading courses…</p></div>';
+  const [rawCards, rawPricing] = await Promise.all([
+    getContent('ua_plan_cards', {}),
+    getContent('ua_full_course_pricing', {})
+  ]);
+  const data = {};
+  CLASS_KEYS.forEach(function (ck) {
+    const starter = ADMIN_STARTER_PLAN_CARDS[ck], saved = (rawCards && rawCards[ck]) || {};
+    const sec = function (k) {
+      const sv = saved[k] || {}, st = starter[k] || {};
+      return {
+        desc: sv.desc || st.desc || '',
+        features: (sv.features && sv.features.length ? sv.features : (st.features || [])).slice(),
+        hint: sv.hint != null ? sv.hint : (st.hint || ''),
+        oldPrice: sv.oldPrice != null ? sv.oldPrice : st.oldPrice,
+        badge: sv.badge != null ? sv.badge : 'Best Value',
+        free: typeof sv.free === 'boolean' ? sv.free : (k === 'full' && ck === 'class11')
+      };
+    };
+    const subjects = (rawPricing && rawPricing[ck] && rawPricing[ck].length) ? rawPricing[ck] : (ADMIN_STARTER_FULL_COURSE_PRICING[ck] || []);
+    data[ck] = { full: sec('full'), mocks: sec('mocks'), notes: sec('notes'), subjects: subjects.map(function (x) { return { name: x.name || '', price: Number(x.price) || 0 }; }) };
+  });
+  _cp = { data: data, saved: JSON.stringify(data), active: (_cp && _cp.active) || CLASS_KEYS[0] };
+  drawCoursePlans();
+}
+function _cpDirty() { return _cp && JSON.stringify(_cp.data) !== _cp.saved; }
+function _cpProblems(ck) {
+  const d = _cp.data[ck], out = [];
+  const names = {};
+  if (!d.subjects.length) out.push('Add at least one subject — checkout needs something to choose.');
+  d.subjects.forEach(function (s, i) {
+    const n = (s.name || '').trim();
+    if (!n) out.push('Subject ' + (i + 1) + ' has no name.');
+    else if (names[n.toLowerCase()]) out.push('"' + n + '" is listed twice.');
+    names[n.toLowerCase()] = 1;
+    if (!(Number(s.price) >= 0)) out.push('"' + (n || 'Subject ' + (i + 1)) + '" needs a valid price.');
+  });
+  if (!d.full.free && _cpSum(d.subjects) <= 0) out.push('Total price is ₹0 — switch to "Free for now" or add prices.');
+  if (!d.full.desc.trim()) out.push('The Full Course card needs a short description.');
+  return out;
+}
+function drawCoursePlans(onlyDerived) {
+  const el = document.getElementById('panel-course-plans');
+  const ck = _cp.active, d = _cp.data[ck];
+  const total = _cpSum(d.subjects), oldP = Number(d.full.oldPrice) || 0;
+  const off = !d.full.free && oldP > total && total > 0 ? Math.round((1 - total / oldP) * 100) : 0;
+  const problems = _cpProblems(ck);
+
+  const classTiles = CLASS_KEYS.map(function (k) {
+    const dk = _cp.data[k], t = _cpSum(dk.subjects), bad = _cpProblems(k).length;
+    return '<button type="button" class="cp-class' + (k === ck ? ' on' : '') + '" data-class="' + k + '">'
+      + '<span class="cp-class-name">' + CLASS_LABELS[k] + (bad ? ' <i class="fas fa-circle-exclamation" style="color:var(--bad)" title="Needs attention"></i>' : '') + '</span>'
+      + '<span class="cp-class-price">' + (dk.full.free ? 'Free' : _cpINR(t)) + '</span>'
+      + '<span class="cp-class-meta">' + (dk.full.free ? '<span class="badge badge-success">Free for now</span>' : '<span class="badge badge-info">Paid</span>') + ' · ' + dk.subjects.length + ' subjects</span></button>';
+  }).join('');
+
+  const subjRows = d.subjects.map(function (s, i) {
+    return '<div class="cp-subj" data-i="' + i + '">'
+      + '<span class="cp-grip">' + (i + 1) + '</span>'
+      + '<input class="cp-sname" data-k="name" value="' + escAttr(s.name) + '" placeholder="Subject name">'
+      + '<label class="cp-sprice"><span>₹</span><input data-k="price" type="number" min="0" step="1" value="' + escAttr(s.price) + '"></label>'
+      + '<span class="cp-sbtns"><button type="button" class="cp-ic" data-act="up" title="Move up"' + (i ? '' : ' disabled') + '><i class="fas fa-arrow-up"></i></button>'
+      + '<button type="button" class="cp-ic" data-act="down" title="Move down"' + (i < d.subjects.length - 1 ? '' : ' disabled') + '><i class="fas fa-arrow-down"></i></button>'
+      + '<button type="button" class="cp-ic del" data-act="del" title="Remove"><i class="fas fa-trash"></i></button></span></div>';
+  }).join('');
+
+  function chips(section) {
+    return '<div class="cp-chips" data-section="' + section + '">' + _cp.data[ck][section].features.map(function (f, i) {
+      return '<span class="cp-chip"><i class="fas fa-check-circle"></i>' + escAttr(f) + '<button type="button" data-act="chip-up" data-i="' + i + '" title="Move left"' + (i ? '' : ' disabled') + '><i class="fas fa-chevron-left"></i></button><button type="button" data-act="chip-del" data-i="' + i + '" title="Remove"><i class="fas fa-xmark"></i></button></span>';
+    }).join('') + '<input class="cp-chip-add" placeholder="+ Add feature, press Enter"></div>';
+  }
+  function smallCard(section, icon, title) {
+    const sd = d[section];
+    return '<details class="card cp-mini"' + (_cp['open_' + section] ? ' open' : '') + ' data-section="' + section + '"><summary><span class="cp-mini-ic"><i class="fas ' + icon + '"></i></span><span><b>' + title + ' card</b><small>' + escAttr(sd.desc).slice(0, 80) + '</small></span><i class="fas fa-chevron-down cp-chev"></i></summary>'
+      + '<div class="field-row full"><div class="field"><label>Description</label><textarea rows="2" data-sec="' + section + '" data-k="desc">' + escAttr(sd.desc) + '</textarea></div></div>'
+      + '<div class="field"><label>Features</label>' + chips(section) + '</div>'
+      + '<div class="field-row full" style="margin-top:12px"><div class="field"><label>Tap hint</label><input data-sec="' + section + '" data-k="hint" value="' + escAttr(sd.hint) + '"></div></div></details>';
+  }
+
+  const preview = '<div class="cp-prev">'
+    + '<div class="cp-prev-label"><i class="fas fa-eye"></i> Live preview · ' + CLASS_LABELS[ck] + ' plans page</div>'
+    + '<div class="cp-pcard">'
+    + (d.full.badge || d.full.free ? '<span class="cp-pbadge">' + escAttr(d.full.free ? 'Free for now' : d.full.badge) + '</span>' : '')
+    + '<span class="cp-picon"><i class="fas fa-crown"></i></span><h4>Full Course</h4><p>' + escAttr(d.full.desc) + '</p>'
+    + '<ul>' + d.full.features.map(function (f) { return '<li><i class="fas fa-check-circle"></i>' + escAttr(f) + '</li>'; }).join('') + '</ul>'
+    + '<div class="cp-pprice">' + (oldP && (d.full.free || oldP > total) ? '<s>' + _cpINR(oldP) + '</s>' : '') + '<b>' + (d.full.free ? 'Free' : _cpINR(total)) + '</b>' + (off ? '<em>' + off + '% off</em>' : '') + '</div>'
+    + '<span class="cp-pbtn"><i class="fas fa-arrow-right"></i> Enroll</span></div>'
+    + '<div class="cp-pcheck"><div class="cp-prev-label" style="margin:0 0 10px"><i class="fas fa-receipt"></i> Checkout · choose your subjects</div>'
+    + (d.subjects.length ? d.subjects.map(function (s) { return '<div class="cp-pline"><span><i class="fas fa-square-check"></i>' + escAttr(s.name || 'Unnamed subject') + '</span><b>' + (d.full.free ? '<s>' + _cpINR(s.price) + '</s>' : _cpINR(s.price)) + '</b></div>'; }).join('') : '<p class="empty-note" style="padding:6px 0">No subjects yet.</p>')
+    + '<div class="cp-ptotal"><span>Total fees</span><b>' + (d.full.free ? '₹0' : _cpINR(total)) + '</b></div>'
+    + '<span class="cp-pbtn ' + (d.full.free ? 'free' : '') + '"><i class="fas fa-' + (d.full.free ? 'unlock' : 'lock') + '"></i> ' + (d.full.free ? 'Enroll for Free' : 'Proceed to Pay') + '</span></div>'
+    + '</div>';
+
+  const html = '<div class="cp-classes">' + classTiles + '</div>'
+    + '<div class="cp-grid"><div class="cp-edit">'
+    // pricing
+    + '<div class="card"><h3><i class="fas fa-indian-rupee-sign"></i> Full Course pricing</h3>'
+    + '<p class="hint">Subjects and prices a student picks at checkout. The card price is the <b>sum of these subjects</b>, so the card always matches what checkout charges.</p>'
+    + '<div class="cp-mode"><button type="button" data-mode="paid" class="' + (d.full.free ? '' : 'on') + '"><i class="fas fa-indian-rupee-sign"></i> Paid<small>Razorpay checkout</small></button>'
+    + '<button type="button" data-mode="free" class="' + (d.full.free ? 'on' : '') + '"><i class="fas fa-gift"></i> Free for now<small>Enroll without payment</small></button></div>'
+    + (d.full.free ? '<div class="cp-note"><i class="fas fa-circle-info"></i><span>Students still fill in the form and pick subjects (you get the lead), but pay <b>₹0</b> and the course unlocks straight away. The prices below are kept for when you switch back to Paid.</span></div>' : '')
+    + '<div class="cp-subjs">' + (subjRows || '<p class="empty-note">No subjects yet.</p>') + '</div>'
+    + '<button type="button" class="btn btn-outline btn-sm" id="cp-add"><i class="fas fa-plus"></i> Add subject</button>'
+    + '<div class="cp-sum"><div id="cp-sum-price"><span>Full Course price</span><b>' + (d.full.free ? 'Free' : _cpINR(total)) + '</b><small>' + d.subjects.length + ' subject' + (d.subjects.length === 1 ? '' : 's') + (d.full.free ? ' · normally ' + _cpINR(total) : '') + '</small></div>'
+    + '<div><label>Strike-through price (₹) <span style="color:var(--muted);font-weight:600">optional</span></label><input id="cp-old" type="number" min="0" value="' + escAttr(oldP || '') + '" placeholder="e.g. 7999">'
+    + '<small id="cp-old-hint">' + (off ? '<span class="badge badge-success">' + off + '% off shown</span>' : (oldP && !d.full.free && oldP <= total ? '<span class="badge badge-warn">Must be higher than ' + _cpINR(total) + ' to show</span>' : 'Shown crossed out next to the price')) + '</small></div></div>'
+    + '</div>'
+    // full card
+    + '<div class="card"><h3><i class="fas fa-crown"></i> Full Course card</h3>'
+    + '<div class="field-row"><div class="field"><label>Badge</label><input data-sec="full" data-k="badge" value="' + escAttr(d.full.badge) + '" placeholder="e.g. Best Value (leave empty to hide)"' + (d.full.free ? ' disabled title="Shows “Free for now” while the course is free"' : '') + '></div><div class="field"></div></div>'
+    + '<div class="field-row full"><div class="field"><label>Description</label><textarea rows="2" data-sec="full" data-k="desc">' + escAttr(d.full.desc) + '</textarea></div></div>'
+    + '<div class="field"><label>Features</label>' + chips('full') + '</div></div>'
+    + smallCard('mocks', 'fa-clipboard-list', 'Mocks') + smallCard('notes', 'fa-book-open', 'Notes')
+    + '</div><div class="cp-side">' + preview + '</div></div>'
+    // save bar
+    + '<div class="cp-save' + (_cpDirty() ? ' dirty' : '') + '">'
+    + (problems.length ? '<div class="cp-problems"><i class="fas fa-triangle-exclamation"></i> ' + problems.map(escAttr).join(' · ') + '</div>' : '')
+    + '<span class="cp-state">' + (_cpDirty() ? '<i class="fas fa-circle"></i> Unsaved changes' : '<i class="fas fa-check"></i> All changes saved') + '</span>'
+    + '<button type="button" class="btn btn-outline" id="cp-discard"' + (_cpDirty() ? '' : ' disabled') + '><i class="fas fa-rotate-left"></i> Discard</button>'
+    + '<button type="button" class="btn btn-primary" id="cp-save"' + (_cpDirty() ? '' : ' disabled') + '><i class="fas fa-cloud-arrow-up"></i> Save &amp; publish</button></div>';
+
+  if (onlyDerived && el.querySelector('.cp-grid')) {
+    // Live typing: refresh only the read-only parts so the cursor never jumps
+    const tmp = document.createElement('div'); tmp.innerHTML = html;
+    ['.cp-classes', '.cp-side', '#cp-sum-price', '#cp-old-hint', '.cp-save'].forEach(function (sel) {
+      const a = el.querySelector(sel), b = tmp.querySelector(sel);
+      if (a && b) a.replaceWith(b);
+    });
+    el.querySelectorAll('.cp-mini summary small').forEach(function (sm) {
+      const sec = sm.closest('details').dataset.section; sm.textContent = (_cp.data[ck][sec].desc || '').slice(0, 80);
+    });
+    wireCoursePlansDerived(el);
+    return;
+  }
+  el.innerHTML = html;
+  wireCoursePlans(el);
+}
+function wireCoursePlansDerived(el) {
+  el.querySelectorAll('.cp-class').forEach(function (b) { b.addEventListener('click', function () { _cp.active = b.dataset.class; drawCoursePlans(); }); });
+  document.getElementById('cp-discard').addEventListener('click', function () {
+    if (!confirm('Discard all unsaved changes?')) return;
+    _cp.data = JSON.parse(_cp.saved); drawCoursePlans();
+  });
+  document.getElementById('cp-save').addEventListener('click', saveCoursePlans);
+}
+function wireCoursePlans(el) {
+  const ck = _cp.active, d = _cp.data[ck];
+  let raf;
+  const soon = function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(function () { drawCoursePlans(true); }); };
+  el.querySelectorAll('.cp-mode button').forEach(function (b) { b.addEventListener('click', function () { d.full.free = b.dataset.mode === 'free'; drawCoursePlans(); }); });
+  el.querySelectorAll('.cp-subj').forEach(function (row) {
+    const i = Number(row.dataset.i);
+    row.querySelectorAll('input').forEach(function (inp) {
+      inp.addEventListener('input', function () { d.subjects[i][inp.dataset.k] = inp.dataset.k === 'price' ? Math.max(0, Math.round(Number(inp.value) || 0)) : inp.value; soon(); });
+    });
+    row.querySelectorAll('[data-act]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const a = btn.dataset.act;
+        if (a === 'del') { if ((d.subjects[i].name || '').trim() && !confirm('Remove "' + d.subjects[i].name + '" from ' + CLASS_LABELS[ck] + '?')) return; d.subjects.splice(i, 1); }
+        if (a === 'up' && i > 0) d.subjects.splice(i - 1, 0, d.subjects.splice(i, 1)[0]);
+        if (a === 'down' && i < d.subjects.length - 1) d.subjects.splice(i + 1, 0, d.subjects.splice(i, 1)[0]);
+        drawCoursePlans();
+      });
+    });
+  });
+  document.getElementById('cp-add').addEventListener('click', function () {
+    d.subjects.push({ name: '', price: 0 }); drawCoursePlans();
+    const rows = el.querySelectorAll('.cp-sname'); if (rows.length) rows[rows.length - 1].focus();
+  });
+  document.getElementById('cp-old').addEventListener('input', function () { d.full.oldPrice = this.value === '' ? null : Math.max(0, Math.round(Number(this.value) || 0)); soon(); });
+  el.querySelectorAll('[data-sec][data-k]').forEach(function (inp) {
+    inp.addEventListener('input', function () { d[inp.dataset.sec][inp.dataset.k] = inp.value; soon(); });
+  });
+  el.querySelectorAll('.cp-chips').forEach(function (box) {
+    const section = box.dataset.section, list = d[section].features;
+    const add = box.querySelector('.cp-chip-add');
+    add.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ',') {
+        e.preventDefault();
+        const v = add.value.trim().replace(/,$/, '');
+        if (v && list.indexOf(v) === -1) { list.push(v); drawCoursePlans(); const n = el.querySelector('.cp-chips[data-section="' + section + '"] .cp-chip-add'); if (n) n.focus(); }
+        else add.value = '';
+      } else if (e.key === 'Backspace' && !add.value && list.length) { list.pop(); drawCoursePlans(); const n = el.querySelector('.cp-chips[data-section="' + section + '"] .cp-chip-add'); if (n) n.focus(); }
+    });
+    box.querySelectorAll('[data-act="chip-del"]').forEach(function (b) { b.addEventListener('click', function () { list.splice(Number(b.dataset.i), 1); drawCoursePlans(); }); });
+    box.querySelectorAll('[data-act="chip-up"]').forEach(function (b) { b.addEventListener('click', function () { const i = Number(b.dataset.i); if (i > 0) { list.splice(i - 1, 0, list.splice(i, 1)[0]); drawCoursePlans(); } }); });
+  });
+  el.querySelectorAll('details.cp-mini').forEach(function (det) { det.addEventListener('toggle', function () { _cp['open_' + det.dataset.section] = det.open; }); });
+  wireCoursePlansDerived(el);
+}
+async function saveCoursePlans() {
+  const bad = CLASS_KEYS.filter(function (k) { return _cpProblems(k).length; });
+  if (bad.length) { _cp.active = bad[0]; drawCoursePlans(); alert('Please fix ' + CLASS_LABELS[bad[0]] + ' first:\n\n• ' + _cpProblems(bad[0]).join('\n• ')); return; }
+  const btn = document.getElementById('cp-save'); btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving…';
+  const cards = {}, pricing = {};
+  CLASS_KEYS.forEach(function (k) {
+    const d = _cp.data[k], subjects = d.subjects.map(function (s) { return { name: s.name.trim(), price: Math.round(Number(s.price) || 0) }; });
+    pricing[k] = subjects;
+    cards[k] = {
+      full: { desc: d.full.desc.trim(), features: d.full.features, oldPrice: d.full.oldPrice || null, newPrice: _cpSum(subjects), badge: (d.full.badge || '').trim(), free: !!d.full.free },
+      mocks: { desc: d.mocks.desc.trim(), features: d.mocks.features, hint: (d.mocks.hint || '').trim() },
+      notes: { desc: d.notes.desc.trim(), features: d.notes.features, hint: (d.notes.hint || '').trim() }
+    };
+  });
+  const ok1 = await setContent('ua_full_course_pricing', pricing);
+  const ok2 = ok1 && await setContent('ua_plan_cards', cards);
+  if (ok1 && ok2) { _cp.saved = JSON.stringify(_cp.data); drawCoursePlans(); if (typeof showToast === 'function') showToast('Saved — the plans pages update for students right away.'); }
+  else { btn.disabled = false; btn.innerHTML = '<i class="fas fa-cloud-arrow-up"></i> Save &amp; publish'; }
+}
+PANEL_TITLES['course-plans'] = 'Courses & Pricing';
+PANEL_LOADERS['course-plans'] = renderCoursePlans;
 window.uaAdminLogin = doLogin;
 window.uaAdminLogout = doLogout;
 window.uaAdminCheckSession = checkSession;
@@ -14645,50 +14975,93 @@ window.uaAdminCheckSession = checkSession;
   }
 })();
 
-/* ---------- FREE FOR NOW: Class 11 Full Course ----------
-   Set UA_FREE_CLASS11_FULL to false to bring back paid enrolment
-   (prices then come back from the Staff console as before). */
+/* ---------- Courses & Pricing (driven by the staff console) ----------
+   For every class: card price = sum of the Full Course subject prices
+   (= exactly what checkout charges), custom badge text, and a
+   "Free for now" switch that skips payment entirely. */
 (function () {
-  var UA_FREE_CLASS11_FULL = true;
-  if (!UA_FREE_CLASS11_FULL) return;
-  var PAY_LABEL = '<i class="fas fa-unlock"></i> Enroll for Free';
-  function paintCard() {
-    var n = document.getElementById('pc-class11-full-new'); if (n) n.textContent = 'Free';
+  var CFG = {
+    class11: { total: 'cko-total-price', btn: 'checkout-pay-btn', upd: 'updateCheckoutTotal', go: 'proceedToPayClass11', desc: 'Class 11 Full Course' },
+    class12: { total: 'cko12-total-price', btn: 'checkout-pay-btn-c12', upd: 'updateCheckoutTotalC12', go: 'proceedToPayClass12', desc: 'Class 12 Full Course' },
+    cuet: { total: 'ckocuet-total-price', btn: 'checkout-pay-btn-cuet', upd: 'updateCheckoutTotalCuet', go: 'proceedToPayCuet', desc: 'CUET Full Course' },
+    class12cuet: { total: 'cko12cuet-total-price', btn: 'checkout-pay-btn-class12cuet', upd: 'updateCheckoutTotalClass12Cuet', go: 'proceedToPayClass12Cuet', desc: 'Class 12 + CUET Full Course' }
+  };
+  // Defaults until the staff console has saved settings: Class 11 free (as before)
+  var FREE = { class11: true }, BADGE = {}, SUMS = {}, OLD = {};
+  window.uaIsFullCourseFree = function (ck) { return !!FREE[ck]; };
+  function inr(n) { return '₹' + (Number(n) || 0); }
+  function badgeEl(ck) {
+    var n = document.getElementById('pc-' + ck + '-full-new'); if (!n) return null;
+    var el = n; for (var i = 0; i < 6 && el; i++) { el = el.parentElement; var b = el && el.querySelector(':scope > .plan-badge'); if (b) return b; }
+    return null;
   }
-  function paintBadge() {
-    var n = document.getElementById('pc-class11-full-new'); if (!n) return;
-    var el = n; for (var i = 0; i < 6 && el; i++) { el = el.parentElement; var b = el && el.querySelector(':scope > .plan-badge'); if (b) { b.textContent = 'Free for now'; return; } }
+  function paintCard(ck) {
+    var n = document.getElementById('pc-' + ck + '-full-new'), o = document.getElementById('pc-' + ck + '-full-old');
+    if (n) n.textContent = FREE[ck] ? 'Free' : (SUMS[ck] != null ? inr(SUMS[ck]) : n.textContent);
+    if (o) {
+      var old = OLD[ck];
+      if (old != null) o.textContent = inr(old);
+      var showOld = old == null ? true : (FREE[ck] ? old > 0 : (SUMS[ck] == null || old > SUMS[ck]));
+      o.style.display = showOld ? '' : 'none';
+    }
+    var b = badgeEl(ck);
+    if (b) {
+      var t = FREE[ck] ? 'Free for now' : (BADGE[ck] != null ? BADGE[ck] : 'Best Value');
+      b.textContent = t; b.style.display = t ? '' : 'none';
+    }
   }
-  function paintCheckout() {
-    var t = document.getElementById('cko-total-price'); if (t) t.textContent = '₹0';
-    var btn = document.getElementById('checkout-pay-btn'); if (btn && !btn.disabled) btn.innerHTML = PAY_LABEL;
+  function paintCheckout(ck) {
+    var c = CFG[ck]; if (!FREE[ck]) return;
+    var t = document.getElementById(c.total); if (t) t.textContent = '₹0';
+    var btn = document.getElementById(c.btn); if (btn && !btn.disabled) btn.innerHTML = '<i class="fas fa-unlock"></i> Enroll for Free';
+  }
+  function paintAll() { Object.keys(CFG).forEach(function (ck) { paintCard(ck); paintCheckout(ck); }); }
+
+  if (typeof renderFullCourseCheckoutSubjects === 'function') {
+    var _rf = renderFullCourseCheckoutSubjects;
+    renderFullCourseCheckoutSubjects = function (data) {
+      SUMS = {};
+      Object.keys(data || {}).forEach(function (ck) { if (Array.isArray(data[ck]) && data[ck].length) SUMS[ck] = data[ck].reduce(function (a, s) { return a + (Number(s.price) || 0); }, 0); });
+      var r = _rf.apply(this, arguments); paintAll(); return r;
+    };
+    window.renderFullCourseCheckoutSubjects = renderFullCourseCheckoutSubjects;
   }
   if (typeof applyPlanCards === 'function') {
     var _ap = applyPlanCards;
-    applyPlanCards = function () { var r = _ap.apply(this, arguments); paintCard(); paintBadge(); return r; };
+    applyPlanCards = function (cards) {
+      Object.keys(cards || {}).forEach(function (ck) {
+        var f = cards[ck] && cards[ck].full; if (!f) return;
+        if (typeof f.free === 'boolean') FREE[ck] = f.free;
+        if (f.badge != null) BADGE[ck] = f.badge;
+        if (f.oldPrice != null && f.oldPrice !== '') OLD[ck] = Number(f.oldPrice);
+      });
+      var r = _ap.apply(this, arguments); paintAll(); return r;
+    };
     window.applyPlanCards = applyPlanCards;
   }
-  if (typeof updateCheckoutTotal === 'function') {
-    var _ut = updateCheckoutTotal;
-    updateCheckoutTotal = function () { var r = _ut.apply(this, arguments); paintCheckout(); return r; };
-    window.updateCheckoutTotal = updateCheckoutTotal;
-  }
+  Object.keys(CFG).forEach(function (ck) {
+    var c = CFG[ck];
+    if (typeof window[c.upd] === 'function') {
+      var _u = window[c.upd];
+      window[c.upd] = function () { var r = _u.apply(this, arguments); paintCheckout(ck); return r; };
+    }
+    if (typeof window[c.go] === 'function') {
+      var _g = window[c.go];
+      window[c.go] = async function () {
+        window._uaFreeEnroll = !!FREE[ck];
+        try { return await _g.apply(this, arguments); }
+        finally { window._uaFreeEnroll = false; paintCheckout(ck); }
+      };
+    }
+  });
   if (typeof payWithRazorpay === 'function') {
     var _pay = payWithRazorpay;
     payWithRazorpay = function (amount, opts) {
-      if (opts && opts.description === 'Class 11 Full Course') return Promise.resolve({ free: true });
+      var ck = Object.keys(CFG).filter(function (k) { return opts && opts.description === CFG[k].desc; })[0];
+      if (ck && FREE[ck]) return Promise.resolve({ free: true });
       return _pay.apply(this, arguments);
     };
     window.payWithRazorpay = payWithRazorpay;
-  }
-  if (typeof proceedToPayClass11 === 'function') {
-    var _go = proceedToPayClass11;
-    proceedToPayClass11 = async function () {
-      window._uaFreeEnroll = true;
-      try { return await _go.apply(this, arguments); }
-      finally { window._uaFreeEnroll = false; paintCheckout(); }
-    };
-    window.proceedToPayClass11 = proceedToPayClass11;
   }
   if (typeof showPaymentSuccessModal === 'function') {
     var _ok = showPaymentSuccessModal;
@@ -14699,9 +15072,13 @@ window.uaAdminCheckSession = checkSession;
     };
     window.showPaymentSuccessModal = showPaymentSuccessModal;
   }
-  function boot() { paintCard(); paintBadge(); paintCheckout(); }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
-  setTimeout(boot, 1500); setTimeout(boot, 4000);
+  // the checkout modals open via these — repaint the free state on open
+  ['openCheckoutModal', 'openCheckoutModalC12', 'openCheckoutModalCuet', 'openCheckoutModalClass12Cuet'].forEach(function (fn) {
+    if (typeof window[fn] !== 'function') return;
+    var _o = window[fn];
+    window[fn] = function () { var r = _o.apply(this, arguments); paintAll(); return r; };
+  });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', paintAll); else paintAll();
 })();
 
 /* ---------- Full Course = everything included ----------
