@@ -2767,6 +2767,224 @@ body.staff-open #wa-widget,body.staff-open .back-top{display:none!important}
 #ua-admin #app-shell{width:100%}
 #ua-admin .main{flex:1;min-width:0}
 
+/* ============================== STUDENT DASHBOARD ============================== */
+body.has-dash #page-home > *:not(#ua-dash):not(footer){display:none!important}
+#ua-dash:empty{display:none}
+.ud{--ud-gap:clamp(14px,1.6vw,20px);padding:clamp(14px,2.4vw,30px) clamp(14px,3vw,40px) 30px;display:flex;flex-direction:column;gap:var(--ud-gap);max-width:1320px;margin:0 auto}
+.ud *{box-sizing:border-box}
+.ud section{margin:0}
+
+/* entrance choreography */
+.ud > section{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .8s var(--ease)}
+.ud.ud-in > section{opacity:1;transform:none}
+.ud.ud-in > section:nth-child(2){transition-delay:.08s}.ud.ud-in > section:nth-child(3){transition-delay:.16s}
+.ud.ud-in > section:nth-child(4){transition-delay:.24s}.ud.ud-in > section:nth-child(5){transition-delay:.32s}.ud.ud-in > section:nth-child(6){transition-delay:.4s}
+.ud .ud-skel{opacity:1}
+.ud:has(.ud-skel) > section{opacity:1;transform:none}
+
+/* ---------- hero ---------- */
+.ud-hero{position:relative;overflow:hidden;border-radius:var(--r-xl);padding:clamp(22px,3.4vw,44px);display:grid;grid-template-columns:1fr auto;gap:clamp(18px,3vw,40px);align-items:center;color:#fff;
+  background:radial-gradient(70% 90% at 100% 0%,rgba(46,86,230,.55),transparent 60%),radial-gradient(60% 80% at 0% 100%,rgba(198,151,47,.38),transparent 60%),linear-gradient(155deg,var(--ink-3,#1B2A6B),var(--ink));box-shadow:var(--sh-3)}
+.ud-hero::after{content:"";position:absolute;inset:0;background-image:var(--grain);opacity:.08;mix-blend-mode:overlay;pointer-events:none}
+.ud-hero-aur{position:absolute;inset:-40%;background:conic-gradient(from 0deg at 60% 40%,transparent 0 40%,rgba(231,195,107,.18) 50%,transparent 60% 100%);animation:udSpin 22s linear infinite;pointer-events:none}
+@keyframes udSpin{to{transform:rotate(1turn)}}
+.ud-hero > :not(.ud-hero-aur){position:relative;z-index:1}
+.ud-eyebrow{font-family:var(--f-m);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(233,236,247,.6)}
+.ud-streak{color:var(--gold-2);white-space:nowrap}.ud-streak i{animation:udFlame 1.6s ease-in-out infinite}
+@keyframes udFlame{50%{transform:scale(1.18) translateY(-1px)}}
+.ud-hello{font-family:var(--f-d);font-weight:400;font-size:clamp(34px,5.2vw,64px);line-height:.98;letter-spacing:-.035em;margin:14px 0 18px;color:#fff}
+.ud-hello em{font-style:italic;font-weight:300;color:var(--gold-2)}
+.ud-chips{display:flex;flex-wrap:wrap;gap:8px}
+.ud-chip{display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 13px;border-radius:999px;font-size:12.5px;font-weight:700;color:rgba(233,236,247,.86);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(6px)}
+.ud-chip.gold{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:var(--ink);border-color:transparent}
+.ud-hero-ring{display:flex;flex-direction:column;align-items:center;gap:12px}
+.ud-ring-box{position:relative;width:168px;height:168px}
+.ud-ring-bg{fill:none;stroke:rgba(255,255,255,.1)}
+.ud-ring-fg{fill:none;stroke:var(--gold-2);stroke-linecap:round;transition:stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1)}
+.ud-ring.big .ud-ring-fg{filter:drop-shadow(0 0 10px rgba(231,195,107,.55))}
+.ud-ring-txt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;align-content:center;text-align:center}
+.ud-ring-txt b{font-family:var(--f-d);font-size:48px;font-weight:500;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.ud-ring-txt span{font-family:var(--f-d);font-size:22px;color:var(--gold-2);margin-left:2px}
+.ud-ring-txt small{flex-basis:100%;font-family:var(--f-m);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(233,236,247,.55);margin-top:6px}
+.ud-ring-legend{display:flex;gap:14px;font-size:12px;font-weight:600;color:rgba(233,236,247,.75)}
+.ud-ring-legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+
+/* ---------- rows & cards ---------- */
+.ud-row{display:grid;gap:var(--ud-gap)}
+.ud-top{grid-template-columns:minmax(280px,.9fr) 1.6fr}
+.ud-perf{grid-template-columns:1.55fr 1fr}
+.ud-results{grid-template-columns:1fr 1fr}
+.ud-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-l);padding:clamp(18px,2.2vw,26px);box-shadow:var(--sh-1);min-width:0}
+.ud-card-h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px}
+.ud-kicker{display:block;font-family:var(--f-m);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.ud-card h3{font-family:var(--f-d);font-weight:500;font-size:clamp(21px,2vw,26px);letter-spacing:-.02em;color:var(--ink);margin:4px 0 0;line-height:1.1}
+.ud-pill{flex-shrink:0;font-size:11.5px;font-weight:700;padding:6px 11px;border-radius:999px;background:var(--paper);color:var(--muted);border:1px solid var(--line)}
+.ud-link{flex-shrink:0;border:0;background:none;color:var(--blue);font-weight:800;font-size:12.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:6px 0}
+.ud-link i{transition:transform .3s var(--ease)}.ud-link:hover i{transform:translateX(3px)}
+
+/* next up */
+.ud-next{position:relative;overflow:hidden;border-radius:var(--r-l);padding:clamp(20px,2.4vw,28px);display:flex;flex-direction:column;justify-content:flex-end;gap:10px;min-height:236px;
+  background:linear-gradient(160deg,#FBF3DE,#F1DFAE);border:1px solid rgba(198,151,47,.35);color:var(--ink);box-shadow:var(--sh-1)}
+.ud-next::before{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.7),transparent 65%)}
+.ud-next.live{background:radial-gradient(80% 90% at 100% 0%,rgba(229,72,77,.35),transparent 60%),linear-gradient(160deg,var(--ink-3,#1B2A6B),var(--ink));color:#fff;border-color:transparent}
+.ud-next.live::before{background:radial-gradient(circle,rgba(229,72,77,.35),transparent 65%)}
+.ud-next > *{position:relative}
+.ud-next-tag{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-family:var(--f-m);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:6px 11px;border-radius:999px;background:rgba(10,18,48,.08);margin-bottom:auto}
+.ud-next.live .ud-next-tag{background:rgba(229,72,77,.2);color:#FFB4B6}
+.ud-pulse{width:8px;height:8px;border-radius:50%;background:#E5484D;box-shadow:0 0 0 0 rgba(229,72,77,.7);animation:udPulse 1.6s infinite}
+@keyframes udPulse{70%{box-shadow:0 0 0 10px rgba(229,72,77,0)}100%{box-shadow:0 0 0 0 rgba(229,72,77,0)}}
+.ud-next h3{font-family:var(--f-d);font-weight:500;font-size:clamp(24px,2.4vw,30px);letter-spacing:-.025em;line-height:1.05;margin:14px 0 0}
+.ud-next p{margin:0;font-size:13.5px;line-height:1.55;opacity:.75}
+.ud-next-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.ud-count{display:flex;align-items:baseline;gap:10px;margin:4px 0}
+.ud-count span{font-size:12px;opacity:.6}
+.ud-count b{font-family:var(--f-m);font-size:24px;font-weight:600;letter-spacing:.04em;color:#FFD9A0;font-variant-numeric:tabular-nums}
+.ud-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;height:46px;padding:0 20px;border-radius:14px;border:0;font-weight:800;font-size:14px;cursor:pointer;font-family:inherit;transition:transform .35s var(--spring,cubic-bezier(.3,1.4,.5,1)),box-shadow .3s}
+.ud-btn:hover{transform:translateY(-2px)}
+.ud-btn.gold{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:var(--ink);box-shadow:0 14px 28px -14px rgba(198,151,47,.9)}
+.ud-next:not(.live) .ud-btn.gold{background:var(--ink);color:#fff;box-shadow:0 14px 28px -14px rgba(10,18,48,.7)}
+.ud-btn.ghost{background:rgba(10,18,48,.06);color:var(--ink);border:1px solid rgba(10,18,48,.12)}
+
+/* kpis */
+.ud-kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--ud-gap)}
+.ud-kpi{position:relative;overflow:hidden;background:var(--card);border:1px solid var(--line);border-radius:var(--r-l);padding:18px;box-shadow:var(--sh-1);transition:transform .45s var(--ease),box-shadow .45s;min-width:0}
+.ud-kpi:hover{transform:translateY(-3px);box-shadow:var(--sh-2)}
+.ud-kpi::after{content:"";position:absolute;right:-30px;bottom:-30px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,rgba(46,86,230,.08),transparent 70%)}
+.ud-kpi-ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--ink);color:var(--gold-2);font-size:14px;margin-bottom:14px}
+.ud-kpi-v{display:flex;align-items:baseline;gap:3px}
+.ud-kpi-v b{font-family:var(--f-d);font-size:clamp(34px,3.4vw,44px);font-weight:500;letter-spacing:-.04em;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.ud-kpi-v span{font-family:var(--f-d);font-size:20px;color:var(--gold)}
+.ud-kpi-l{font-size:13px;font-weight:700;color:var(--ink);margin-top:8px}
+.ud-kpi-s{font-size:12px;color:var(--muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ud-tier{font-weight:800}.ud-tier.ex{color:#1F8A4C}.ud-tier.good{color:var(--blue)}.ud-tier.mid{color:var(--gold)}.ud-tier.low{color:var(--bad)}
+.ud-trend{display:inline-flex;align-items:center;gap:3px;font-weight:800;font-size:11.5px;padding:2px 7px;border-radius:999px}
+.ud-trend.up{background:var(--ok-soft);color:var(--ok)}.ud-trend.down{background:var(--bad-soft);color:var(--bad)}
+
+/* chart */
+.ud-chart-wrap{position:relative}
+.ud-chart{width:100%;height:auto;display:block;overflow:visible}
+.ud-grid{stroke:var(--line);stroke-dasharray:3 5}
+.ud-axis{font-family:var(--f-m);font-size:10px;fill:var(--faint)}
+.ud-line{fill:none;stroke:url(#udLine);stroke-width:3;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;vector-effect:non-scaling-stroke}
+.ud.ud-in .ud-line{animation:udDraw 1.6s .35s cubic-bezier(.4,.1,.2,1) forwards}
+@keyframes udDraw{to{stroke-dashoffset:0}}
+.ud-area{opacity:0}.ud.ud-in .ud-area{animation:udFade 1s 1s forwards}
+@keyframes udFade{to{opacity:1}}
+.ud-dot{cursor:pointer;outline:none}
+.ud-hit{fill:transparent}
+.ud-pt{fill:#fff;stroke:var(--ink);stroke-width:2.5;vector-effect:non-scaling-stroke;opacity:0;transform-box:fill-box;transform-origin:center;transition:transform .25s var(--ease)}
+.ud.ud-in .ud-pt{animation:udFade .4s var(--d,1s) forwards}
+.ud-dot.on .ud-pt,.ud-dot:hover .ud-pt{transform:scale(1.5);fill:var(--gold-2)}
+.ud-tip{position:absolute;transform:translate(-50%,calc(-100% - 14px));pointer-events:none;background:var(--ink);color:#fff;border-radius:12px;padding:9px 12px;box-shadow:var(--sh-3);white-space:nowrap;z-index:2;text-align:center}
+.ud-tip::after{content:"";position:absolute;left:50%;bottom:-5px;width:10px;height:10px;background:var(--ink);transform:translateX(-50%) rotate(45deg)}
+.ud-tip b{display:block;font-family:var(--f-d);font-size:22px;font-weight:500;color:var(--gold-2);line-height:1}
+.ud-tip span{display:block;font-size:12px;font-weight:700;margin-top:4px;max-width:220px;overflow:hidden;text-overflow:ellipsis}
+.ud-tip small{display:block;font-size:11px;opacity:.6;margin-top:2px}
+
+/* subjects */
+.ud-subjects{display:flex;flex-direction:column;gap:16px}
+.ud-subj{animation:cardIn .6s var(--ease) both;animation-delay:calc(var(--i) * .07s + .3s)}
+.ud-subj-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:8px}
+.ud-subj-h b{font-size:14px;color:var(--ink)}
+.ud-subj-h span{font-size:12px;color:var(--muted);white-space:nowrap}
+.ud-bar{height:10px;border-radius:999px;background:var(--paper);overflow:hidden;border:1px solid var(--line)}
+.ud-bar.thin{height:6px;margin-top:6px}
+.ud-bar i{display:block;height:100%;width:0;border-radius:inherit;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.ud.ud-in .ud-bar i{width:var(--w)}
+.ud-bar i.t{background:linear-gradient(90deg,var(--gold),var(--gold-2))}
+.ud-bar i.l{background:linear-gradient(90deg,#5C7CFA,#8FA8FF)}
+.ud-subj-f{display:flex;gap:14px;margin-top:7px;font-size:11.5px;color:var(--muted)}
+.ud-subj-f .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px}
+.dot.t{background:var(--gold)}.dot.l{background:#5C7CFA}
+
+/* goals */
+.ud-goals{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+.ud-goal{display:flex;gap:16px;align-items:flex-start;padding:16px;border-radius:18px;background:var(--paper);border:1px solid var(--line);transition:transform .4s var(--ease),box-shadow .4s,background .3s;animation:cardIn .6s var(--ease) both;animation-delay:calc(var(--i) * .06s + .2s)}
+.ud-goal:hover{transform:translateY(-2px);box-shadow:var(--sh-2);background:#fff}
+.ud-goal.done{background:linear-gradient(160deg,#EEF8F1,#fff);border-color:rgba(31,138,76,.25)}
+.ud-goal-ring{position:relative;width:74px;height:74px;flex-shrink:0}
+.ud-goal-ring .ud-ring-bg{stroke:rgba(10,18,48,.08)}
+.ud-goal-ring .ud-ring-fg{stroke:var(--blue)}
+.ud-goal-ring .ud-ring.ok .ud-ring-fg{stroke:#1F8A4C}
+.ud-goal-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:1px;font-family:var(--f-d);font-size:20px;font-weight:500;color:var(--ink)}
+.ud-goal-pct small{font-size:12px;color:var(--muted)}
+.ud-goal.done .ud-goal-pct{color:#1F8A4C;font-size:22px}
+.ud-goal-b{min-width:0;flex:1}
+.ud-goal-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;font-size:13px;color:var(--gold)}
+.ud-goal-b > b{display:block;font-size:14.5px;color:var(--ink);line-height:1.35}
+.ud-goal-cur{display:block;font-family:var(--f-m);font-size:12px;color:var(--muted);margin-top:4px}
+.ud-goal-b p{margin:8px 0 0;font-size:12.5px;line-height:1.5;color:var(--muted);padding-left:10px;border-left:2px solid var(--gold-2)}
+.ud-badge{font-family:var(--f-b);font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;background:var(--blue-soft);color:var(--blue)}
+.ud-badge.ok{background:var(--ok-soft);color:var(--ok)}
+.ud-due{font-family:var(--f-b);font-size:11px;font-weight:700;color:var(--muted);display:inline-flex;gap:5px;align-items:center}
+.ud-due.soon{color:var(--warn,#B7791F)}.ud-due.late{color:var(--bad)}
+
+/* lists */
+.ud-list{display:flex;flex-direction:column;gap:8px}
+.ud-li{display:flex;align-items:center;gap:13px;padding:11px 12px;border-radius:16px;background:var(--paper);border:1px solid transparent;transition:border-color .25s,background .25s;animation:cardIn .55s var(--ease) both;animation-delay:calc(var(--i) * .05s + .25s)}
+.ud-li:hover{background:#fff;border-color:var(--line)}
+.ud-li-ic{width:50px;height:50px;flex-shrink:0;border-radius:15px;display:flex;align-items:baseline;justify-content:center;padding-top:14px;font-family:var(--f-d);font-size:18px;font-weight:500;color:#fff;background:var(--ink)}
+.ud-li-ic small{font-size:10px;opacity:.7}
+.ud-li-ic.ex{background:linear-gradient(150deg,#2DB36A,#1F8A4C)}.ud-li-ic.good{background:linear-gradient(150deg,#4F74F0,#2E56E6)}
+.ud-li-ic.mid{background:linear-gradient(150deg,var(--gold-2),var(--gold));color:var(--ink)}.ud-li-ic.low{background:linear-gradient(150deg,#F07175,#D9383E)}
+.ud-li-ic.wait,.ud-li-ic:has(> i){align-items:center;padding-top:0}
+.ud-li-ic.wait{background:#fff;color:var(--muted);border:1px dashed var(--line-2);font-size:16px}
+.ud-li-b{flex:1;min-width:0}
+.ud-li-b b{display:block;font-size:13.5px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ud-li-b span{display:block;font-size:12px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ud-li-r{text-align:right;flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.ud-li-r b{font-family:var(--f-m);font-size:13px;color:var(--ink)}
+.ud-li-r span{font-size:11px;color:var(--muted);display:flex;gap:5px;align-items:center}
+.ud-li-r span i.fa-check{color:var(--ok)}.ud-li-r span i.fa-xmark{color:var(--bad);margin-left:3px}
+.ud-mini{font-size:11.5px;font-weight:800;color:var(--blue);text-decoration:none;display:inline-flex;gap:5px;align-items:center}
+
+/* quick actions */
+.ud-quick{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+@media (max-width:1180px){.ud-quick{grid-template-columns:repeat(3,1fr)}}
+.ud-q{position:relative;overflow:hidden;text-align:left;display:flex;flex-direction:column;gap:3px;padding:16px;border-radius:18px;background:var(--paper);border:1px solid var(--line);cursor:pointer;font-family:inherit;transition:transform .45s var(--ease),box-shadow .45s,background .3s;animation:cardIn .55s var(--ease) both;animation-delay:calc(var(--i) * .05s + .2s)}
+.ud-q:hover{transform:translateY(-3px);box-shadow:var(--sh-2);background:#fff}
+.ud-q i{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:var(--ink);color:var(--gold-2);margin-bottom:10px;transition:transform .5s var(--spring,cubic-bezier(.3,1.4,.5,1))}
+.ud-q:hover i{transform:rotate(-8deg) scale(1.08)}
+.ud-q b{font-size:14px;color:var(--ink)}
+.ud-q span{font-size:12px;color:var(--muted)}
+
+/* empty states */
+.ud-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;padding:34px 16px;border-radius:18px;background:repeating-linear-gradient(135deg,var(--paper),var(--paper) 10px,#F1EDE2 10px,#F1EDE2 11px);border:1px dashed var(--line-2);min-height:180px}
+.ud-empty.sm{min-height:150px;padding:24px 16px}
+.ud-empty i{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;background:#fff;color:var(--gold);box-shadow:var(--sh-1);margin-bottom:6px;font-size:17px}
+.ud-empty b{font-size:14.5px;color:var(--ink)}
+.ud-empty span{font-size:12.5px;color:var(--muted);max-width:300px;line-height:1.5}
+
+/* skeleton */
+.ud-skel .sk{height:14px;border-radius:8px;background:linear-gradient(90deg,rgba(128,128,150,.12),rgba(128,128,150,.24),rgba(128,128,150,.12));background-size:200% 100%;animation:udShimmer 1.3s infinite;margin:8px 0}
+.ud-hero.ud-skel .sk{background:linear-gradient(90deg,rgba(255,255,255,.06),rgba(255,255,255,.16),rgba(255,255,255,.06));background-size:200% 100%}
+.sk.h60{height:60px}.sk.h30{height:30px}.sk.w40{width:40%}.sk.w55{width:55%}.sk.w70{width:70%}.sk.w90{width:90%}
+.sk.sq{width:38px;height:38px;border-radius:12px}.sk.circle{width:150px;height:150px;border-radius:50%}
+@keyframes udShimmer{to{background-position:-200% 0}}
+
+/* responsive */
+@media (max-width:1100px){.ud-top{grid-template-columns:1fr}.ud-kpis{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:900px){.ud-perf,.ud-results{grid-template-columns:1fr}.ud-kpis{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){
+  .ud{padding:12px 12px 24px}
+  .ud-hero{grid-template-columns:1fr;text-align:left;padding:22px 20px 24px;border-radius:26px}
+  .ud-hero-ring{flex-direction:row;justify-content:flex-start;gap:18px;padding-top:6px;border-top:1px solid rgba(255,255,255,.1)}
+  .ud-ring-box{width:118px;height:118px}.ud-ring.big{width:118px;height:118px}
+  .ud-ring-txt b{font-size:34px}.ud-ring-txt span{font-size:16px}
+  .ud-ring-legend{flex-direction:column;gap:8px}
+  .ud-hello{font-size:38px;margin:10px 0 14px}
+  .ud-next{min-height:0;padding:20px}
+  .ud-kpi{padding:15px}.ud-kpi-ic{margin-bottom:10px;width:34px;height:34px}
+  .ud-goals{grid-template-columns:1fr}
+  .ud-goal{padding:14px;gap:13px}
+  .ud-quick{grid-template-columns:repeat(2,1fr)}
+  .ud-card{border-radius:22px;padding:18px}
+}
+@media (prefers-reduced-motion:reduce){.ud *, .ud > section{animation:none!important;transition:none!important}.ud > section{opacity:1;transform:none}.ud-line{stroke-dashoffset:0}.ud-area,.ud-pt{opacity:1}.ud-bar i{width:var(--w)}}
+
+.ud-perk{display:inline-flex;align-items:center;gap:9px;margin-top:16px;padding:9px 14px;border-radius:14px;font-size:12.5px;font-weight:600;color:rgba(233,236,247,.86);background:rgba(231,195,107,.12);border:1px solid rgba(231,195,107,.28)}
+.ud-perk i{color:var(--gold-2)}
+
 </style>
 </head>
 <body>
@@ -5085,6 +5303,7 @@ body.staff-open #wa-widget,body.staff-open .back-top{display:none!important}
     <div class="nav-item" data-panel="videos"><i class="fas fa-video"></i> Videos</div>
 
     <div class="nav-section-label">Students</div>
+    <div class="nav-item" data-panel="goals"><i class="fas fa-bullseye"></i> Student Goals</div>
     <div class="nav-item" data-panel="leads"><i class="fas fa-user-plus"></i> Student Leads</div>
     <div class="nav-item" data-panel="messages"><i class="fas fa-envelope"></i> Contact Messages</div>
 
@@ -5119,6 +5338,7 @@ body.staff-open #wa-widget,body.staff-open .back-top{display:none!important}
     <div id="panel-dayd" class="panel"></div>
     <div id="panel-lectures" class="panel"></div>
     <div id="panel-videos" class="panel"></div>
+    <div id="panel-goals" class="panel"></div>
     <div id="panel-leads" class="panel"></div>
     <div id="panel-messages" class="panel"></div>
     <div id="panel-account" class="panel"></div>
@@ -11022,7 +11242,7 @@ async function renderDashboard() {
     + '</div>'
     + '<div class="card"><h3><i class="fas fa-bolt"></i> Quick actions</h3><p class="hint">Changes go live as soon as you hit Save — students see them the next time the site loads its data (a few seconds).</p>'
     + '<div class="adm-quick">'
-    + [['mock-submissions','fa-file-signature','Check answer copies'],['dayd','fa-bolt','Publish a Day-D mock'],['mocks','fa-file-circle-check','Add a mock'],['notes','fa-file-lines','Add notes'],['announcements','fa-bullhorn','Post an announcement'],['leads','fa-user-plus','View student leads']].map(function (q) {
+    + [['mock-submissions','fa-file-signature','Check answer copies'],['dayd','fa-bolt','Publish a Day-D mock'],['mocks','fa-file-circle-check','Add a mock'],['notes','fa-file-lines','Add notes'],['announcements','fa-bullhorn','Post an announcement'],['goals','fa-bullseye','Set student goals'],['leads','fa-user-plus','View student leads']].map(function (q) {
         return '<button type="button" onclick="document.querySelector(\'#ua-admin .nav-item[data-panel=&quot;' + q[0] + '&quot;]\').click()"><i class="fas ' + q[1] + '"></i>' + q[2] + '</button>';
       }).join('')
     + '</div></div>';
@@ -13669,6 +13889,136 @@ async function uaLoadAdminSubjects() {
     });
   } catch (e) {}
 }
+
+// ============================================================
+//  STUDENT GOALS — shown on each enrolled student's dashboard
+//  Table: student_goals (see student-goals.sql)
+// ============================================================
+const GOAL_METRICS = {
+  tests:      { label: 'Tests completed',          unit: 'tests',    hint: 'Counts every scored mock / Day-D test.' },
+  avg_score:  { label: 'Average score (%)',        unit: '%',        hint: 'Average percentage across all scored tests.' },
+  best_score: { label: 'Best score (%)',           unit: '%',        hint: 'Highest percentage in any single test.' },
+  dayd:       { label: 'Day-D live mocks taken',   unit: 'mocks',    hint: 'Counts Day-D live mocks attempted.' },
+  lectures:   { label: 'Lectures watched (%)',     unit: '%',        hint: 'Share of the course lectures watched.' },
+  copies:     { label: 'Answer copies checked',    unit: 'copies',   hint: 'Answer copies submitted and checked.' },
+  custom:     { label: 'Custom (you set progress)', unit: '%',       hint: 'Free-form goal — you update the progress yourself.' }
+};
+async function renderGoals() {
+  const el = document.getElementById('panel-goals');
+  el.innerHTML = '<div class="card"><p class="empty-note"><i class="fas fa-spinner fa-spin"></i> Loading goals…</p></div>';
+  const [goalsRes, leadsRes] = await Promise.all([
+    supa.from('student_goals').select('*').order('created_at', { ascending: false }),
+    supa.from('student_leads').select('email,name').order('created_at', { ascending: false }).limit(1000)
+  ]);
+  if (goalsRes.error) {
+    el.innerHTML = '<div class="card"><h3><i class="fas fa-bullseye"></i> Student Goals</h3><p class="hint">Goals table not found. Run <b>student-goals.sql</b> in Supabase → SQL Editor once, then reopen this section.</p><p class="empty-note">' + escAttr(goalsRes.error.message) + '</p></div>';
+    return;
+  }
+  const goals = goalsRes.data || [];
+  const emails = {};
+  (leadsRes.data || []).forEach(function (r) { if (r.email && !emails[r.email.toLowerCase()]) emails[r.email.toLowerCase()] = r.name || ''; });
+  const classOpts = '<option value="all">All classes</option>' + CLASS_KEYS.map(function (k) { return '<option value="' + k + '">' + (CLASS_LABELS[k] || k) + '</option>'; }).join('');
+  const metricOpts = Object.keys(GOAL_METRICS).map(function (k) { return '<option value="' + k + '">' + GOAL_METRICS[k].label + '</option>'; }).join('');
+  el.innerHTML =
+    '<div class="card"><h3><i class="fas fa-bullseye"></i> Set a goal</h3>'
+    + '<p class="hint">Goals appear on the student dashboard with a live progress ring. Progress fills in automatically from the student\'s tests, Day-D mocks, lectures and checked copies — choose <b>Custom</b> for anything else and update it yourself.</p>'
+    + '<input type="hidden" id="g-id">'
+    + '<div class="field-row"><div class="field"><label>Who is this for?</label><select id="g-scope"><option value="class">Whole class</option><option value="student">One student</option></select></div>'
+    + '<div class="field"><label>Class</label><select id="g-class">' + classOpts + '</select></div></div>'
+    + '<div class="field-row full" id="g-email-row" style="display:none"><div class="field"><label>Student email</label><input id="g-email" list="g-email-list" placeholder="student@email.com"><datalist id="g-email-list">'
+    + Object.keys(emails).map(function (e) { return '<option value="' + escAttr(e) + '">' + escAttr(emails[e]) + '</option>'; }).join('') + '</datalist></div></div>'
+    + '<div class="field-row full"><div class="field"><label>Goal title</label><input id="g-title" placeholder="e.g. Score 80%+ in Accountancy mocks"></div></div>'
+    + '<div class="field-row"><div class="field"><label>Measured by</label><select id="g-metric">' + metricOpts + '</select></div>'
+    + '<div class="field" id="g-target-wrap"><label>Target <span id="g-unit" style="color:var(--muted);font-weight:600"></span></label><input id="g-target" type="number" min="0" step="any" placeholder="e.g. 80"></div></div>'
+    + '<div class="field-row"><div class="field"><label>Due date (optional)</label><input id="g-due" type="date"></div>'
+    + '<div class="field" id="g-progress-wrap" style="display:none"><label>Current progress (%)</label><input id="g-progress" type="number" min="0" max="100" placeholder="0–100"></div></div>'
+    + '<div class="field-row full"><div class="field"><label>Note for the student (optional)</label><textarea id="g-note" rows="2" placeholder="A short tip or why this goal matters"></textarea></div></div>'
+    + '<p class="hint" id="g-metric-hint" style="margin-top:-4px"></p>'
+    + '<div class="save-bar"><button class="btn btn-primary" id="g-save"><i class="fas fa-bullseye"></i> Save goal</button><button class="btn btn-outline" id="g-reset" style="display:none"><i class="fas fa-xmark"></i> Cancel edit</button><span class="save-status" id="g-status"></span></div>'
+    + '</div>'
+    + '<div class="card"><h3><i class="fas fa-list-check"></i> Active goals (' + goals.length + ')</h3>'
+    + (goals.length ? '<div style="overflow-x:auto"><table class="data-table"><thead><tr><th>Goal</th><th>For</th><th>Measured by</th><th>Target</th><th>Due</th><th></th></tr></thead><tbody>'
+      + goals.map(function (g) {
+          const m = GOAL_METRICS[g.metric] || GOAL_METRICS.custom;
+          return '<tr data-id="' + g.id + '"><td><b>' + escAttr(g.title) + '</b>' + (g.note ? '<br><span style="color:var(--muted);font-size:12px">' + escAttr(g.note) + '</span>' : '') + '</td>'
+            + '<td>' + (g.email ? '<span class="badge badge-warn">' + escAttr(g.email) + '</span>' : '<span class="badge badge-info">' + escAttr(CLASS_LABELS[g.class_key] || 'All classes') + '</span>') + '</td>'
+            + '<td>' + m.label + (g.metric === 'custom' && g.progress != null ? '<br><span style="color:var(--muted);font-size:12px">progress ' + g.progress + '%</span>' : '') + '</td>'
+            + '<td>' + (g.target != null ? g.target + ' ' + m.unit : '—') + '</td>'
+            + '<td>' + (g.due_date ? new Date(g.due_date + 'T00:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '—') + '</td>'
+            + '<td style="white-space:nowrap"><button class="btn btn-outline btn-sm" data-act="edit"><i class="fas fa-pen"></i></button> <button class="btn btn-danger btn-sm" data-act="del"><i class="fas fa-trash"></i></button></td></tr>';
+        }).join('') + '</tbody></table></div>'
+      : '<p class="empty-note">No goals yet. Add the first one above — every enrolled student in that class will see it on their dashboard.</p>')
+    + '</div>';
+
+  const $ = function (id) { return document.getElementById(id); };
+  function syncForm() {
+    const m = GOAL_METRICS[$('g-metric').value] || GOAL_METRICS.custom;
+    $('g-unit').textContent = '(' + m.unit + ')';
+    $('g-metric-hint').textContent = m.hint;
+    $('g-progress-wrap').style.display = $('g-metric').value === 'custom' ? '' : 'none';
+    $('g-target-wrap').style.display = $('g-metric').value === 'custom' ? 'none' : '';
+    $('g-email-row').style.display = $('g-scope').value === 'student' ? '' : 'none';
+  }
+  ['g-metric', 'g-scope'].forEach(function (id) { $(id).addEventListener('change', syncForm); });
+  syncForm();
+  function resetForm() {
+    ['g-id', 'g-email', 'g-title', 'g-target', 'g-due', 'g-progress', 'g-note'].forEach(function (id) { $(id).value = ''; });
+    $('g-scope').value = 'class'; $('g-class').value = 'all'; $('g-metric').value = 'tests';
+    $('g-reset').style.display = 'none'; $('g-save').innerHTML = '<i class="fas fa-bullseye"></i> Save goal';
+    syncForm();
+  }
+  $('g-metric').value = 'tests'; syncForm();
+  $('g-reset').addEventListener('click', resetForm);
+  $('g-save').addEventListener('click', async function () {
+    const scope = $('g-scope').value;
+    const row = {
+      class_key: $('g-class').value || 'all',
+      email: scope === 'student' ? ($('g-email').value.trim().toLowerCase() || null) : null,
+      title: $('g-title').value.trim(),
+      metric: $('g-metric').value,
+      target: $('g-target').value === '' ? null : Number($('g-target').value),
+      progress: $('g-metric').value === 'custom' && $('g-progress').value !== '' ? Math.max(0, Math.min(100, Number($('g-progress').value))) : null,
+      due_date: $('g-due').value || null,
+      note: $('g-note').value.trim() || null
+    };
+    if (!row.title) { alert('Give the goal a title.'); return; }
+    if (scope === 'student' && !row.email) { alert('Enter the student\'s email.'); return; }
+    if (row.metric !== 'custom' && (row.target == null || !(row.target > 0))) { alert('Enter a target greater than 0.'); return; }
+    const btn = $('g-save'); btn.disabled = true;
+    const id = $('g-id').value;
+    const res = id ? await supa.from('student_goals').update(row).eq('id', id) : await supa.from('student_goals').insert([row]);
+    btn.disabled = false;
+    if (res.error) { alert('Save failed: ' + res.error.message); return; }
+    alert(id ? 'Goal updated.' : 'Goal saved — students will see it on their dashboard.');
+    renderGoals();
+  });
+  el.querySelectorAll('tr[data-id]').forEach(function (tr) {
+    const g = goals.find(function (x) { return x.id === tr.getAttribute('data-id'); });
+    tr.querySelector('[data-act="del"]').addEventListener('click', async function () {
+      if (!confirm('Delete the goal "' + g.title + '"?')) return;
+      const { error } = await supa.from('student_goals').delete().eq('id', g.id);
+      if (error) { alert('Delete failed: ' + error.message); return; }
+      renderGoals();
+    });
+    tr.querySelector('[data-act="edit"]').addEventListener('click', function () {
+      $('g-id').value = g.id;
+      $('g-scope').value = g.email ? 'student' : 'class';
+      $('g-class').value = g.class_key || 'all';
+      $('g-email').value = g.email || '';
+      $('g-title').value = g.title || '';
+      $('g-metric').value = GOAL_METRICS[g.metric] ? g.metric : 'custom';
+      $('g-target').value = g.target != null ? g.target : '';
+      $('g-progress').value = g.progress != null ? g.progress : '';
+      $('g-due').value = g.due_date || '';
+      $('g-note').value = g.note || '';
+      $('g-reset').style.display = ''; $('g-save').innerHTML = '<i class="fas fa-check"></i> Update goal';
+      syncForm();
+      const box = document.getElementById('ua-admin'); if (box) box.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+}
+PANEL_TITLES['goals'] = 'Student Goals';
+PANEL_LOADERS['goals'] = renderGoals;
 window.uaAdminLogin = doLogin;
 window.uaAdminLogout = doLogout;
 window.uaAdminCheckSession = checkSession;
@@ -14143,6 +14493,540 @@ window.uaAdminCheckSession = checkSession;
   function boot() { paintCard(); paintBadge(); paintCheckout(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
   setTimeout(boot, 1500); setTimeout(boot, 4000);
+})();
+
+/* ---------- Full Course = everything included ----------
+   A student enrolled in a class's Full Course gets every paid mock,
+   question-based mock, Previous-Dose Day-D and paid note of that class
+   unlocked for free (no per-item purchase needed). */
+(function () {
+  function ownsFullCourseFor(classKey) {
+    var c = window._UA_MY_CONFIRMED || [];
+    if (c.indexOf(classKey) > -1) return true;
+    if ((classKey === 'class12' || classKey === 'cuet') && c.indexOf('class12cuet') > -1) return true;
+    if (classKey === 'class12cuet' && (c.indexOf('class12cuet') > -1)) return true;
+    return false;
+  }
+  window.uaOwnsFullCourseFor = ownsFullCourseFor;
+  if (typeof isMockPurchased === 'function') {
+    var _m = isMockPurchased;
+    isMockPurchased = function (classKey) { return ownsFullCourseFor(classKey) || _m.apply(this, arguments); };
+    window.isMockPurchased = isMockPurchased;
+  }
+  if (typeof isNotePurchased === 'function') {
+    var _n = isNotePurchased;
+    isNotePurchased = function (classKey) { return ownsFullCourseFor(classKey) || _n.apply(this, arguments); };
+    window.isNotePurchased = isNotePurchased;
+  }
+  // Show "Included" instead of a price / "Purchased" on items the course covers.
+  if (typeof fetchLibraryGroupedBySubject === 'function') {
+    var _f = fetchLibraryGroupedBySubject;
+    fetchLibraryGroupedBySubject = async function (table, classKey) {
+      var g = await _f.apply(this, arguments);
+      if (!ownsFullCourseFor(classKey)) return g;
+      Object.keys(g || {}).forEach(function (s) { g[s] = g[s].map(function (r) { return r.access_type === 'paid' ? Object.assign({}, r, { access_type: 'free', _included: true }) : r; }); });
+      return g;
+    };
+    window.fetchLibraryGroupedBySubject = fetchLibraryGroupedBySubject;
+  }
+  if (typeof quizMockRowHtml === 'function') {
+    var _q = quizMockRowHtml;
+    quizMockRowHtml = function (classKey, row) {
+      var html = _q.apply(this, arguments);
+      return ownsFullCourseFor(classKey) ? html.replace(', Purchased)', ', Included)') : html;
+    };
+    window.quizMockRowHtml = quizMockRowHtml;
+  }
+})();
+
+/* ---------- Full Course = every paid mock, note & Previous Dose included ----------
+   A student with a Full Course (or the matching Mocks / Notes plan) never sees
+   a "Buy" button for single paid items in that class. */
+(function () {
+  var COVERS = { class11: ['class11'], class12: ['class12'], cuet: ['cuet'], class12cuet: ['class12cuet', 'class12', 'cuet'] };
+  function owns(classKey, kind) {
+    var c = window._UA_MY_CONFIRMED || [];
+    return Object.keys(COVERS).some(function (slug) {
+      if (COVERS[slug].indexOf(classKey) < 0) return false;
+      return c.indexOf(slug) > -1 || (kind && c.indexOf(slug + kind) > -1);
+    });
+  }
+  window.uaHasFullCourseFor = function (classKey) { return owns(classKey, null); };
+  if (typeof isMockPurchased === 'function') {
+    var _m = isMockPurchased;
+    isMockPurchased = function (classKey) { return owns(classKey, 'mocks') || _m.apply(this, arguments); };
+    window.isMockPurchased = isMockPurchased;
+  }
+  if (typeof isNotePurchased === 'function') {
+    var _n = isNotePurchased;
+    isNotePurchased = function (classKey) { return owns(classKey, 'notes') || _n.apply(this, arguments); };
+    window.isNotePurchased = isNotePurchased;
+  }
+  // Belt and braces: never open a buy sheet for something the course already includes.
+  if (typeof openMockBuyModal === 'function') {
+    var _bm = openMockBuyModal;
+    openMockBuyModal = function (classKey) { if (owns(classKey, 'mocks')) { refresh(); return showToast('Included in your course — it\u2019s unlocked.'); } return _bm.apply(this, arguments); };
+    window.openMockBuyModal = openMockBuyModal;
+  }
+  if (typeof openNoteBuyModal === 'function') {
+    var _bn = openNoteBuyModal;
+    openNoteBuyModal = function (classKey) { if (owns(classKey, 'notes')) { refresh(); return showToast('Included in your course — it\u2019s unlocked.'); } return _bn.apply(this, arguments); };
+    window.openNoteBuyModal = openNoteBuyModal;
+  }
+  function refresh() { try { if (typeof refreshVisibleMocksNotesPages === 'function') refreshVisibleMocksNotesPages(); } catch (e) {} }
+  // "Purchased" reads oddly for things the course includes — say "Included".
+  function relabel(root) {
+    if (!(window._UA_MY_CONFIRMED || []).some(function (s) { return COVERS[s]; })) return;
+    (root || document).querySelectorAll('.mchp-chapter-name span').forEach(function (sp) {
+      if (sp.textContent.indexOf('Purchased') > -1) sp.textContent = sp.textContent.replace('Purchased', 'Included');
+    });
+  }
+  var pend = null;
+  new MutationObserver(function () { if (pend) return; pend = requestAnimationFrame(function () { pend = null; relabel(); }); })
+    .observe(document.documentElement, { childList: true, subtree: true });
+})();
+
+/* =====================================================================
+   STUDENT DASHBOARD — replaces Home once a student is enrolled in a
+   Full Course. Performance, results, class, subjects, staff goals,
+   live Day-D, lectures progress and quick actions — in one screen.
+   ===================================================================== */
+(function () {
+  'use strict';
+  if (typeof _supa === 'undefined') return;
+
+  var COURSE_SLUGS = ['class11', 'class12', 'cuet', 'class12cuet'];
+  var HUB = { class11: ['openC11Hub', 'c11h'], class12: ['openC12Hub', 'c12h'], cuet: ['openCuetHub', 'cueth'], class12cuet: ['openC12CHub', 'c12ch'] };
+  var METRIC = {
+    tests: { unit: 'tests', icon: 'fa-file-circle-check' },
+    avg_score: { unit: '%', icon: 'fa-chart-line' },
+    best_score: { unit: '%', icon: 'fa-trophy' },
+    dayd: { unit: 'live mocks', icon: 'fa-bolt' },
+    lectures: { unit: '%', icon: 'fa-circle-play' },
+    copies: { unit: 'copies', icon: 'fa-file-signature' },
+    custom: { unit: '%', icon: 'fa-bullseye' }
+  };
+  var state = { data: null, loading: false, tick: null, seq: 0 };
+
+  /* ---------- helpers ---------- */
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function jsq(s) { return String(s == null ? '' : s).replace(/\\/g, '\\\\').replace(/'/g, "\\'"); }
+  function pct(a, b) { return b > 0 ? Math.round((a / b) * 100) : 0; }
+  function clamp(n) { return Math.max(0, Math.min(100, Math.round(n || 0))); }
+  function myCourses() {
+    return (window._UA_MY_CONFIRMED || []).filter(function (s) { return COURSE_SLUGS.indexOf(s) > -1; })
+      .filter(function (v, i, a) { return a.indexOf(v) === i; });
+  }
+  function compKeys(slug) { return typeof courseComponentKeys === 'function' ? courseComponentKeys(slug) : [slug]; }
+  function subjectsFor(ck) { try { return typeof getEnrolledSubjects === 'function' ? getEnrolledSubjects(ck) : []; } catch (e) { return []; } }
+  function label(slug) { return (window.CLASS_LABELS || {})[slug] || (typeof CLASS_LABELS !== 'undefined' ? CLASS_LABELS[slug] : slug) || slug; }
+  function fmtDate(d) { try { return new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' }); } catch (e) { return ''; } }
+  function dayKey(d) { var x = new Date(d); return x.getFullYear() + '-' + x.getMonth() + '-' + x.getDate(); }
+  function greeting() { var h = new Date().getHours(); return h < 5 ? 'Burning the midnight oil' : h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening'; }
+  function firstName() { var n = (localStorage.getItem('ua_user_name') || 'Student').trim(); return n.split(/\s+/)[0]; }
+  function subjOf(testName) { var i = (testName || '').indexOf(' — '); return i > 0 ? testName.slice(0, i) : ''; }
+  function titleOf(testName) { var i = (testName || '').indexOf(' — '); return i > 0 ? testName.slice(i + 3) : (testName || 'Test'); }
+  function tierOf(p) { return p >= 85 ? ['Outstanding', 'ex'] : p >= 70 ? ['Strong', 'good'] : p >= 50 ? ['Building up', 'mid'] : ['Needs focus', 'low']; }
+  function ring(p, size, stroke, cls) {
+    var r = (size - stroke) / 2, c = 2 * Math.PI * r, off = c * (1 - clamp(p) / 100);
+    return '<svg class="ud-ring ' + (cls || '') + '" viewBox="0 0 ' + size + ' ' + size + '" width="' + size + '" height="' + size + '" aria-hidden="true">'
+      + '<circle cx="' + size / 2 + '" cy="' + size / 2 + '" r="' + r + '" class="ud-ring-bg" stroke-width="' + stroke + '"/>'
+      + '<circle cx="' + size / 2 + '" cy="' + size / 2 + '" r="' + r + '" class="ud-ring-fg" stroke-width="' + stroke + '" stroke-dasharray="' + c.toFixed(1) + '" stroke-dashoffset="' + c.toFixed(1) + '" data-off="' + off.toFixed(1) + '" transform="rotate(-90 ' + size / 2 + ' ' + size / 2 + ')"/></svg>';
+  }
+
+  /* ---------- data ---------- */
+  function localSnapshot(courses) {
+    var lectureWatched = {}, daydLive = [];
+    courses.forEach(function (slug) {
+      var keys = compKeys(slug).concat(slug).filter(function (v, i, a) { return a.indexOf(v) === i; });
+      keys.forEach(function (ck) {
+        (typeof getProgressItems === 'function' ? getProgressItems('lectures', ck) : []).forEach(function (k) {
+          var s = String(k).split('::')[0]; lectureWatched[ck + '|' + s] = (lectureWatched[ck + '|' + s] || 0) + 1;
+        });
+        var items = (typeof DAYD_MOCKS_DATA !== 'undefined' && DAYD_MOCKS_DATA[ck]) || [];
+        items.forEach(function (raw, idx) {
+          if (!raw || typeof raw !== 'object' || !(raw.questions || []).length) return;
+          if (typeof daydIsLive === 'function' && !daydIsLive(raw)) return;
+          var title = raw.title || 'Day-D mock';
+          var tn = typeof _quizTestName === 'function' ? _quizTestName('Day-D', title) : 'Day-D — ' + title;
+          var done = (typeof hasAttemptedQuiz === 'function' && hasAttemptedQuiz('dayd', ck, title)) || !!(window._UA_SERVER_ATTEMPTS || {})[tn];
+          var ends = raw.publishedAt && raw.liveHours ? new Date(raw.publishedAt).getTime() + Number(raw.liveHours) * 3600000 : null;
+          if (!daydLive.some(function (d) { return d.title === title; }))
+            daydLive.push({ ck: ck, idx: idx, title: title, q: raw.questions.length, dur: raw.duration || null, done: done, ends: ends });
+        });
+      });
+    });
+    return { lectureWatched: lectureWatched, daydLive: daydLive };
+  }
+
+  async function fetchAll(courses) {
+    var out = { quiz: [], copies: [], goals: [], lectureTotals: {}, rank: null, uid: null, email: '' };
+    var user = null;
+    try { var r = await _supa.auth.getUser(); user = r && r.data && r.data.user; } catch (e) {}
+    if (user) { out.uid = user.id; out.email = user.email || ''; }
+    var jobs = [];
+    if (user) {
+      jobs.push(_supa.from('quiz_results').select('test_name,score,total,correct,wrong,skipped,created_at').eq('user_id', user.id).order('created_at', { ascending: true })
+        .then(function (r) { if (!r.error && r.data) out.quiz = r.data; }, function () {}));
+      jobs.push(_supa.from('mock_submissions').select('*').eq('user_id', user.id).order('submitted_at', { ascending: false })
+        .then(function (r) { if (!r.error && r.data) out.copies = r.data; }, function () {}));
+      jobs.push(_supa.from('student_goals').select('*').order('created_at', { ascending: true })
+        .then(function (r) {
+          if (r.error || !r.data) return;
+          var em = (out.email || '').toLowerCase();
+          out.goals = r.data.filter(function (g) {
+            var forClass = !g.class_key || g.class_key === 'all' || courses.indexOf(g.class_key) > -1 || courses.some(function (c) { return compKeys(c).indexOf(g.class_key) > -1; });
+            var forMe = !g.email || g.email.toLowerCase() === em;
+            return forClass && forMe;
+          });
+        }, function () {}));
+    }
+    courses.forEach(function (slug) {
+      compKeys(slug).forEach(function (ck) {
+        if (typeof fetchLectureChaptersGroupedBySubject !== 'function') return;
+        jobs.push(fetchLectureChaptersGroupedBySubject(ck).then(function (g) {
+          Object.keys(g || {}).forEach(function (s) {
+            var n = 0; (g[s] || []).forEach(function (ch) { n += Math.max(1, (ch.topics || []).length); });
+            out.lectureTotals[ck + '|' + s] = n;
+          });
+        }, function () {}));
+      });
+    });
+    await Promise.all(jobs);
+    // Rank in the most recent Day-D mock
+    var lastD = out.quiz.filter(function (q) { return /^Day-D — /.test(q.test_name || ''); }).slice(-1)[0];
+    if (lastD) {
+      try {
+        var above = await _supa.from('quiz_results').select('*', { count: 'exact', head: true }).eq('test_name', lastD.test_name).gt('score', lastD.score);
+        var all = await _supa.from('quiz_results').select('*', { count: 'exact', head: true }).eq('test_name', lastD.test_name);
+        if (above && typeof above.count === 'number' && all && typeof all.count === 'number') out.rank = { pos: above.count + 1, of: all.count, test: titleOf(lastD.test_name) };
+      } catch (e) {}
+    }
+    return out;
+  }
+
+  function compute(courses, remote, local) {
+    var quiz = (remote && remote.quiz) || [];
+    var scored = quiz.filter(function (q) { return Number(q.total) > 0; }).map(function (q) {
+      return { name: q.test_name || 'Test', subject: subjOf(q.test_name), title: titleOf(q.test_name), p: pct(Number(q.score), Number(q.total)), score: Number(q.score), total: Number(q.total), correct: q.correct || 0, wrong: q.wrong || 0, skipped: q.skipped || 0, at: q.created_at };
+    });
+    // Offline / not-yet-synced fallback: on-device results
+    if (!scored.length && typeof getMockResults === 'function') {
+      courses.forEach(function (slug) {
+        compKeys(slug).forEach(function (ck) {
+          ['mocks', 'dayd'].forEach(function (kind) {
+            getMockResults(kind, ck).forEach(function (r) {
+              var full = typeof getFullQuizResult === 'function' ? getFullQuizResult(kind, ck, r.key) : null;
+              var tot = full && full.totalMarks ? full.totalMarks : r.total, sc = full && full.score != null ? full.score : r.correct;
+              scored.push({ name: (kind === 'dayd' ? 'Day-D' : (full && full.subject) || '') + ' — ' + r.key, subject: kind === 'dayd' ? 'Day-D' : (full && full.subject) || '', title: r.key, p: pct(sc, tot), score: sc, total: tot, correct: r.correct, wrong: r.wrong, skipped: Math.max(0, r.total - r.correct - r.wrong), at: null });
+            });
+          });
+        });
+      });
+    }
+    var tests = scored.length;
+    var avg = tests ? Math.round(scored.reduce(function (a, b) { return a + b.p; }, 0) / tests) : 0;
+    var best = tests ? Math.max.apply(null, scored.map(function (s) { return s.p; })) : 0;
+    var dayd = scored.filter(function (s) { return s.subject === 'Day-D'; }).length;
+    var correct = scored.reduce(function (a, b) { return a + b.correct; }, 0), answered = scored.reduce(function (a, b) { return a + b.correct + b.wrong; }, 0);
+    var accuracy = pct(correct, answered);
+    // last-5 vs previous-5 trend
+    var last5 = scored.slice(-5), prev5 = scored.slice(-10, -5);
+    var trend = (last5.length && prev5.length) ? Math.round(last5.reduce(function (a, b) { return a + b.p; }, 0) / last5.length - prev5.reduce(function (a, b) { return a + b.p; }, 0) / prev5.length) : null;
+
+    // subjects
+    var subjects = [];
+    courses.forEach(function (slug) {
+      compKeys(slug).forEach(function (ck) {
+        subjectsFor(ck).forEach(function (s) {
+          if (subjects.some(function (x) { return x.name === s && x.ck === ck; })) return;
+          var mine = scored.filter(function (t) { return t.subject === s; });
+          var lt = (remote && remote.lectureTotals[ck + '|' + s]) || 0, lw = local.lectureWatched[ck + '|' + s] || 0;
+          subjects.push({ name: s, ck: ck, tests: mine.length, avg: mine.length ? Math.round(mine.reduce(function (a, b) { return a + b.p; }, 0) / mine.length) : null, lw: Math.min(lw, lt || lw), lt: lt });
+        });
+      });
+    });
+    var lt = 0, lw = 0; subjects.forEach(function (s) { lt += s.lt; lw += s.lw; });
+    var lecturesPct = pct(lw, lt);
+    var copies = (remote && remote.copies) || [];
+    var checked = copies.filter(function (c) { return c.status === 'checked'; });
+    var overall = tests ? Math.round(avg * 0.65 + lecturesPct * 0.35) : lecturesPct;
+
+    // streak: consecutive days (ending today or yesterday) with a test taken
+    var days = {}; scored.forEach(function (s) { if (s.at) days[dayKey(s.at)] = 1; });
+    var streak = 0, d = new Date();
+    if (!days[dayKey(d)]) d.setDate(d.getDate() - 1);
+    while (days[dayKey(d)]) { streak++; d.setDate(d.getDate() - 1); }
+
+    var values = { tests: tests, avg_score: avg, best_score: best, dayd: dayd, lectures: lecturesPct, copies: checked.length };
+    var goals = ((remote && remote.goals) || []).map(function (g) {
+      var m = METRIC[g.metric] ? g.metric : 'custom';
+      var cur = m === 'custom' ? Number(g.progress || 0) : values[m] || 0;
+      var target = m === 'custom' ? 100 : Number(g.target || 0);
+      var p = target > 0 ? clamp((cur / target) * 100) : 0;
+      var t0 = new Date(); t0.setHours(0, 0, 0, 0);
+      var daysLeft = g.due_date ? Math.round((new Date(g.due_date + 'T00:00:00') - t0) / 86400000) : null;
+      return { g: g, m: m, cur: cur, target: target, p: p, done: p >= 100, daysLeft: daysLeft };
+    }).sort(function (a, b) { return (a.done - b.done) || ((a.daysLeft == null ? 9e9 : a.daysLeft) - (b.daysLeft == null ? 9e9 : b.daysLeft)); });
+
+    return { courses: courses, scored: scored, tests: tests, avg: avg, best: best, dayd: dayd, accuracy: accuracy, trend: trend, subjects: subjects, lecturesPct: lecturesPct, lw: lw, lt: lt, copies: copies, checked: checked, overall: overall, streak: streak, goals: goals, rank: remote && remote.rank, daydLive: local.daydLive, synced: !!remote };
+  }
+
+  /* ---------- render ---------- */
+  function chartSVG(scored) {
+    var pts = scored.slice(-12);
+    if (pts.length < 2) {
+      return '<div class="ud-empty"><i class="fas fa-chart-line"></i><b>' + (pts.length ? 'One test down!' : 'Your score graph starts here') + '</b><span>' + (pts.length ? 'Take one more test to see your trend line.' : 'Attempt a mock or Day-D test — every score is plotted here.') + '</span></div>';
+    }
+    var W = 640, H = 230, L = 34, R = 14, T = 16, B = 30, iw = W - L - R, ih = H - T - B;
+    var xy = pts.map(function (p, i) { return [L + (iw * i) / (pts.length - 1), T + ih * (1 - p.p / 100)]; });
+    var line = xy.map(function (p, i) {
+      if (!i) return 'M' + p[0].toFixed(1) + ' ' + p[1].toFixed(1);
+      var q = xy[i - 1], cx = (q[0] + p[0]) / 2;
+      return 'C' + cx.toFixed(1) + ' ' + q[1].toFixed(1) + ' ' + cx.toFixed(1) + ' ' + p[1].toFixed(1) + ' ' + p[0].toFixed(1) + ' ' + p[1].toFixed(1);
+    }).join(' ');
+    var area = line + ' L' + xy[xy.length - 1][0].toFixed(1) + ' ' + (T + ih) + ' L' + L + ' ' + (T + ih) + ' Z';
+    var grid = [0, 25, 50, 75, 100].map(function (g) { var y = T + ih * (1 - g / 100); return '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y + '" y2="' + y + '" class="ud-grid"/><text x="' + (L - 8) + '" y="' + (y + 4) + '" class="ud-axis" text-anchor="end">' + g + '</text>'; }).join('');
+    var dots = xy.map(function (p, i) {
+      var s = pts[i];
+      return '<g class="ud-dot" style="--d:' + (0.9 + i * 0.05) + 's" tabindex="0" data-tip="' + esc(s.title) + '|' + s.p + '%|' + (s.score + '/' + s.total) + '|' + (s.at ? fmtDate(s.at) : '') + '">'
+        + '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="13" class="ud-hit"/><circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="4.5" class="ud-pt"/></g>';
+    }).join('');
+    var labels = xy.map(function (p, i) { return (pts.length <= 8 || i % 2 === 0 || i === xy.length - 1) ? '<text x="' + p[0].toFixed(1) + '" y="' + (H - 8) + '" class="ud-axis" text-anchor="middle">T' + (scored.length - pts.length + i + 1) + '</text>' : ''; }).join('');
+    return '<div class="ud-chart-wrap"><svg class="ud-chart" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Your last ' + pts.length + ' test scores">'
+      + '<defs><linearGradient id="udArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E7C36B" stop-opacity=".45"/><stop offset="1" stop-color="#E7C36B" stop-opacity="0"/></linearGradient>'
+      + '<linearGradient id="udLine" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8FA8FF"/><stop offset="1" stop-color="#E7C36B"/></linearGradient></defs>'
+      + grid + '<path d="' + area + '" fill="url(#udArea)" class="ud-area"/><path d="' + line + '" class="ud-line" pathLength="1"/>' + dots + labels + '</svg>'
+      + '<div class="ud-tip" hidden></div></div>';
+  }
+
+  function nextUpHTML(D) {
+    var live = D.daydLive.filter(function (d) { return !d.done; })[0];
+    if (live) {
+      return '<div class="ud-next live spot">'
+        + '<div class="ud-next-tag"><span class="ud-pulse"></span> Live now · Day-D</div>'
+        + '<h3>' + esc(live.title) + '</h3>'
+        + '<p>' + live.q + ' questions' + (live.dur ? ' · ' + live.dur + ' min' : '') + ' · counts on the leaderboard</p>'
+        + (live.ends ? '<div class="ud-count" data-ends="' + live.ends + '"><span>Closes in</span><b>--:--:--</b></div>' : '')
+        + '<button class="ud-btn gold" onclick="startDaydMock(\'' + jsq(live.ck) + '\',' + live.idx + ')"><i class="fas fa-play"></i> Start live mock</button></div>';
+    }
+    var slug = D.courses[0], h = HUB[slug];
+    var weakest = D.subjects.filter(function (s) { return s.avg != null; }).sort(function (a, b) { return a.avg - b.avg; })[0];
+    var line = weakest && weakest.avg < 70 ? 'Your ' + esc(weakest.name) + ' average is ' + weakest.avg + '% — a quick mock will lift it.' : D.lt && D.lw < D.lt ? 'You’ve watched ' + D.lw + ' of ' + D.lt + ' lectures. Pick up where you left off.' : 'Everything’s on track — keep the streak going with a mock today.';
+    return '<div class="ud-next spot">'
+      + '<div class="ud-next-tag"><i class="fas fa-compass"></i> Up next</div>'
+      + '<h3>Continue learning</h3><p>' + line + '</p>'
+      + '<div class="ud-next-row"><button class="ud-btn gold" onclick="uaDashGo(\'' + slug + '\',0)"><i class="fas fa-circle-play"></i> Lectures</button>'
+      + '<button class="ud-btn ghost" onclick="uaDashGo(\'' + slug + '\',1)"><i class="fas fa-layer-group"></i> Mocks</button></div></div>';
+  }
+
+  function render(D) {
+    var host = document.getElementById('ua-dash'); if (!host) return;
+    var subjLine = [];
+    D.courses.forEach(function (slug) { compKeys(slug).forEach(function (ck) { subjectsFor(ck).forEach(function (s) { if (subjLine.indexOf(s) < 0) subjLine.push(s); }); }); });
+    var tier = tierOf(D.avg);
+    var now = new Date();
+    var html = ''
+      /* hero */
+      + '<section class="ud-hero spot">'
+      + '<div class="ud-hero-aur" aria-hidden="true"></div>'
+      + '<div class="ud-hero-main">'
+      + '<div class="ud-eyebrow">' + now.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' }) + (D.streak ? ' · <span class="ud-streak"><i class="fas fa-fire"></i> ' + D.streak + '-day streak</span>' : '') + '</div>'
+      + '<h1 class="ud-hello">' + greeting() + ',<br><em>' + esc(firstName()) + '.</em></h1>'
+      + '<div class="ud-chips">' + D.courses.map(function (s) { return '<span class="ud-chip gold"><i class="fas fa-graduation-cap"></i> ' + esc(label(s)) + ' · Full Course</span>'; }).join('')
+      + subjLine.map(function (s) { return '<span class="ud-chip">' + esc(s) + '</span>'; }).join('') + '</div>'
+      + '<div class="ud-perk"><i class="fas fa-unlock-keyhole"></i> Every paid mock, note &amp; Previous Dose is included in your course</div>'
+      + '</div>'
+      + '<div class="ud-hero-ring"><div class="ud-ring-box">' + ring(D.overall, 168, 12, 'big') + '<div class="ud-ring-txt"><b data-count="' + D.overall + '">0</b><span>%</span><small>Overall</small></div></div>'
+      + '<div class="ud-ring-legend"><span><i style="background:var(--gold-2)"></i>Tests ' + (D.tests ? D.avg + '%' : '—') + '</span><span><i style="background:#8FA8FF"></i>Lectures ' + D.lecturesPct + '%</span></div></div>'
+      + '</section>'
+      /* next up + kpis */
+      + '<section class="ud-row ud-top">' + nextUpHTML(D)
+      + '<div class="ud-kpis">'
+      + kpi('fa-file-circle-check', D.tests, '', 'Tests taken', D.dayd ? D.dayd + ' Day-D live' : 'Mocks & live tests')
+      + kpi('fa-chart-line', D.avg, '%', 'Average score', D.tests ? '<span class="ud-tier ' + tier[1] + '">' + tier[0] + '</span>' + (D.trend != null ? ' <span class="ud-trend ' + (D.trend >= 0 ? 'up' : 'down') + '"><i class="fas fa-arrow-' + (D.trend >= 0 ? 'up' : 'down') + '"></i>' + Math.abs(D.trend) + '</span>' : '') : 'Take your first test')
+      + kpi('fa-crosshairs', D.accuracy, '%', 'Accuracy', D.tests ? 'Correct of answered' : '—')
+      + (D.rank ? kpi('fa-ranking-star', D.rank.pos, '', 'Day-D rank', 'of ' + D.rank.of + ' · ' + esc(D.rank.test)) : kpi('fa-trophy', D.best, '%', 'Best score', D.tests ? 'Personal best' : '—'))
+      + '</div></section>'
+      /* performance + subjects */
+      + '<section class="ud-row ud-perf">'
+      + '<div class="ud-card ud-chart-card"><div class="ud-card-h"><div><span class="ud-kicker">Performance</span><h3>Score trend</h3></div>' + (D.tests ? '<span class="ud-pill">Last ' + Math.min(12, D.tests) + ' tests</span>' : '') + '</div>' + chartSVG(D.scored) + '</div>'
+      + '<div class="ud-card ud-subj-card"><div class="ud-card-h"><div><span class="ud-kicker">Your subjects</span><h3>Subject mastery</h3></div></div>'
+      + (D.subjects.length ? '<div class="ud-subjects">' + D.subjects.map(function (s, i) {
+          var a = s.avg == null ? 0 : s.avg, l = pct(s.lw, s.lt);
+          return '<div class="ud-subj" style="--i:' + i + '"><div class="ud-subj-h"><b>' + esc(s.name) + '</b><span>' + (s.avg == null ? 'No tests yet' : s.avg + '% avg · ' + s.tests + ' test' + (s.tests === 1 ? '' : 's')) + '</span></div>'
+            + '<div class="ud-bar"><i class="t" style="--w:' + a + '%"></i></div>'
+            + '<div class="ud-bar thin"><i class="l" style="--w:' + l + '%"></i></div>'
+            + '<div class="ud-subj-f"><span><i class="dot t"></i>Tests</span><span><i class="dot l"></i>Lectures ' + (s.lt ? s.lw + '/' + s.lt : '—') + '</span></div></div>';
+        }).join('') + '</div>' : '<div class="ud-empty sm"><i class="fas fa-book"></i><span>Your subjects will show here.</span></div>')
+      + '</div></section>'
+      /* goals */
+      + '<section class="ud-card ud-goals-card"><div class="ud-card-h"><div><span class="ud-kicker">Set by your teachers</span><h3>Your goals</h3></div>'
+      + (D.goals.length ? '<span class="ud-pill">' + D.goals.filter(function (g) { return g.done; }).length + ' / ' + D.goals.length + ' achieved</span>' : '') + '</div>'
+      + (D.goals.length ? '<div class="ud-goals">' + D.goals.map(goalHTML).join('') + '</div>'
+        : '<div class="ud-empty sm"><i class="fas fa-bullseye"></i><b>No goals yet</b><span>When your teachers set targets for you, they’ll appear here with live progress.</span></div>')
+      + '</section>'
+      /* results */
+      + '<section class="ud-row ud-results">'
+      + '<div class="ud-card"><div class="ud-card-h"><div><span class="ud-kicker">Results</span><h3>Recent tests</h3></div><button class="ud-link" onclick="showPage(\'results\')">All results <i class="fas fa-arrow-right"></i></button></div>'
+      + (D.scored.length ? '<div class="ud-list">' + D.scored.slice(-6).reverse().map(function (s, i) {
+          var t = tierOf(s.p);
+          return '<div class="ud-li" style="--i:' + i + '"><div class="ud-li-ic ' + t[1] + '">' + s.p + '<small>%</small></div><div class="ud-li-b"><b>' + esc(s.title) + '</b><span>' + esc(s.subject || 'Mock') + (s.at ? ' · ' + fmtDate(s.at) : '') + '</span></div>'
+            + '<div class="ud-li-r"><b>' + s.score + '/' + s.total + '</b><span><i class="fas fa-check"></i>' + s.correct + ' <i class="fas fa-xmark"></i>' + s.wrong + '</span></div></div>';
+        }).join('') + '</div>' : '<div class="ud-empty sm"><i class="fas fa-file-circle-check"></i><b>No tests yet</b><span>Your scores will land here the moment you finish a test.</span></div>')
+      + '</div>'
+      + '<div class="ud-card"><div class="ud-card-h"><div><span class="ud-kicker">Checked by teachers</span><h3>Answer copies</h3></div></div>'
+      + (D.copies.length ? '<div class="ud-list">' + D.copies.slice(0, 6).map(function (c, i) {
+          var ok = c.status === 'checked', p = ok && c.marks_total ? pct(c.marks_obtained, c.marks_total) : null;
+          return '<div class="ud-li" style="--i:' + i + '"><div class="ud-li-ic ' + (ok ? (p != null ? tierOf(p)[1] : 'good') : 'wait') + '">' + (ok ? (p != null ? p + '<small>%</small>' : '<i class="fas fa-check"></i>') : '<i class="fas fa-hourglass-half"></i>') + '</div>'
+            + '<div class="ud-li-b"><b>' + esc(c.chapter_name || 'Answer copy') + '</b><span>' + esc(c.subject || '') + (c.mistakes && ok ? ' · ' + esc(String(c.mistakes).slice(0, 60)) + (String(c.mistakes).length > 60 ? '…' : '') : ok ? '' : ' · Being checked') + '</span></div>'
+            + '<div class="ud-li-r">' + (ok && c.marks_total ? '<b>' + c.marks_obtained + '/' + c.marks_total + '</b>' : '') + (ok && c.checked_pdf_url ? '<a class="ud-mini" href="' + esc(c.checked_pdf_url) + '" target="_blank" rel="noopener"><i class="fas fa-file-pdf"></i> View</a>' : '') + '</div></div>';
+        }).join('') + '</div>' : '<div class="ud-empty sm"><i class="fas fa-file-signature"></i><b>No copies submitted</b><span>Upload your written answers from any mock — your teacher returns them marked, right here.</span></div>')
+      + '</div></section>'
+      /* quick actions */
+      + '<section class="ud-card ud-quick-card"><div class="ud-card-h"><div><span class="ud-kicker">Jump back in</span><h3>Your course</h3></div></div><div class="ud-quick">'
+      + D.courses.map(function (slug) {
+          return [[0, 'fa-circle-play', 'Lectures', 'Watch chapter-wise'], [1, 'fa-layer-group', 'Subject mocks', 'Practise & score'], [2, 'fa-bolt', 'Live mocks', 'Day-D on a timer'], [4, 'fa-book-open', 'Notes', 'Chapter notes'], [5, 'fa-pen-fancy', 'My notes', 'Write your own'], [3, 'fa-clock-rotate-left', 'Previous dose', 'Past Day-Ds']]
+            .map(function (a, i) { return '<button class="ud-q spot" style="--i:' + i + '" onclick="uaDashGo(\'' + slug + '\',' + a[0] + ')"><i class="fas ' + a[1] + '"></i><b>' + a[2] + '</b><span>' + a[3] + (D.courses.length > 1 ? ' · ' + esc(label(slug)) : '') + '</span></button>'; }).join('');
+        }).join('')
+      + '</div></section>';
+    host.innerHTML = html;
+    animate(host);
+    bindChart(host);
+    startCountdown(host);
+  }
+
+  function kpi(icon, val, unit, lbl, sub) {
+    return '<div class="ud-kpi spot"><div class="ud-kpi-ic"><i class="fas ' + icon + '"></i></div><div class="ud-kpi-v"><b data-count="' + (Number(val) || 0) + '">0</b>' + (unit ? '<span>' + unit + '</span>' : '') + '</div><div class="ud-kpi-l">' + lbl + '</div><div class="ud-kpi-s">' + sub + '</div></div>';
+  }
+
+  function goalHTML(x, i) {
+    var g = x.g, m = METRIC[x.m];
+    var curTxt = x.m === 'custom' ? x.p + '%' : (Math.round(x.cur) + (m.unit === '%' ? '%' : '') + ' / ' + x.target + (m.unit === '%' ? '%' : ' ' + m.unit));
+    var due = x.daysLeft == null ? '' : x.done ? '' : x.daysLeft < 0 ? '<span class="ud-due late"><i class="fas fa-clock"></i> ' + Math.abs(x.daysLeft) + 'd overdue</span>' : x.daysLeft === 0 ? '<span class="ud-due soon"><i class="fas fa-clock"></i> Due today</span>' : '<span class="ud-due' + (x.daysLeft <= 3 ? ' soon' : '') + '"><i class="fas fa-calendar"></i> ' + x.daysLeft + ' day' + (x.daysLeft === 1 ? '' : 's') + ' left</span>';
+    return '<div class="ud-goal' + (x.done ? ' done' : '') + '" style="--i:' + i + '"><div class="ud-goal-ring">' + ring(x.p, 74, 7, x.done ? 'ok' : '') + '<div class="ud-goal-pct">' + (x.done ? '<i class="fas fa-check"></i>' : x.p + '<small>%</small>') + '</div></div>'
+      + '<div class="ud-goal-b"><div class="ud-goal-top"><i class="fas ' + m.icon + '"></i>' + (g.email ? '<span class="ud-badge">Just for you</span>' : '') + (x.done ? '<span class="ud-badge ok">Achieved</span>' : due) + '</div>'
+      + '<b>' + esc(g.title) + '</b><span class="ud-goal-cur">' + curTxt + '</span>' + (g.note ? '<p>' + esc(g.note) + '</p>' : '') + '</div></div>';
+  }
+
+  /* ---------- motion ---------- */
+  function animate(host) {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    host.querySelectorAll('[data-count]').forEach(function (el) {
+      var to = Number(el.getAttribute('data-count')) || 0;
+      if (reduce || !to) { el.textContent = to; return; }
+      var t0 = performance.now(), dur = 1100;
+      (function step(t) { var k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3); el.textContent = Math.round(to * e); if (k < 1) requestAnimationFrame(step); })(t0);
+    });
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        host.querySelectorAll('.ud-ring-fg').forEach(function (c) { c.style.strokeDashoffset = c.getAttribute('data-off'); });
+        host.classList.add('ud-in');
+      });
+    });
+  }
+  function bindChart(host) {
+    var wrap = host.querySelector('.ud-chart-wrap'); if (!wrap) return;
+    var tip = wrap.querySelector('.ud-tip');
+    function show(g) {
+      var p = (g.getAttribute('data-tip') || '').split('|'), pt = g.querySelector('.ud-pt');
+      var r = pt.getBoundingClientRect(), w = wrap.getBoundingClientRect();
+      tip.innerHTML = '<b>' + p[1] + '</b><span>' + esc(p[0]) + '</span><small>' + p[2] + (p[3] ? ' · ' + p[3] : '') + '</small>';
+      tip.hidden = false;
+      var x = r.left - w.left + r.width / 2, tw = tip.offsetWidth;
+      tip.style.left = Math.max(tw / 2 + 4, Math.min(w.width - tw / 2 - 4, x)) + 'px';
+      tip.style.top = (r.top - w.top) + 'px';
+      wrap.querySelectorAll('.ud-dot').forEach(function (d) { d.classList.toggle('on', d === g); });
+    }
+    wrap.querySelectorAll('.ud-dot').forEach(function (g) {
+      g.addEventListener('mouseenter', function () { show(g); });
+      g.addEventListener('focus', function () { show(g); });
+      g.addEventListener('click', function () { show(g); });
+    });
+    wrap.addEventListener('mouseleave', function () { tip.hidden = true; wrap.querySelectorAll('.ud-dot').forEach(function (d) { d.classList.remove('on'); }); });
+  }
+  function startCountdown(host) {
+    if (state.tick) clearInterval(state.tick);
+    var el = host.querySelector('.ud-count'); if (!el) return;
+    var ends = Number(el.getAttribute('data-ends'));
+    function upd() {
+      var ms = ends - Date.now();
+      if (ms <= 0) { el.querySelector('b').textContent = 'Closed'; clearInterval(state.tick); return; }
+      var h = Math.floor(ms / 3600000), m = Math.floor(ms / 60000) % 60, s = Math.floor(ms / 1000) % 60;
+      el.querySelector('b').textContent = (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+    }
+    upd(); state.tick = setInterval(upd, 1000);
+  }
+
+  /* ---------- skeleton ---------- */
+  function skeleton() {
+    return '<section class="ud-hero ud-skel"><div class="ud-hero-main"><div class="sk w40"></div><div class="sk h60 w70"></div><div class="sk w55"></div></div><div class="ud-hero-ring"><div class="sk circle"></div></div></section>'
+      + '<section class="ud-row ud-top"><div class="ud-next ud-skel"><div class="sk w40"></div><div class="sk h30 w70"></div><div class="sk w90"></div></div><div class="ud-kpis">' + [1, 2, 3, 4].map(function () { return '<div class="ud-kpi ud-skel"><div class="sk sq"></div><div class="sk h30 w40"></div><div class="sk w70"></div></div>'; }).join('') + '</div></section>';
+  }
+
+  /* ---------- show / hide ---------- */
+  function ensureHost() {
+    var home = document.getElementById('page-home'); if (!home) return null;
+    var host = document.getElementById('ua-dash');
+    if (!host) { host = document.createElement('div'); host.id = 'ua-dash'; host.className = 'ud'; home.insertBefore(host, home.firstChild); }
+    return host;
+  }
+  function setNavLabels(on) {
+    document.querySelectorAll('#nav-home span, .mtab[data-route="home"] span').forEach(function (s) { s.textContent = on ? 'Dashboard' : 'Home'; });
+    document.querySelectorAll('#nav-home i, .mtab[data-route="home"] i').forEach(function (i) { i.className = on ? 'fas fa-gauge-high' : 'fas fa-house'; });
+    var cur = document.querySelector('.page.active');
+    if (cur && cur.id === 'page-home') { var h = document.getElementById('top-h'); if (h) h.textContent = on ? 'Your dashboard' : 'Home'; }
+  }
+  async function refresh() {
+    var courses = myCourses();
+    var on = courses.length > 0 && localStorage.getItem('ua_logged_in') === 'true';
+    document.body.classList.toggle('has-dash', on);
+    setNavLabels(on);
+    if (!on) { var h0 = document.getElementById('ua-dash'); if (h0) h0.innerHTML = ''; return; }
+    var host = ensureHost(); if (!host) return;
+    var local = localSnapshot(courses);
+    if (!host.innerHTML) host.innerHTML = skeleton();
+    if (state.data) render(compute(courses, state.data, local));
+    var my = ++state.seq;
+    var remote = await fetchAll(courses);
+    if (my !== state.seq) return;
+    state.data = remote;
+    render(compute(courses, remote, localSnapshot(courses)));
+  }
+  var _t = null;
+  function soon() { clearTimeout(_t); _t = setTimeout(refresh, 120); }
+  window.uaRefreshDashboard = soon;
+
+  window.uaDashGo = function (slug, tab) {
+    var h = HUB[slug]; if (!h) return;
+    var fn = window[h[0]]; if (typeof fn !== 'function') return;
+    fn();
+    if (tab && typeof switchMocksTab === 'function') setTimeout(function () { switchMocksTab(h[1], tab); }, 60);
+  };
+
+  // Hook into the app's own "enrolled?" switch and every place that refreshes the old dashboard
+  if (typeof toggleHomeHeroOrDashboard === 'function') {
+    var _tg = toggleHomeHeroOrDashboard;
+    toggleHomeHeroOrDashboard = function () { var r = _tg.apply(this, arguments); soon(); return r; };
+    window.toggleHomeHeroOrDashboard = toggleHomeHeroOrDashboard;
+  }
+  if (typeof renderStudentDashboard === 'function') {
+    var _rs = renderStudentDashboard;
+    renderStudentDashboard = function () { try { _rs.apply(this, arguments); } catch (e) {} soon(); };
+    window.renderStudentDashboard = renderStudentDashboard;
+  }
+  if (typeof showPage === 'function') {
+    var _sp = showPage;
+    showPage = function (pg) {
+      var r = _sp.apply(this, arguments);
+      if (pg === 'home') { setNavLabels(document.body.classList.contains('has-dash')); if (document.body.classList.contains('has-dash')) soon(); }
+      return r;
+    };
+    window.showPage = showPage;
+  }
+  _supa.auth.onAuthStateChange(function (ev) { if (ev === 'SIGNED_OUT') { state.data = null; document.body.classList.remove('has-dash'); setNavLabels(false); var h = document.getElementById('ua-dash'); if (h) h.innerHTML = ''; } else soon(); });
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible' && document.body.classList.contains('has-dash')) soon(); });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', soon); else soon();
 })();
 
 </script>
