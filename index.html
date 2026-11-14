@@ -13908,15 +13908,27 @@ async function renderGoals() {
   el.innerHTML = '<div class="card"><p class="empty-note"><i class="fas fa-spinner fa-spin"></i> Loading goals…</p></div>';
   const [goalsRes, leadsRes] = await Promise.all([
     supa.from('student_goals').select('*').order('created_at', { ascending: false }),
-    supa.from('student_leads').select('email,name').order('created_at', { ascending: false }).limit(1000)
+    supa.from('student_leads').select('email,name,course').order('created_at', { ascending: false }).limit(2000)
   ]);
   if (goalsRes.error) {
     el.innerHTML = '<div class="card"><h3><i class="fas fa-bullseye"></i> Student Goals</h3><p class="hint">Goals table not found. Run <b>student-goals.sql</b> in Supabase → SQL Editor once, then reopen this section.</p><p class="empty-note">' + escAttr(goalsRes.error.message) + '</p></div>';
     return;
   }
   const goals = goalsRes.data || [];
-  const emails = {};
-  (leadsRes.data || []).forEach(function (r) { if (r.email && !emails[r.email.toLowerCase()]) emails[r.email.toLowerCase()] = r.name || ''; });
+  const emails = {}, studentCourses = {};
+  (leadsRes.data || []).forEach(function (r) {
+    if (!r.email) return;
+    const e = r.email.toLowerCase();
+    if (!emails[e] && r.name) emails[e] = r.name;
+    if (!(e in emails)) emails[e] = '';
+    if (r.course) (studentCourses[e] = studentCourses[e] || new Set()).add(r.course);
+  });
+  const COURSE_TO_KEY = { 'Class 11': 'class11', 'Class 12': 'class12', 'CUET': 'cuet', 'Class 12 + CUET': 'class12cuet' };
+  const studentList = Object.keys(emails).sort(function (a, b) { return (emails[a] || a).localeCompare(emails[b] || b); });
+  function studentLabel(e) { const c = studentCourses[e] ? Array.from(studentCourses[e]).join(', ') : ''; return (emails[e] ? emails[e] + ' — ' : '') + e + (c ? ' (' + c + ')' : ''); }
+  const perStudentCount = {};
+  goals.forEach(function (g) { if (g.email) perStudentCount[g.email.toLowerCase()] = (perStudentCount[g.email.toLowerCase()] || 0) + 1; });
+  window._uaGoalsFilter = window._uaGoalsFilter || 'all';
   const classOpts = '<option value="all">All classes</option>' + CLASS_KEYS.map(function (k) { return '<option value="' + k + '">' + (CLASS_LABELS[k] || k) + '</option>'; }).join('');
   const metricOpts = Object.keys(GOAL_METRICS).map(function (k) { return '<option value="' + k + '">' + GOAL_METRICS[k].label + '</option>'; }).join('');
   el.innerHTML =
@@ -13925,8 +13937,11 @@ async function renderGoals() {
     + '<input type="hidden" id="g-id">'
     + '<div class="field-row"><div class="field"><label>Who is this for?</label><select id="g-scope"><option value="class">Whole class</option><option value="student">One student</option></select></div>'
     + '<div class="field"><label>Class</label><select id="g-class">' + classOpts + '</select></div></div>'
-    + '<div class="field-row full" id="g-email-row" style="display:none"><div class="field"><label>Student email</label><input id="g-email" list="g-email-list" placeholder="student@email.com"><datalist id="g-email-list">'
-    + Object.keys(emails).map(function (e) { return '<option value="' + escAttr(e) + '">' + escAttr(emails[e]) + '</option>'; }).join('') + '</datalist></div></div>'
+    + '<div class="field-row" id="g-email-row" style="display:none"><div class="field"><label>Student <span style="color:var(--muted);font-weight:600">(' + studentList.length + ' with an enrolment or sign-up)</span></label>'
+    + '<input id="g-student-search" placeholder="Search by name or email…" style="margin-bottom:8px">'
+    + '<select id="g-student" size="6" style="height:auto;min-height:150px;padding:6px">' + studentList.map(function (e) { return '<option value="' + escAttr(e) + '">' + escAttr(studentLabel(e)) + '</option>'; }).join('') + '<option value="__other">➕ Someone else — type their email…</option></select></div>'
+    + '<div class="field"><label>Selected student</label><div id="g-student-card" class="adm-card" style="margin:0;min-height:96px;display:flex;flex-direction:column;justify-content:center"><span style="color:var(--muted);font-size:13px">Pick a student from the list.</span></div>'
+    + '<input id="g-email" placeholder="student@email.com" style="display:none;margin-top:10px"></div></div>'
     + '<div class="field-row full"><div class="field"><label>Goal title</label><input id="g-title" placeholder="e.g. Score 80%+ in Accountancy mocks"></div></div>'
     + '<div class="field-row"><div class="field"><label>Measured by</label><select id="g-metric">' + metricOpts + '</select></div>'
     + '<div class="field" id="g-target-wrap"><label>Target <span id="g-unit" style="color:var(--muted);font-weight:600"></span></label><input id="g-target" type="number" min="0" step="any" placeholder="e.g. 80"></div></div>'
@@ -13937,11 +13952,13 @@ async function renderGoals() {
     + '<div class="save-bar"><button class="btn btn-primary" id="g-save"><i class="fas fa-bullseye"></i> Save goal</button><button class="btn btn-outline" id="g-reset" style="display:none"><i class="fas fa-xmark"></i> Cancel edit</button><span class="save-status" id="g-status"></span></div>'
     + '</div>'
     + '<div class="card"><h3><i class="fas fa-list-check"></i> Active goals (' + goals.length + ')</h3>'
+    + (goals.length ? '<div class="field" style="max-width:420px;margin-bottom:14px"><label>Show</label><select id="g-filter"><option value="all">All goals</option><option value="class">Whole-class goals only</option><option value="individual">Individual student goals only</option>'
+      + Object.keys(perStudentCount).sort().map(function (e) { return '<option value="s:' + escAttr(e) + '">' + escAttr((emails[e] ? emails[e] + ' — ' : '') + e) + ' (' + perStudentCount[e] + ')</option>'; }).join('') + '</select></div>' : '')
     + (goals.length ? '<div style="overflow-x:auto"><table class="data-table"><thead><tr><th>Goal</th><th>For</th><th>Measured by</th><th>Target</th><th>Due</th><th></th></tr></thead><tbody>'
       + goals.map(function (g) {
           const m = GOAL_METRICS[g.metric] || GOAL_METRICS.custom;
-          return '<tr data-id="' + g.id + '"><td><b>' + escAttr(g.title) + '</b>' + (g.note ? '<br><span style="color:var(--muted);font-size:12px">' + escAttr(g.note) + '</span>' : '') + '</td>'
-            + '<td>' + (g.email ? '<span class="badge badge-warn">' + escAttr(g.email) + '</span>' : '<span class="badge badge-info">' + escAttr(CLASS_LABELS[g.class_key] || 'All classes') + '</span>') + '</td>'
+          return '<tr data-id="' + g.id + '" data-email="' + escAttr((g.email || '').toLowerCase()) + '"><td><b>' + escAttr(g.title) + '</b>' + (g.note ? '<br><span style="color:var(--muted);font-size:12px">' + escAttr(g.note) + '</span>' : '') + '</td>'
+            + '<td>' + (g.email ? '<span class="badge badge-warn"><i class="fas fa-user" style="margin-right:5px"></i>' + escAttr(emails[g.email.toLowerCase()] || g.email) + '</span>' + (emails[g.email.toLowerCase()] ? '<br><span style="color:var(--muted);font-size:11.5px">' + escAttr(g.email) + '</span>' : '') : '<span class="badge badge-info">' + escAttr(CLASS_LABELS[g.class_key] || 'All classes') + '</span>') + '</td>'
             + '<td>' + m.label + (g.metric === 'custom' && g.progress != null ? '<br><span style="color:var(--muted);font-size:12px">progress ' + g.progress + '%</span>' : '') + '</td>'
             + '<td>' + (g.target != null ? g.target + ' ' + m.unit : '—') + '</td>'
             + '<td>' + (g.due_date ? new Date(g.due_date + 'T00:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '—') + '</td>'
@@ -13960,10 +13977,41 @@ async function renderGoals() {
     $('g-email-row').style.display = $('g-scope').value === 'student' ? '' : 'none';
   }
   ['g-metric', 'g-scope'].forEach(function (id) { $(id).addEventListener('change', syncForm); });
+  function pickStudent(e) {
+    const card = $('g-student-card');
+    if (e === '__other') {
+      $('g-email').style.display = ''; $('g-email').focus();
+      card.innerHTML = '<span style="color:var(--muted);font-size:13px">Type the student\'s email below — it must match the email they log in with.</span>';
+      return;
+    }
+    $('g-email').style.display = 'none'; $('g-email').value = e || '';
+    if (!e) { card.innerHTML = '<span style="color:var(--muted);font-size:13px">Pick a student from the list.</span>'; return; }
+    const courses = studentCourses[e] ? Array.from(studentCourses[e]) : [];
+    card.innerHTML = '<b style="font-size:15px;color:var(--ink)">' + escAttr(emails[e] || 'Student') + '</b><span style="color:var(--muted);font-size:12.5px;margin-top:2px">' + escAttr(e) + '</span>'
+      + '<span style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">' + (courses.length ? courses.map(function (c) { return '<span class="badge badge-info">' + escAttr(c) + '</span>'; }).join('') : '<span class="badge badge-warn">No course yet</span>')
+      + (perStudentCount[e] ? '<span class="badge badge-success">' + perStudentCount[e] + ' personal goal' + (perStudentCount[e] === 1 ? '' : 's') + '</span>' : '') + '</span>';
+    // Default the class to the student's course
+    const k = courses.map(function (c) { return COURSE_TO_KEY[c]; }).filter(Boolean)[0];
+    if (k && $('g-class').value === 'all') $('g-class').value = k;
+  }
+  $('g-student').addEventListener('change', function () { pickStudent($('g-student').value); });
+  $('g-student-search').addEventListener('input', function () {
+    const q = $('g-student-search').value.trim().toLowerCase();
+    Array.from($('g-student').options).forEach(function (o) { o.hidden = o.value !== '__other' && q && o.textContent.toLowerCase().indexOf(q) === -1; });
+  });
+  function applyFilter() {
+    const f = window._uaGoalsFilter;
+    el.querySelectorAll('tr[data-id]').forEach(function (tr) {
+      const em = tr.getAttribute('data-email');
+      tr.style.display = f === 'all' || (f === 'class' && !em) || (f === 'individual' && em) || (f === 's:' + em) ? '' : 'none';
+    });
+  }
+  if ($('g-filter')) { $('g-filter').value = window._uaGoalsFilter; if ($('g-filter').value !== window._uaGoalsFilter) { window._uaGoalsFilter = 'all'; $('g-filter').value = 'all'; } $('g-filter').addEventListener('change', function () { window._uaGoalsFilter = $('g-filter').value; applyFilter(); }); applyFilter(); }
   syncForm();
   function resetForm() {
     ['g-id', 'g-email', 'g-title', 'g-target', 'g-due', 'g-progress', 'g-note'].forEach(function (id) { $(id).value = ''; });
     $('g-scope').value = 'class'; $('g-class').value = 'all'; $('g-metric').value = 'tests';
+    $('g-student').value = ''; $('g-student-search').value = ''; Array.from($('g-student').options).forEach(function (o) { o.hidden = false; }); pickStudent('');
     $('g-reset').style.display = 'none'; $('g-save').innerHTML = '<i class="fas fa-bullseye"></i> Save goal';
     syncForm();
   }
@@ -14004,7 +14052,11 @@ async function renderGoals() {
       $('g-id').value = g.id;
       $('g-scope').value = g.email ? 'student' : 'class';
       $('g-class').value = g.class_key || 'all';
-      $('g-email').value = g.email || '';
+      if (g.email) {
+        const e = g.email.toLowerCase();
+        if (emails.hasOwnProperty(e)) { $('g-student').value = e; pickStudent(e); }
+        else { $('g-student').value = '__other'; pickStudent('__other'); $('g-email').value = e; }
+      }
       $('g-title').value = g.title || '';
       $('g-metric').value = GOAL_METRICS[g.metric] ? g.metric : 'custom';
       $('g-target').value = g.target != null ? g.target : '';
@@ -14675,7 +14727,7 @@ window.uaAdminCheckSession = checkSession;
           if (r.error || !r.data) return;
           var em = (out.email || '').toLowerCase();
           out.goals = r.data.filter(function (g) {
-            var forClass = !g.class_key || g.class_key === 'all' || courses.indexOf(g.class_key) > -1 || courses.some(function (c) { return compKeys(c).indexOf(g.class_key) > -1; });
+            var forClass = !!g.email || !g.class_key || g.class_key === 'all' || courses.indexOf(g.class_key) > -1 || courses.some(function (c) { return compKeys(c).indexOf(g.class_key) > -1; });
             var forMe = !g.email || g.email.toLowerCase() === em;
             return forClass && forMe;
           });
