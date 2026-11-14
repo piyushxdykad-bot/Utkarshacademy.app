@@ -5303,6 +5303,7 @@ body.has-dash #page-home > *:not(#ua-dash):not(footer){display:none!important}
     <div class="nav-item" data-panel="videos"><i class="fas fa-video"></i> Videos</div>
 
     <div class="nav-section-label">Students</div>
+    <div class="nav-item" data-panel="quiz-results"><i class="fas fa-square-poll-vertical"></i> Quiz Results</div>
     <div class="nav-item" data-panel="goals"><i class="fas fa-bullseye"></i> Student Goals</div>
     <div class="nav-item" data-panel="leads"><i class="fas fa-user-plus"></i> Student Leads</div>
     <div class="nav-item" data-panel="messages"><i class="fas fa-envelope"></i> Contact Messages</div>
@@ -5338,6 +5339,7 @@ body.has-dash #page-home > *:not(#ua-dash):not(footer){display:none!important}
     <div id="panel-dayd" class="panel"></div>
     <div id="panel-lectures" class="panel"></div>
     <div id="panel-videos" class="panel"></div>
+    <div id="panel-quiz-results" class="panel"></div>
     <div id="panel-goals" class="panel"></div>
     <div id="panel-leads" class="panel"></div>
     <div id="panel-messages" class="panel"></div>
@@ -11242,7 +11244,7 @@ async function renderDashboard() {
     + '</div>'
     + '<div class="card"><h3><i class="fas fa-bolt"></i> Quick actions</h3><p class="hint">Changes go live as soon as you hit Save — students see them the next time the site loads its data (a few seconds).</p>'
     + '<div class="adm-quick">'
-    + [['mock-submissions','fa-file-signature','Check answer copies'],['dayd','fa-bolt','Publish a Day-D mock'],['mocks','fa-file-circle-check','Add a mock'],['notes','fa-file-lines','Add notes'],['announcements','fa-bullhorn','Post an announcement'],['goals','fa-bullseye','Set student goals'],['leads','fa-user-plus','View student leads']].map(function (q) {
+    + [['mock-submissions','fa-file-signature','Check answer copies'],['dayd','fa-bolt','Publish a Day-D mock'],['mocks','fa-file-circle-check','Add a mock'],['notes','fa-file-lines','Add notes'],['announcements','fa-bullhorn','Post an announcement'],['quiz-results','fa-square-poll-vertical','See quiz results'],['goals','fa-bullseye','Set student goals'],['leads','fa-user-plus','View student leads']].map(function (q) {
         return '<button type="button" onclick="document.querySelector(\'#ua-admin .nav-item[data-panel=&quot;' + q[0] + '&quot;]\').click()"><i class="fas ' + q[1] + '"></i>' + q[2] + '</button>';
       }).join('')
     + '</div></div>';
@@ -14071,6 +14073,161 @@ async function renderGoals() {
 }
 PANEL_TITLES['goals'] = 'Student Goals';
 PANEL_LOADERS['goals'] = renderGoals;
+
+// ============================================================
+//  QUIZ RESULTS — every scored attempt (mocks + Day-D), per-test
+//  leaderboards, filters, CSV export, reset an attempt
+// ============================================================
+let _qrRows = [], _qrState = { test: '', q: '', sort: 'score', from: '', to: '' };
+function _qrPct(r) { return Number(r.total) > 0 ? Math.round((Number(r.score) / Number(r.total)) * 100) : 0; }
+function _qrKind(t) { return /^Day-D — /.test(t || '') ? 'Day-D' : 'Mock'; }
+function _qrSplit(t) { const i = (t || '').indexOf(' — '); return i > 0 ? [t.slice(0, i), t.slice(i + 3)] : ['', t || 'Test']; }
+function _qrDate(d) { try { return new Date(d).toLocaleString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit' }); } catch (e) { return ''; } }
+function _qrTone(p) { return p >= 85 ? 'badge-success' : p >= 60 ? 'badge-info' : p >= 40 ? 'badge-warn' : 'badge-danger'; }
+async function renderQuizResults() {
+  const el = document.getElementById('panel-quiz-results');
+  el.innerHTML = '<div class="card"><p class="empty-note"><i class="fas fa-spinner fa-spin"></i> Loading results…</p></div>';
+  const { data, error } = await supa.from('quiz_results').select('*').order('created_at', { ascending: false }).limit(10000);
+  if (error) { el.innerHTML = '<div class="card"><p class="empty-note">Could not load results: ' + escAttr(error.message) + '</p></div>'; return; }
+  _qrRows = data || [];
+  drawQuizResults();
+}
+function _qrFiltered() {
+  const st = _qrState, q = st.q.trim().toLowerCase();
+  const from = st.from ? new Date(st.from + 'T00:00:00').getTime() : null, to = st.to ? new Date(st.to + 'T23:59:59').getTime() : null;
+  return _qrRows.filter(function (r) {
+    if (st.test && r.test_name !== st.test) return false;
+    if (q && ((r.user_name || '') + ' ' + (r.test_name || '')).toLowerCase().indexOf(q) === -1) return false;
+    const t = new Date(r.created_at).getTime();
+    if (from && t < from) return false;
+    if (to && t > to) return false;
+    return true;
+  });
+}
+function drawQuizResults() {
+  const el = document.getElementById('panel-quiz-results');
+  const rows = _qrFiltered(), st = _qrState;
+  const tests = {};
+  _qrRows.forEach(function (r) { const t = r.test_name || 'Test'; (tests[t] = tests[t] || []).push(r); });
+  const testNames = Object.keys(tests).sort(function (a, b) { return new Date(tests[b][0].created_at) - new Date(tests[a][0].created_at); });
+  const students = new Set(rows.map(function (r) { return r.user_id || r.user_name; }));
+  const avg = rows.length ? Math.round(rows.reduce(function (a, r) { return a + _qrPct(r); }, 0) / rows.length) : 0;
+  const best = rows.length ? Math.max.apply(null, rows.map(_qrPct)) : 0;
+
+  let html = '<div class="stat-grid">'
+    + '<div class="stat-card"><div class="num">' + rows.length + '</div><div class="lbl">Attempts' + (st.test || st.q || st.from || st.to ? ' (filtered)' : '') + '</div></div>'
+    + '<div class="stat-card"><div class="num">' + students.size + '</div><div class="lbl">Students</div></div>'
+    + '<div class="stat-card"><div class="num">' + (st.test ? 1 : new Set(rows.map(function (r) { return r.test_name; })).size) + '</div><div class="lbl">Tests</div></div>'
+    + '<div class="stat-card"><div class="num">' + avg + '<span style="font-size:20px">%</span></div><div class="lbl">Average score</div></div>'
+    + '<div class="stat-card"><div class="num">' + best + '<span style="font-size:20px">%</span></div><div class="lbl">Highest score</div></div>'
+    + '</div>';
+
+  html += '<div class="card"><h3><i class="fas fa-filter"></i> Filter</h3>'
+    + '<div class="field-row"><div class="field"><label>Test</label><select id="qr-test"><option value="">All tests (' + testNames.length + ')</option>'
+    + testNames.map(function (t) { return '<option value="' + escAttr(t) + '"' + (t === st.test ? ' selected' : '') + '>' + escAttr(_qrKind(t) === 'Day-D' ? '⚡ ' + t : t) + ' (' + tests[t].length + ')</option>'; }).join('') + '</select></div>'
+    + '<div class="field"><label>Search student or test</label><input id="qr-q" placeholder="Type a name…" value="' + escAttr(st.q) + '"></div></div>'
+    + '<div class="field-row"><div class="field"><label>From</label><input id="qr-from" type="date" value="' + escAttr(st.from) + '"></div>'
+    + '<div class="field"><label>To</label><input id="qr-to" type="date" value="' + escAttr(st.to) + '"></div></div>'
+    + '<div class="save-bar"><button class="btn btn-outline" id="qr-clear"><i class="fas fa-rotate-left"></i> Clear filters</button>'
+    + '<button class="btn btn-primary" id="qr-csv"' + (rows.length ? '' : ' disabled') + '><i class="fas fa-file-csv"></i> Download CSV (' + rows.length + ')</button>'
+    + '<button class="btn btn-outline" id="qr-refresh"><i class="fas fa-arrows-rotate"></i> Refresh</button></div></div>';
+
+  if (!_qrRows.length) {
+    html += '<div class="card"><p class="empty-note">No quiz results yet. They appear here the moment a student finishes a mock or Day-D test.</p></div>';
+  } else if (!st.test) {
+    // Per-test summary
+    const summary = testNames.map(function (t) {
+      const rs = tests[t].filter(function (r) { return rows.indexOf(r) > -1; });
+      if (!rs.length) return null;
+      const top = rs.slice().sort(function (a, b) { return b.score - a.score || new Date(a.created_at) - new Date(b.created_at); })[0];
+      return { t: t, n: rs.length, avg: Math.round(rs.reduce(function (a, r) { return a + _qrPct(r); }, 0) / rs.length), top: top, last: rs[0].created_at };
+    }).filter(Boolean);
+    html += '<div class="card"><h3><i class="fas fa-table-list"></i> By test (' + summary.length + ')</h3><p class="hint">Click a test to open its leaderboard.</p>'
+      + (summary.length ? '<div style="overflow-x:auto"><table class="data-table"><thead><tr><th>Test</th><th>Type</th><th>Attempts</th><th>Average</th><th>Top scorer</th><th>Last attempt</th></tr></thead><tbody>'
+        + summary.map(function (s) {
+            const sp = _qrSplit(s.t);
+            return '<tr data-test="' + escAttr(s.t) + '" style="cursor:pointer"><td><b>' + escAttr(sp[1]) + '</b>' + (sp[0] && sp[0] !== 'Day-D' ? '<br><span style="color:var(--muted);font-size:12px">' + escAttr(sp[0]) + '</span>' : '') + '</td>'
+              + '<td><span class="badge ' + (_qrKind(s.t) === 'Day-D' ? 'badge-warn' : 'badge-info') + '">' + _qrKind(s.t) + '</span></td>'
+              + '<td>' + s.n + '</td><td><span class="badge ' + _qrTone(s.avg) + '">' + s.avg + '%</span></td>'
+              + '<td>' + escAttr(s.top.user_name || 'Student') + ' <span style="color:var(--muted);font-size:12px">' + s.top.score + '/' + s.top.total + '</span></td>'
+              + '<td style="white-space:nowrap">' + _qrDate(s.last) + '</td></tr>';
+          }).join('') + '</tbody></table></div>' : '<p class="empty-note">No attempts match these filters.</p>')
+      + '</div>';
+    html += attemptsTable(rows.slice(0, 300), 'Latest attempts' + (rows.length > 300 ? ' (newest 300 — download CSV for all)' : ''), false);
+  } else {
+    // One test: leaderboard
+    const ranked = rows.slice().sort(function (a, b) { return b.score - a.score || new Date(a.created_at) - new Date(b.created_at); });
+    const sp = _qrSplit(st.test);
+    const pcts = ranked.map(_qrPct);
+    const dist = [[0, 40], [40, 60], [60, 85], [85, 101]].map(function (b) { return pcts.filter(function (p) { return p >= b[0] && p < b[1]; }).length; });
+    const lo = pcts.length ? Math.min.apply(null, pcts) : 0;
+    html += '<div class="card"><h3><i class="fas fa-ranking-star"></i> ' + escAttr(sp[1]) + '</h3><p class="hint">' + escAttr(sp[0] || 'Mock') + ' · ' + ranked.length + ' attempt' + (ranked.length === 1 ? '' : 's') + ' · lowest ' + lo + '%</p>'
+      + '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:6px">'
+      + [['Below 40%', 'badge-danger'], ['40–59%', 'badge-warn'], ['60–84%', 'badge-info'], ['85%+', 'badge-success']].map(function (b, i) {
+          const w = ranked.length ? Math.round(dist[i] / ranked.length * 100) : 0;
+          return '<div class="adm-card" style="margin:0;padding:12px"><span class="badge ' + b[1] + '">' + b[0] + '</span><div style="font-family:var(--f-d);font-size:28px;margin-top:6px;color:var(--ink)">' + dist[i] + '</div><div style="height:6px;border-radius:9px;background:#fff;margin-top:6px;overflow:hidden"><i style="display:block;height:100%;width:' + w + '%;background:var(--ink)"></i></div></div>';
+        }).join('') + '</div></div>';
+    html += attemptsTable(ranked, 'Leaderboard', true);
+  }
+  el.innerHTML = html;
+
+  const $ = function (id) { return document.getElementById(id); };
+  $('qr-test').addEventListener('change', function () { _qrState.test = this.value; drawQuizResults(); });
+  let tmr; $('qr-q').addEventListener('input', function () { const v = this.value; clearTimeout(tmr); tmr = setTimeout(function () { _qrState.q = v; drawQuizResults(); const i = $('qr-q'); i.focus(); i.setSelectionRange(v.length, v.length); }, 250); });
+  $('qr-from').addEventListener('change', function () { _qrState.from = this.value; drawQuizResults(); });
+  $('qr-to').addEventListener('change', function () { _qrState.to = this.value; drawQuizResults(); });
+  $('qr-clear').addEventListener('click', function () { _qrState = { test: '', q: '', sort: 'score', from: '', to: '' }; drawQuizResults(); });
+  $('qr-refresh').addEventListener('click', renderQuizResults);
+  $('qr-csv').addEventListener('click', function () { downloadQuizCsv(st.test ? rows.slice().sort(function (a, b) { return b.score - a.score; }) : rows); });
+  el.querySelectorAll('tr[data-test]').forEach(function (tr) { tr.addEventListener('click', function () { _qrState.test = tr.getAttribute('data-test'); drawQuizResults(); const b = document.getElementById('ua-admin'); if (b) b.scrollTo({ top: 0, behavior: 'smooth' }); }); });
+  el.querySelectorAll('[data-act="qr-del"]').forEach(function (btn) {
+    btn.addEventListener('click', async function (ev) {
+      ev.stopPropagation();
+      const r = _qrRows.find(function (x) { return String(x.id) === btn.getAttribute('data-id'); });
+      if (!r) return;
+      if (!confirm('Reset this attempt?\n\n' + (r.user_name || 'Student') + ' — ' + r.test_name + ' (' + r.score + '/' + r.total + ')\n\nThe score is deleted from results and the leaderboard, so the student can attempt this test again.')) return;
+      btn.disabled = true;
+      const { error } = await supa.from('quiz_results').delete().eq('id', r.id);
+      if (error) { btn.disabled = false; alert('Could not reset: ' + error.message); return; }
+      _qrRows = _qrRows.filter(function (x) { return x !== r; });
+      drawQuizResults();
+      alert('Attempt reset. Note: if the student already viewed this result on their device, it stays visible there until they reattempt.');
+    });
+  });
+}
+function attemptsTable(rows, title, ranked) {
+  if (!rows.length) return '<div class="card"><h3><i class="fas fa-list-ol"></i> ' + title + '</h3><p class="empty-note">No attempts match these filters.</p></div>';
+  const medal = ['🥇', '🥈', '🥉'];
+  return '<div class="card"><h3><i class="fas fa-list-ol"></i> ' + title + '</h3><div style="overflow-x:auto"><table class="data-table"><thead><tr>'
+    + (ranked ? '<th>Rank</th>' : '') + '<th>Student</th>' + (ranked ? '' : '<th>Test</th>') + '<th>Score</th><th>%</th><th>✓ / ✗ / –</th><th>Date</th><th></th></tr></thead><tbody>'
+    + rows.map(function (r, i) {
+        const p = _qrPct(r), sp = _qrSplit(r.test_name);
+        return '<tr>' + (ranked ? '<td style="font-family:var(--f-d);font-size:18px">' + (medal[i] || (i + 1)) + '</td>' : '')
+          + '<td><b>' + escAttr(r.user_name || 'Student') + '</b></td>'
+          + (ranked ? '' : '<td>' + escAttr(sp[1]) + '<br><span style="color:var(--muted);font-size:12px">' + escAttr(sp[0] || 'Mock') + '</span></td>')
+          + '<td style="font-family:var(--f-m)">' + r.score + '/' + r.total + '</td>'
+          + '<td><span class="badge ' + _qrTone(p) + '">' + p + '%</span></td>'
+          + '<td style="white-space:nowrap"><span style="color:var(--ok)">' + (r.correct || 0) + '</span> / <span style="color:var(--bad)">' + (r.wrong || 0) + '</span> / <span style="color:var(--muted)">' + (r.skipped || 0) + '</span></td>'
+          + '<td style="white-space:nowrap">' + _qrDate(r.created_at) + '</td>'
+          + '<td><button class="btn btn-danger btn-sm" data-act="qr-del" data-id="' + escAttr(r.id) + '" title="Reset attempt (lets the student retake)"><i class="fas fa-rotate-left"></i></button></td></tr>';
+      }).join('') + '</tbody></table></div></div>';
+}
+function downloadQuizCsv(rows) {
+  const cell = function (v) { v = v == null ? '' : String(v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+  const head = ['Rank', 'Student', 'Type', 'Subject', 'Test', 'Score', 'Total', 'Percent', 'Correct', 'Wrong', 'Skipped', 'Date'];
+  const lines = [head.join(',')].concat(rows.map(function (r, i) {
+    const sp = _qrSplit(r.test_name);
+    return [i + 1, r.user_name || '', _qrKind(r.test_name), sp[0] === 'Day-D' ? '' : sp[0], sp[1], r.score, r.total, _qrPct(r), r.correct || 0, r.wrong || 0, r.skipped || 0, new Date(r.created_at).toISOString()].map(cell).join(',');
+  }));
+  const blob = new Blob(['﻿' + lines.join('\n')], { type: 'text/csv;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'quiz-results' + (_qrState.test ? '-' + _qrSplit(_qrState.test)[1].replace(/[^a-z0-9]+/gi, '-').toLowerCase() : '') + '-' + new Date().toISOString().slice(0, 10) + '.csv';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+}
+PANEL_TITLES['quiz-results'] = 'Quiz Results';
+PANEL_LOADERS['quiz-results'] = renderQuizResults;
 window.uaAdminLogin = doLogin;
 window.uaAdminLogout = doLogout;
 window.uaAdminCheckSession = checkSession;
