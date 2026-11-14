@@ -2885,6 +2885,237 @@ body.staff-open #wa-widget,body.staff-open .back-top{display:none!important}
 #ua-admin .cp-cnt.warn i{color:#C6972F}
 @media (max-width:640px){#ua-admin .cp-subj-meta{padding-left:4px}}
 
+/* ================= Study Material sections ================= */
+#ua-admin .st-head{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:16px;padding:22px 24px;border-radius:var(--r-l);color:#fff;background:radial-gradient(70% 120% at 100% 0%,rgba(46,86,230,.45),transparent 60%),radial-gradient(60% 100% at 0% 100%,rgba(198,151,47,.3),transparent 60%),linear-gradient(160deg,var(--ink-3,#1B2A6B),var(--ink));box-shadow:var(--sh-2)}
+#ua-admin .st-head-t{display:flex;gap:14px;align-items:flex-start;max-width:560px}
+#ua-admin .st-head-ic{width:46px;height:46px;flex-shrink:0;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.1);color:var(--gold-2);font-size:18px}
+#ua-admin .st-head h3{font-family:var(--f-d);font-weight:500;font-size:28px;letter-spacing:-.02em;margin:0;color:#fff}
+#ua-admin .st-head p{margin:4px 0 0;font-size:13px;line-height:1.55;color:rgba(233,236,247,.7)}
+#ua-admin .st-stats{display:flex;gap:8px;flex-wrap:wrap}
+#ua-admin .st-stat{min-width:96px;padding:10px 14px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}
+#ua-admin .st-stat b{display:block;font-family:var(--f-d);font-size:26px;font-weight:500;line-height:1;color:#fff}
+#ua-admin .st-stat span{font-size:11.5px;color:rgba(233,236,247,.65);font-weight:600}
+#ua-admin .st-stat.warn b{color:#FFC978}#ua-admin .st-stat.ok b{color:#7FE0A8}
+#ua-admin .st-tabs{display:flex;gap:8px;margin-bottom:16px;overflow-x:auto;scrollbar-width:none}
+#ua-admin .st-tabs::-webkit-scrollbar{display:none}
+#ua-admin .st-tab{flex-shrink:0;display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-weight:800;font-size:13px;color:var(--muted);box-shadow:var(--sh-1);transition:all .25s}
+#ua-admin .st-tab em{font-style:normal;font-size:11px;min-width:22px;height:22px;padding:0 6px;border-radius:999px;display:grid;place-items:center;background:var(--paper);color:var(--muted)}
+#ua-admin .st-tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+#ua-admin .st-tab.on em{background:var(--gold-2);color:var(--ink)}
+#ua-admin .st-lib-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+#ua-admin .st-lib-t{flex:1;min-width:200px}
+#ua-admin .st-lib-t h3{margin:0}
+#ua-admin .st-search,#ua-admin .st-paste{position:relative;flex:0 1 280px;min-width:180px}
+#ua-admin .st-paste{flex:1 1 320px}
+#ua-admin .st-search i,#ua-admin .st-paste i{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--faint);font-size:13px}
+#ua-admin .st-paste i{color:#FF0033;font-size:16px}
+#ua-admin .st-search input,#ua-admin .st-paste input,#ua-admin .st-select{width:100%;height:42px;border-radius:12px;border:1px solid var(--line-2);background:var(--paper);padding:0 12px 0 36px;font-size:13.5px;outline:none}
+#ua-admin .st-paste input{padding-left:40px;border-style:dashed}
+#ua-admin .st-select{width:auto;padding:0 12px}
+#ua-admin .st-search input:focus,#ua-admin .st-paste input:focus{border-color:var(--blue);background:#fff}
+#ua-admin .st-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+#ua-admin .st-chipf{height:32px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:12.5px;font-weight:700;color:var(--muted)}
+#ua-admin .st-chipf em{font-style:normal;color:var(--faint);margin-left:3px}
+#ua-admin .st-chipf.on{background:var(--gold-2);border-color:var(--gold-2);color:var(--ink)}
+#ua-admin .st-chipf.on em{color:var(--ink)}
+#ua-admin .st-group{margin-bottom:14px}
+#ua-admin .st-group-h{display:flex;justify-content:space-between;align-items:baseline;padding:4px 4px 8px;border-bottom:1px solid var(--line);margin-bottom:6px}
+#ua-admin .st-group-h b{font-family:var(--f-d);font-size:18px;font-weight:500;color:var(--ink)}
+#ua-admin .st-group-h span{font-size:12px;color:var(--muted)}
+#ua-admin .st-row{display:flex;align-items:center;gap:12px;padding:10px;border-radius:14px;transition:background .2s}
+#ua-admin .st-row:hover{background:var(--paper)}
+#ua-admin .st-row-ic{width:40px;height:40px;flex-shrink:0;border-radius:12px;display:grid;place-items:center;font-size:15px}
+#ua-admin .st-row-ic.pdf{background:#FDECEC;color:#D9383E}#ua-admin .st-row-ic.txt{background:var(--blue-soft);color:var(--blue)}
+#ua-admin .st-row-b{flex:1;min-width:0}
+#ua-admin .st-row-b b{display:block;font-size:14px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#ua-admin .st-row-b > span{display:flex;gap:5px;margin-top:4px;flex-wrap:wrap}
+#ua-admin .st-row-a{display:flex;gap:6px;flex-shrink:0}
+#ua-admin .st-row-a .btn{width:36px;padding:0}
+#ua-admin .st-empty{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:36px 16px;border-radius:18px;border:1.5px dashed var(--line-2);background:repeating-linear-gradient(135deg,var(--paper),var(--paper) 10px,#F1EDE2 10px,#F1EDE2 11px)}
+#ua-admin .st-empty.sm{padding:22px 14px}
+#ua-admin .st-empty > i{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:#fff;color:var(--gold);box-shadow:var(--sh-1);font-size:18px;margin-bottom:4px}
+#ua-admin .st-empty b{font-size:15px;color:var(--ink)}
+#ua-admin .st-empty span{font-size:13px;color:var(--muted);max-width:360px;line-height:1.5}
+/* forms */
+#ua-admin .st-form{margin-bottom:16px;padding:18px;border-radius:20px;background:linear-gradient(160deg,#FBF8F0,#fff);border:1px solid rgba(198,151,47,.35);box-shadow:var(--sh-2);animation:popIn .4s var(--ease) both}
+#ua-admin .st-form-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+#ua-admin .st-form-h b{font-family:var(--f-d);font-size:20px;font-weight:500;color:var(--ink);display:flex;gap:10px;align-items:center}
+#ua-admin .st-form-h b i{font-size:14px;color:var(--gold)}
+#ua-admin .st-form-f,#ua-admin .st-test-f{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:14px}
+#ua-admin .st-test-f{justify-content:flex-start;padding-top:12px;border-top:1px dashed var(--line)}
+#ua-admin .st-drop{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px;padding:22px 16px;margin:0 0 14px;border-radius:18px;border:2px dashed var(--line-2);background:var(--paper);cursor:pointer;transition:all .25s}
+#ua-admin .st-drop input{position:absolute;inset:0;opacity:0;cursor:pointer}
+#ua-admin .st-drop > i{font-size:24px;color:var(--gold);margin-bottom:4px}
+#ua-admin .st-drop b{font-size:14px;color:var(--ink);word-break:break-all}
+#ua-admin .st-drop span{font-size:12px;color:var(--muted)}
+#ua-admin .st-drop span a{position:relative;z-index:2;color:var(--blue);font-weight:700}
+#ua-admin .st-drop.over{border-color:var(--blue);background:var(--blue-soft);transform:scale(1.01)}
+#ua-admin .st-drop.has{border-style:solid;border-color:rgba(31,138,76,.4);background:#F1FAF4}
+#ua-admin .st-drop.has > i{color:#1F8A4C}
+#ua-admin .st-drop.sm{padding:16px 12px;margin:0}
+#ua-admin .st-seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:6px;padding:5px;border-radius:15px;background:var(--paper);border:1px solid var(--line);margin-bottom:14px}
+#ua-admin .st-seg button{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px;border:0;border-radius:11px;background:none;font-weight:800;font-size:13px;color:var(--muted);transition:all .2s}
+#ua-admin .st-seg button small{font-weight:600;font-size:11px;opacity:.75}
+#ua-admin .st-seg button.on{background:#fff;color:var(--ink);box-shadow:var(--sh-1)}
+#ua-admin .st-seg-sm{margin:0;grid-auto-columns:auto;display:inline-grid}
+#ua-admin .st-seg-sm button{flex-direction:row;gap:6px;padding:8px 14px;white-space:nowrap}
+#ua-admin .st-seg-sm em{font-style:normal;font-size:11px;padding:1px 7px;border-radius:999px;background:rgba(10,18,48,.06)}
+#ua-admin .st-inline{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+#ua-admin .st-help{display:block;font-size:11.5px;margin-top:4px}
+/* tests + question editor */
+#ua-admin .st-test{border:1px solid var(--line);border-radius:18px;background:#fff;margin-bottom:10px;overflow:hidden;transition:box-shadow .3s,border-color .3s}
+#ua-admin .st-test.open{border-color:rgba(46,86,230,.35);box-shadow:var(--sh-2)}
+#ua-admin .st-test-h{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer}
+#ua-admin .st-test-h:hover{background:var(--paper)}
+#ua-admin .st-test-ic{width:40px;height:40px;flex-shrink:0;border-radius:12px;display:grid;place-items:center;background:var(--ink);color:var(--gold-2)}
+#ua-admin .dd-live .st-test-ic{background:#FDECEC}
+#ua-admin .dd-past .st-test-ic{background:var(--paper);color:var(--muted)}
+#ua-admin .st-test-t{flex:1;min-width:0}
+#ua-admin .st-test-t b{display:block;font-size:14.5px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#ua-admin .st-test-t span{font-size:12px;color:var(--muted)}
+#ua-admin .st-test-m{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+#ua-admin .st-chev{color:var(--faint);transition:transform .3s}
+#ua-admin .open > .st-test-h .st-chev,#ua-admin .st-lec.open .st-chev{transform:rotate(180deg)}
+#ua-admin .st-test-b{padding:4px 16px 16px;border-top:1px solid var(--line);background:linear-gradient(180deg,#FBFAF6,#fff 120px)}
+#ua-admin .st-test-b > .field-row:first-child{margin-top:14px}
+#ua-admin .st-qsum{display:flex;gap:14px;flex-wrap:wrap;align-items:center;padding:12px 0 10px;font-size:12.5px;color:var(--muted);border-top:1px dashed var(--line);margin-top:6px}
+#ua-admin .st-qsum b{color:var(--ink);font-size:14px}
+#ua-admin .st-qsum .bad{color:var(--bad);font-weight:700}#ua-admin .st-qsum .ok{color:var(--ok);font-weight:700}
+#ua-admin .st-qlist{display:flex;flex-direction:column;gap:10px}
+#ua-admin .st-q{padding:14px;border-radius:16px;border:1px solid var(--line);background:var(--paper);transition:border-color .2s}
+#ua-admin .st-q.bad{border-color:rgba(229,72,77,.35);background:#FFFAFA}
+#ua-admin .st-q-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+#ua-admin .st-q-no{font-family:var(--f-d);font-size:20px;color:var(--ink);min-width:36px}
+#ua-admin .st-q-flag{flex:1;font-size:12px;font-weight:700;color:var(--bad)}
+#ua-admin .st-q-ok{flex:1;font-size:12px;font-weight:700;color:var(--ok)}
+#ua-admin .st-q-marks{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--muted)}
+#ua-admin .st-q-marks input{width:62px;height:32px;border-radius:9px;border:1px solid var(--line-2);padding:0 8px;background:#fff}
+#ua-admin .st-q-acts{display:flex;gap:4px}
+#ua-admin .st-q-acts button{width:30px;height:30px;border-radius:9px;border:1px solid var(--line);background:#fff;color:var(--muted);font-size:11px}
+#ua-admin .st-q-acts button:hover:not(:disabled){color:var(--ink);border-color:var(--ink)}
+#ua-admin .st-q-acts button.del:hover{background:var(--bad);border-color:var(--bad);color:#fff}
+#ua-admin .st-q-acts button:disabled{opacity:.35}
+#ua-admin .st-q-text{background:#fff!important}
+#ua-admin .st-q-img{margin:8px 0}
+#ua-admin .st-q-img .thumb-wrap img,#ua-admin .st-q-img .thumb-placeholder{width:44px;height:44px;border-radius:10px}
+#ua-admin .st-q-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#ua-admin .st-opt{position:relative;display:flex;align-items:center;gap:8px;padding:6px 6px 6px 8px;border-radius:13px;border:1.5px solid var(--line-2);background:#fff;cursor:pointer;transition:all .2s}
+#ua-admin .st-opt input[type=radio]{position:absolute;opacity:0;pointer-events:none}
+#ua-admin .st-opt-l{width:28px;height:28px;flex-shrink:0;border-radius:9px;display:grid;place-items:center;background:var(--paper);font-weight:800;font-size:12.5px;color:var(--muted);transition:all .2s}
+#ua-admin .st-opt input[type=text]{flex:1;min-width:0;height:32px;border:0!important;background:transparent!important;box-shadow:none!important;padding:0 4px;font-size:13.5px;outline:none}
+#ua-admin .st-opt-tick{display:none;font-size:11px;font-weight:800;color:#1F8A4C;white-space:nowrap;padding-right:6px}
+#ua-admin .st-opt:hover .st-opt-l{background:var(--blue-soft);color:var(--blue)}
+#ua-admin .st-opt.on{border-color:#2DB36A;background:#F1FAF4}
+#ua-admin .st-opt.on .st-opt-l{background:#2DB36A;color:#fff}
+#ua-admin .st-opt.on .st-opt-tick{display:inline}
+#ua-admin .st-q-exp{margin-top:10px}
+#ua-admin .st-q-exp summary{cursor:pointer;font-size:12.5px;font-weight:700;color:var(--muted);list-style:none}
+#ua-admin .st-q-exp summary::-webkit-details-marker{display:none}
+#ua-admin .st-q-exp summary i{color:var(--gold);margin-right:6px}
+#ua-admin .st-q-exp textarea{margin-top:8px;background:#fff!important}
+#ua-admin .st-qbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+/* save bar */
+#ua-admin .st-save{position:sticky;bottom:12px;z-index:6;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px;padding:12px 14px;border-radius:18px;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border:1px solid var(--line);box-shadow:var(--sh-2)}
+#ua-admin .st-save.dirty{border-color:rgba(198,151,47,.55);box-shadow:0 18px 40px -18px rgba(198,151,47,.6)}
+#ua-admin .st-state{flex:1;font-size:13px;font-weight:700;color:var(--ok);display:flex;gap:8px;align-items:center}
+#ua-admin .st-save.dirty .st-state{color:var(--gold)}
+#ua-admin .st-save.dirty .st-state i{font-size:8px;animation:udPulseDot 1.4s infinite}
+#ua-admin .st-issues{flex-basis:100%;font-size:12.5px;color:#9A6B0B;background:#FDF3DC;padding:9px 12px;border-radius:12px;line-height:1.5}
+/* submissions */
+#ua-admin .st-subs{display:flex;flex-direction:column;gap:10px}
+#ua-admin .st-sub{border:1px solid var(--line);border-radius:18px;background:#fff;overflow:hidden;transition:box-shadow .3s}
+#ua-admin .st-sub.open{box-shadow:var(--sh-2);border-color:rgba(46,86,230,.3)}
+#ua-admin .st-sub-h{display:grid;grid-template-columns:auto minmax(140px,1fr) minmax(160px,1.2fr) auto auto auto;gap:12px;align-items:center;padding:12px 14px}
+#ua-admin .st-av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold-2),var(--gold));color:var(--ink);font-family:var(--f-d);font-size:18px}
+#ua-admin .st-sub.done .st-av{background:var(--paper);color:var(--muted)}
+#ua-admin .st-sub-t,#ua-admin .st-sub-c{min-width:0}
+#ua-admin .st-sub-t b,#ua-admin .st-sub-c b{display:block;font-size:13.5px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#ua-admin .st-sub-t span,#ua-admin .st-sub-c span{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#ua-admin .st-sub-b{padding:16px;border-top:1px solid var(--line);background:linear-gradient(180deg,#FBFAF6,#fff 140px)}
+#ua-admin .st-grade{display:grid;grid-template-columns:1fr auto 1fr auto;gap:10px;align-items:end;margin-bottom:12px}
+#ua-admin .st-grade-of{font-family:var(--f-d);font-size:28px;color:var(--faint);padding-bottom:4px}
+#ua-admin .st-grade-p{min-width:84px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--ink);color:var(--gold-2);font-family:var(--f-d);font-size:22px}
+#ua-admin .st-grade-p.over{background:var(--bad);color:#fff}
+#ua-admin .st-files{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+/* day-d */
+#ua-admin .st-dd-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:16px}
+#ua-admin .st-gen{background:linear-gradient(160deg,#FBF3DE,#fff 70%);border-color:rgba(198,151,47,.35)}
+#ua-admin .st-gen-sum{display:flex;align-items:baseline;gap:10px;margin:4px 0 14px}
+#ua-admin .st-gen-sum b{font-family:var(--f-d);font-size:44px;font-weight:500;line-height:1;color:var(--ink)}
+#ua-admin .st-gen-sum span{font-size:13px;color:var(--muted)}
+#ua-admin .st-msrow{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px dashed var(--line)}
+#ua-admin .st-msrow:last-child{border-bottom:0}
+#ua-admin .st-msrow-t{flex:1;min-width:0}
+#ua-admin .st-msrow-t b{display:block;font-size:13.5px;color:var(--ink)}
+#ua-admin .st-msrow-t span{font-size:12px;color:var(--muted)}
+#ua-admin .st-mspick{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--muted)}
+#ua-admin .st-mspick input{width:62px;height:34px;border-radius:9px;border:1px solid var(--line-2);padding:0 8px}
+/* lectures */
+#ua-admin .st-lec-grid{display:flex;flex-direction:column;gap:10px}
+#ua-admin .st-lec{border:1px solid var(--line);border-radius:18px;background:#fff;overflow:hidden}
+#ua-admin .st-lec.bad{border-color:rgba(229,72,77,.3)}
+#ua-admin .st-lec.open{box-shadow:var(--sh-2);border-color:rgba(46,86,230,.3)}
+#ua-admin .st-lec-top{display:flex;align-items:center;gap:14px;padding:12px 14px;cursor:pointer}
+#ua-admin .st-lec-top:hover{background:var(--paper)}
+#ua-admin .st-lec-th{width:84px;height:54px;flex-shrink:0;border-radius:12px;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,var(--ink-3,#1B2A6B),var(--ink));color:var(--gold-2)}
+#ua-admin .st-lec-th img{width:100%;height:100%;object-fit:cover}
+#ua-admin .st-lec-t{flex:1;min-width:0}
+#ua-admin .st-lec-s{display:block;font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+#ua-admin .st-lec-t b{display:block;font-size:14.5px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:2px 0}
+#ua-admin .st-lec-t > span:last-child{font-size:12px;color:var(--muted)}
+#ua-admin .st-lec-b{padding:14px 16px 16px;border-top:1px solid var(--line)}
+#ua-admin .st-topics{display:flex;flex-direction:column;gap:6px;padding:8px;border-radius:14px;background:var(--paper);border:1px solid var(--line)}
+#ua-admin .st-topic{display:flex;align-items:center;gap:6px}
+#ua-admin .st-topic > span{width:26px;height:26px;flex-shrink:0;border-radius:8px;display:grid;place-items:center;background:#fff;font-family:var(--f-m);font-size:11px;color:var(--muted)}
+#ua-admin .st-topic input{flex:1;min-width:0;height:36px;border-radius:10px;border:1px solid var(--line-2);background:#fff;padding:0 10px;font-size:13.5px;outline:none}
+#ua-admin .st-topic .cp-ic{width:30px;height:30px}
+#ua-admin .st-topic-add{height:38px;border-radius:10px;border:1.5px dashed var(--line-2)!important;background:#fff!important;padding:0 12px!important;font-size:13px}
+/* videos */
+#ua-admin .st-vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+#ua-admin .st-vid{border:1px solid var(--line);border-radius:18px;background:#fff;overflow:hidden;transition:box-shadow .3s}
+#ua-admin .st-vid.open{grid-column:1/-1;box-shadow:var(--sh-2);border-color:rgba(46,86,230,.3)}
+#ua-admin .st-vid.bad{border-color:rgba(229,72,77,.35)}
+#ua-admin .st-vid-top{display:flex;gap:12px;align-items:center;padding:10px}
+#ua-admin .st-vid-th{position:relative;width:132px;height:74px;flex-shrink:0;border-radius:12px;overflow:hidden;background:#111;display:grid;place-items:center}
+#ua-admin .st-vid-th img{width:100%;height:100%;object-fit:cover}
+#ua-admin .st-vid-th > span{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10.5px;color:#FFB4B6;text-align:center;padding:4px}
+#ua-admin .st-vid-th em{position:absolute;right:5px;bottom:5px;font-style:normal;font-size:10.5px;font-weight:700;padding:1px 5px;border-radius:5px;background:rgba(0,0,0,.75);color:#fff}
+#ua-admin .st-vid-play{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:18px;background:rgba(0,0,0,.25);opacity:0;transition:opacity .2s}
+#ua-admin .st-vid-th:hover .st-vid-play{opacity:1}
+#ua-admin .st-vid-t{flex:1;min-width:0;cursor:pointer}
+#ua-admin .st-vid-t b{display:block;font-size:14px;color:var(--ink);margin:2px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#ua-admin .st-vid-t > span:last-child{font-size:12px;color:var(--muted)}
+#ua-admin .st-vid-a{display:flex;flex-direction:column;gap:4px}
+#ua-admin .st-vid-a .cp-ic{width:28px;height:28px}
+#ua-admin .st-vid-b{padding:12px 14px 14px;border-top:1px solid var(--line)}
+@media (max-width:1000px){#ua-admin .st-dd-grid{grid-template-columns:1fr}#ua-admin .st-sub-h{grid-template-columns:auto 1fr auto;}#ua-admin .st-sub-c{grid-column:2/-1}#ua-admin .st-sub-s{grid-column:2/3}}
+@media (max-width:640px){
+  #ua-admin .st-head{padding:18px}
+  #ua-admin .st-head h3{font-size:24px}
+  #ua-admin .st-stat{min-width:0;flex:1 1 40%}
+  #ua-admin .st-q-opts{grid-template-columns:1fr}
+  #ua-admin .st-files{grid-template-columns:1fr}
+  #ua-admin .st-grade{grid-template-columns:1fr auto 1fr}
+  #ua-admin .st-grade-p{grid-column:1/-1;width:100%}
+  #ua-admin .st-row-a .btn{width:34px}
+  #ua-admin .st-test-m{display:none}
+  #ua-admin .st-vids{grid-template-columns:1fr}
+  #ua-admin .st-vid-th{width:110px;height:62px}
+  #ua-admin .st-sub-h{grid-template-columns:auto 1fr}
+  #ua-admin .st-sub-h > .btn{grid-column:span 1}
+  #ua-admin .st-search,#ua-admin .st-paste{flex:1 1 100%}
+  #ua-admin .st-seg-sm{display:flex;overflow-x:auto;max-width:100%}
+  #ua-admin .st-save .btn{flex:1}
+  #ua-admin .st-state{flex-basis:100%}
+}
+#ua-admin .st-q-hint{font-size:11.5px;font-weight:700;color:var(--muted);margin:2px 0 6px}#ua-admin .st-q-hint i{color:var(--gold);margin-right:5px}
+#ua-admin .st-opt-l{cursor:pointer}
+#ua-admin .st-test,#ua-admin .st-test-b,#ua-admin .st-qhost,#ua-admin .st-qlist,#ua-admin .st-q{min-width:0;max-width:100%}
+#ua-admin .st-q-opts{grid-template-columns:repeat(2,minmax(0,1fr))}
+#ua-admin .st-q-img .thumb-wrap input[type=text]{min-width:0}
+@media (max-width:640px){#ua-admin .st-q-opts{grid-template-columns:minmax(0,1fr)}#ua-admin .st-q{padding:12px}#ua-admin .st-test-b{padding:4px 12px 14px}#ua-admin .st-opt-tick{font-size:0}#ua-admin .st-opt-tick i{font-size:12px}}
+#ua-admin .st-q-img .thumb-wrap input[type=text],#ua-admin .st-lec-b .thumb-wrap input[type=text]{height:40px;border-radius:11px;border:1px solid var(--line-2);background:#fff;padding:0 11px;font-size:13px;outline:none}
+
 /* ============================== STUDENT DASHBOARD ============================== */
 body.has-dash #page-home > *:not(#ua-dash):not(footer){display:none!important}
 #ua-dash:empty{display:none}
@@ -14638,6 +14869,864 @@ PANEL_TITLES['course-plans'] = 'Courses, Subjects & Pricing';
 PANEL_TITLES['subjects'] = 'Courses, Subjects & Pricing';
 PANEL_LOADERS['subjects'] = renderCoursePlans;
 PANEL_LOADERS['course-plans'] = renderCoursePlans;
+// ============================================================
+//  STUDY MATERIAL — redesigned staff sections
+//  Mocks · Mock Submissions · Notes · Day-D Live Mocks · Lectures · Videos
+//  (data shapes and storage keys unchanged — the student site reads
+//   exactly what it read before)
+// ============================================================
+const ST = { dirty: {}, active: {} };
+function stEsc(s) { return escAttr(s == null ? '' : s); }
+function stNormAns(v) {
+  const s = String(v == null ? '' : v).trim().toUpperCase();
+  const m = /^(?:OPTION|OPT|ANS(?:WER)?)?[\s.:)(-]*\(?([ABCD1-4])\b/.exec(s);
+  if (!m) return '';
+  return '1234'.indexOf(m[1]) > -1 ? 'ABCD'['1234'.indexOf(m[1])] : m[1];
+}
+function stAgo(d) {
+  const ms = Date.now() - new Date(d).getTime(); if (!(ms >= 0)) return '';
+  const m = Math.floor(ms / 60000), h = Math.floor(m / 60), dd = Math.floor(h / 24);
+  return dd ? dd + 'd ago' : h ? h + 'h ago' : m ? m + 'm ago' : 'just now';
+}
+function stSubjects(ck) { return Object.keys(CHAPTER_DATA[ck] || {}); }
+async function stEnsureSubjects() { if (CLASS_KEYS.some(function (k) { return !stSubjects(k).length; })) { try { await uaLoadAdminSubjects(); } catch (e) {} } }
+function stSubjectOptions(ck, current, allowEmpty) {
+  const opts = stSubjects(ck).slice();
+  if (current && opts.indexOf(current) === -1) opts.unshift(current);
+  return (allowEmpty || !current ? '<option value="">— Choose subject —</option>' : '')
+    + opts.map(function (s) { return '<option value="' + stEsc(s) + '"' + (s === current ? ' selected' : '') + '>' + stEsc(s) + (stSubjects(ck).indexOf(s) === -1 ? ' (not in subject list)' : '') + '</option>'; }).join('');
+}
+function stHead(icon, title, sub, stats) {
+  return '<div class="st-head"><div class="st-head-t"><span class="st-head-ic"><i class="fas ' + icon + '"></i></span><div><h3>' + title + '</h3><p>' + sub + '</p></div></div>'
+    + (stats && stats.length ? '<div class="st-stats">' + stats.map(function (s) { return '<div class="st-stat' + (s[2] ? ' ' + s[2] : '') + '"><b>' + s[0] + '</b><span>' + s[1] + '</span></div>'; }).join('') + '</div>' : '') + '</div>';
+}
+function stClassTabs(active, counts, id) {
+  return '<div class="st-tabs" id="' + id + '">' + CLASS_KEYS.map(function (ck) {
+    return '<button type="button" class="st-tab' + (ck === active ? ' on' : '') + '" data-class="' + ck + '">' + CLASS_LABELS[ck] + (counts ? '<em>' + (counts[ck] || 0) + '</em>' : '') + '</button>';
+  }).join('') + '</div>';
+}
+function stSaveBar(panel, label, issues) {
+  const d = !!ST.dirty[panel];
+  return '<div class="st-save' + (d ? ' dirty' : '') + '" id="st-save-' + panel + '">'
+    + (issues && issues.length ? '<div class="st-issues"><i class="fas fa-triangle-exclamation"></i> ' + issues.slice(0, 4).map(stEsc).join(' · ') + (issues.length > 4 ? ' · +' + (issues.length - 4) + ' more' : '') + '</div>' : '')
+    + '<span class="st-state">' + (d ? '<i class="fas fa-circle"></i> Unsaved changes' : '<i class="fas fa-check"></i> Everything is saved') + '</span>'
+    + '<button type="button" class="btn btn-outline" data-st-discard' + (d ? '' : ' disabled') + '><i class="fas fa-rotate-left"></i> Discard</button>'
+    + '<button type="button" class="btn btn-primary" data-st-save' + (d ? '' : ' disabled') + '><i class="fas fa-cloud-arrow-up"></i> ' + label + '</button></div>';
+}
+function stSetDirty(panel, on, refresh) {
+  ST.dirty[panel] = !!on;
+  const bar = document.getElementById('st-save-' + panel);
+  if (bar && refresh) refresh();
+  else if (bar) {
+    bar.classList.toggle('dirty', !!on);
+    bar.querySelector('.st-state').innerHTML = on ? '<i class="fas fa-circle"></i> Unsaved changes' : '<i class="fas fa-check"></i> Everything is saved';
+    bar.querySelectorAll('[data-st-save],[data-st-discard]').forEach(function (b) { b.disabled = !on; });
+  }
+}
+// Leaving a section with unsaved edits asks first
+document.addEventListener('click', function (e) {
+  const item = e.target.closest && e.target.closest('#ua-admin .nav-item');
+  if (!item) return;
+  const cur = document.querySelector('#ua-admin .nav-item.active');
+  const panel = cur && cur.getAttribute('data-panel');
+  const keys = Object.keys(ST.dirty).filter(function (k) { return ST.dirty[k] && (k === panel || k.indexOf(panel + '-') === 0); });
+  if (!panel || panel === item.getAttribute('data-panel') || !keys.length) return;
+  if (!confirm('You have unsaved changes in "' + (PANEL_TITLES[panel] || panel) + '". Leave without saving?')) { e.stopPropagation(); e.preventDefault(); return; }
+  keys.forEach(function (k) { ST.dirty[k] = false; });
+}, true);
+window.addEventListener('beforeunload', function (e) { if (Object.keys(ST.dirty).some(function (k) { return ST.dirty[k]; })) { e.preventDefault(); e.returnValue = ''; } });
+
+// ------------------------------------------------------------
+//  QUESTION EDITOR — shared by question-based mocks and Day-D
+// ------------------------------------------------------------
+function stQIssues(q) {
+  const out = [];
+  if (!String(q.text || '').trim()) out.push('no question text');
+  const filled = ['A', 'B', 'C', 'D'].filter(function (L) { return String(q['option' + L] || '').trim(); });
+  if (filled.length < 2) out.push('needs at least 2 options');
+  const c = stNormAns(q.correct);
+  if (!c) out.push('no correct answer');
+  else if (!String(q['option' + c] || '').trim()) out.push('correct option ' + c + ' is empty');
+  return out;
+}
+function stQuestionEditor(host, list, opts) {
+  // list: array of question objects (mutated in place); opts: {bucket, prefix, onChange, onImport}
+  opts = opts || {};
+  list.forEach(function (q) { const c = stNormAns(q.correct); if (c) q.correct = c; });
+  const uid = 'q' + Math.random().toString(36).slice(2, 7);
+  function changed() { if (opts.onChange) opts.onChange(); }
+  function card(q, i) {
+    const iss = stQIssues(q);
+    return '<div class="st-q' + (iss.length ? ' bad' : '') + '" data-i="' + i + '">'
+      + '<div class="st-q-h"><span class="st-q-no">Q' + (i + 1) + '</span>'
+      + (iss.length ? '<span class="st-q-flag"><i class="fas fa-circle-exclamation"></i> ' + iss.join(', ') + '</span>' : '<span class="st-q-ok"><i class="fas fa-circle-check"></i> Ready</span>')
+      + '<label class="st-q-marks">Marks <input type="number" min="0" step="0.5" data-k="marks" value="' + stEsc(q.marks != null && q.marks !== '' ? q.marks : 1) + '"></label>'
+      + '<span class="st-q-acts"><button type="button" data-qa="up" title="Move up"' + (i ? '' : ' disabled') + '><i class="fas fa-arrow-up"></i></button><button type="button" data-qa="down" title="Move down"' + (i < list.length - 1 ? '' : ' disabled') + '><i class="fas fa-arrow-down"></i></button><button type="button" data-qa="dup" title="Duplicate"><i class="fas fa-clone"></i></button><button type="button" data-qa="del" class="del" title="Delete"><i class="fas fa-trash"></i></button></span></div>'
+      + '<textarea class="st-q-text" data-k="text" rows="2" placeholder="Type the question…">' + stEsc(q.text) + '</textarea>'
+      + '<div class="st-q-img">' + fieldInputHTML({ key: 'imageUrl', type: 'image' }, q.imageUrl || '') + '</div>'
+      + '<div class="st-q-hint"><i class="fas fa-hand-pointer"></i> Tap a letter to mark the correct answer</div>'
+      + '<div class="st-q-opts">' + ['A', 'B', 'C', 'D'].map(function (L) {
+          const on = stNormAns(q.correct) === L;
+          return '<label class="st-opt' + (on ? ' on' : '') + '"><input type="radio" name="' + uid + '-' + i + '" value="' + L + '"' + (on ? ' checked' : '') + ' title="Mark ' + L + ' as the correct answer"><span class="st-opt-l">' + L + '</span><input type="text" data-k="option' + L + '" value="' + stEsc(q['option' + L]) + '" placeholder="Option ' + L + '"><span class="st-opt-tick"><i class="fas fa-check"></i> Correct</span></label>';
+        }).join('') + '</div>'
+      + '<details class="st-q-exp"' + (q.explanation ? ' open' : '') + '><summary><i class="fas fa-lightbulb"></i> Explanation (shown after the test)</summary><textarea data-k="explanation" rows="2" placeholder="Why is this the right answer?">' + stEsc(q.explanation) + '</textarea></details>'
+      + '</div>';
+  }
+  function summary() {
+    const bad = list.filter(function (q) { return stQIssues(q).length; }).length;
+    const marks = list.reduce(function (a, q) { return a + (Number(q.marks) || 1); }, 0);
+    return '<span><b>' + list.length + '</b> question' + (list.length === 1 ? '' : 's') + '</span><span><b>' + marks + '</b> marks</span>' + (bad ? '<span class="bad"><i class="fas fa-circle-exclamation"></i> ' + bad + ' need attention</span>' : (list.length ? '<span class="ok"><i class="fas fa-circle-check"></i> All ready</span>' : ''));
+  }
+  function draw() {
+    host.innerHTML = '<div class="st-qsum">' + summary() + '</div>'
+      + '<div class="st-qlist">' + (list.length ? list.map(card).join('') : '<div class="st-empty sm"><i class="fas fa-list-ol"></i><b>No questions yet</b><span>Add them one by one, or import a whole paper from a PDF.</span></div>') + '</div>'
+      + '<div class="st-qbar"><button type="button" class="btn btn-outline btn-sm" data-qa="add"><i class="fas fa-plus"></i> Add question</button>'
+      + (opts.onImport ? '<button type="button" class="btn btn-outline btn-sm" data-qa="import"><i class="fas fa-file-import"></i> Import from PDF</button>' : '') + '</div>';
+    wireImageUploadsIn(host, opts.bucket || 'ua-mocks', opts.prefix || 'question-images');
+    host.querySelectorAll('.st-q').forEach(function (el) {
+      const i = Number(el.dataset.i), q = list[i];
+      el.querySelectorAll('[data-k]').forEach(function (inp) {
+        inp.addEventListener('input', function () {
+          q[inp.dataset.k] = inp.dataset.k === 'marks' ? (inp.value === '' ? 1 : Number(inp.value)) : inp.value;
+          refreshFlags(el, q); changed();
+        });
+      });
+      // image uploads fill the URL box without an input event
+      const urlBox = el.querySelector('.st-q-img input[data-key="imageUrl"]');
+      if (urlBox) {
+        urlBox.addEventListener('input', function () { q.imageUrl = urlBox.value.trim(); changed(); });
+        const up = el.querySelector('.adm-img-upload');
+        if (up) up.addEventListener('change', function () { const t0 = Date.now(); (function wait() { if (urlBox.value !== (q.imageUrl || '')) { q.imageUrl = urlBox.value; changed(); } else if (Date.now() - t0 < 20000) setTimeout(wait, 300); })(); });
+      }
+      el.querySelectorAll('input[type=radio]').forEach(function (r) {
+        r.addEventListener('change', function () {
+          q.correct = r.value;
+          el.querySelectorAll('.st-opt').forEach(function (o) { o.classList.toggle('on', o.querySelector('input[type=radio]').checked); });
+          refreshFlags(el, q); changed();
+        });
+      });
+      el.querySelectorAll('[data-qa]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          const a = b.dataset.qa;
+          if (a === 'up' && i > 0) list.splice(i - 1, 0, list.splice(i, 1)[0]);
+          else if (a === 'down' && i < list.length - 1) list.splice(i + 1, 0, list.splice(i, 1)[0]);
+          else if (a === 'dup') list.splice(i + 1, 0, JSON.parse(JSON.stringify(q)));
+          else if (a === 'del') { if ((q.text || '').trim() && !confirm('Delete question ' + (i + 1) + '?')) return; list.splice(i, 1); }
+          else return;
+          draw(); changed();
+        });
+      });
+    });
+    host.querySelector('[data-qa="add"]').addEventListener('click', function () {
+      list.push({ text: '', imageUrl: '', optionA: '', optionB: '', optionC: '', optionD: '', correct: '', explanation: '', marks: 1 });
+      draw(); changed();
+      const t = host.querySelectorAll('.st-q-text'); if (t.length) t[t.length - 1].focus();
+    });
+    const imp = host.querySelector('[data-qa="import"]');
+    if (imp) imp.addEventListener('click', function () {
+      opts.onImport(function (chosen) {
+        chosen.forEach(function (q) { q.correct = stNormAns(q.correct) || q.correct; list.push(q); });
+        draw(); changed();
+        if (typeof showToast === 'function') showToast('Imported ' + chosen.length + ' question' + (chosen.length === 1 ? '' : 's') + ' — remember to save.');
+      });
+    });
+  }
+  function refreshFlags(el, q) {
+    const iss = stQIssues(q), h = el.querySelector('.st-q-h');
+    el.classList.toggle('bad', !!iss.length);
+    const old = h.querySelector('.st-q-flag,.st-q-ok');
+    const n = document.createElement('span');
+    n.className = iss.length ? 'st-q-flag' : 'st-q-ok';
+    n.innerHTML = iss.length ? '<i class="fas fa-circle-exclamation"></i> ' + iss.join(', ') : '<i class="fas fa-circle-check"></i> Ready';
+    old.replaceWith(n);
+    const s = host.querySelector('.st-qsum'); if (s) s.innerHTML = summary();
+  }
+  draw();
+  return { redraw: draw };
+}
+function stCleanQuestions(qs) {
+  return (qs || []).filter(function (q) { return String(q.text || '').trim(); }).map(function (q) {
+    return { text: String(q.text).trim(), imageUrl: (q.imageUrl || '').trim(), optionA: q.optionA || '', optionB: q.optionB || '', optionC: q.optionC || '', optionD: q.optionD || '', correct: stNormAns(q.correct), explanation: q.explanation || '', marks: Number(q.marks) || 1 };
+  });
+}
+
+// ------------------------------------------------------------
+//  PDF LIBRARY (Mocks + Notes)
+// ------------------------------------------------------------
+async function stRenderLibrary(kind) {
+  const el = document.getElementById('panel-' + kind);
+  const P = kind;
+  el.innerHTML = '<div class="card"><p class="empty-note"><i class="fas fa-spinner fa-spin"></i> Loading…</p></div>';
+  await stEnsureSubjects();
+  const S = ST.active[P] = ST.active[P] || { ck: CLASS_KEYS[0], q: '', subj: '' };
+  const showsPdf = function (ck) { return !(kind === 'mocks' && ck === 'cuet'); };
+  const res = await supa.from(kind).select('*');
+  const rows = (res.data || []).slice().sort(function (a, b) { return (a.subject || '').localeCompare(b.subject || '') || (a.chapter_name || '').localeCompare(b.chapter_name || '', undefined, { numeric: true }); });
+  let quiz = null;
+  if (kind === 'mocks') {
+    const raw = await getContent('ua_mock_quizzes', {});
+    quiz = {}; CLASS_KEYS.forEach(function (ck) { quiz[ck] = (Array.isArray(raw[ck]) ? raw[ck] : []).map(function (t) { return Object.assign({ questions: [] }, t, { questions: (t.questions || []).map(function (q) { return Object.assign({}, q); }) }); }); });
+    ST['quizSaved'] = JSON.stringify(quiz);
+  }
+  const counts = {}; CLASS_KEYS.forEach(function (ck) { counts[ck] = rows.filter(function (r) { return r.class_key === ck; }).length + (quiz ? quiz[ck].length : 0); });
+  const paid = rows.filter(function (r) { return r.access_type === 'paid'; }).length;
+
+  function draw() {
+    const ck = S.ck;
+    const mine = rows.filter(function (r) { return r.class_key === ck; });
+    const q = S.q.trim().toLowerCase();
+    const shown = mine.filter(function (r) { return (!S.subj || r.subject === S.subj) && (!q || (r.chapter_name + ' ' + r.subject).toLowerCase().indexOf(q) > -1); });
+    const subs = Array.from(new Set(mine.map(function (r) { return r.subject; }).concat(stSubjects(ck)))).filter(Boolean);
+    const groups = {}; shown.forEach(function (r) { (groups[r.subject] = groups[r.subject] || []).push(r); });
+    const label = kind === 'mocks' ? 'mock' : 'note';
+    let html = stHead(kind === 'mocks' ? 'fa-file-circle-check' : 'fa-book-open', kind === 'mocks' ? 'Mocks' : 'Notes',
+      kind === 'mocks' ? 'Chapter PDFs students download or read in-app, plus timed question-based tests.' : 'Chapter notes students open as a PDF or read right inside the app.',
+      [[rows.length, 'PDF ' + label + 's'], [rows.length - paid, 'Free'], [paid, 'Paid'], quiz ? [CLASS_KEYS.reduce(function (a, k) { return a + quiz[k].length; }, 0), 'Question tests'] : [rows.filter(function (r) { return r.content_text; }).length, 'Read in-app']])
+      + stClassTabs(ck, counts, P + '-tabs');
+    if (showsPdf(ck)) {
+      html += '<div class="card st-lib"><div class="st-lib-bar"><div class="st-lib-t"><h3><i class="fas fa-file-pdf"></i> ' + (kind === 'mocks' ? 'PDF mocks' : 'Notes') + ' · ' + CLASS_LABELS[ck] + '</h3></div>'
+        + '<div class="st-search"><i class="fas fa-magnifying-glass"></i><input id="' + P + '-q" placeholder="Search chapters…" value="' + stEsc(S.q) + '"></div>'
+        + '<button type="button" class="btn btn-primary" id="' + P + '-add"><i class="fas fa-plus"></i> Add ' + label + '</button></div>'
+        + (subs.length > 1 ? '<div class="st-chips"><button type="button" class="st-chipf' + (!S.subj ? ' on' : '') + '" data-subj="">All <em>' + mine.length + '</em></button>' + subs.map(function (s) { const n = mine.filter(function (r) { return r.subject === s; }).length; return '<button type="button" class="st-chipf' + (S.subj === s ? ' on' : '') + '" data-subj="' + stEsc(s) + '">' + stEsc(s) + ' <em>' + n + '</em></button>'; }).join('') + '</div>' : '')
+        + '<div id="' + P + '-form"></div>'
+        + (Object.keys(groups).length ? Object.keys(groups).map(function (s) {
+            return '<div class="st-group"><div class="st-group-h"><b>' + stEsc(s) + '</b><span>' + groups[s].length + ' chapter' + (groups[s].length === 1 ? '' : 's') + '</span></div>'
+              + groups[s].map(function (r) {
+                  return '<div class="st-row" data-id="' + stEsc(r.id) + '"><span class="st-row-ic ' + (r.content_text ? 'txt' : 'pdf') + '"><i class="fas ' + (r.content_text ? 'fa-align-left' : 'fa-file-pdf') + '"></i></span>'
+                    + '<div class="st-row-b"><b>' + stEsc(r.chapter_name) + '</b><span>' + (r.access_type === 'paid' ? '<span class="badge badge-warn">Paid · ₹' + (r.price || 0) + '</span>' : '<span class="badge badge-success">Free</span>') + (r.content_text ? ' <span class="badge badge-info">Read in-app</span>' : ' <span class="badge">PDF</span>') + '</span></div>'
+                    + '<div class="st-row-a"><a class="btn btn-outline btn-sm" href="' + stEsc(r.pdf_url) + '" target="_blank" rel="noopener" title="Open PDF"><i class="fas fa-eye"></i></a><button type="button" class="btn btn-outline btn-sm" data-act="edit" title="Edit"><i class="fas fa-pen"></i></button><button type="button" class="btn btn-danger btn-sm" data-act="del" title="Delete"><i class="fas fa-trash"></i></button></div></div>';
+                }).join('') + '</div>';
+          }).join('') : '<div class="st-empty"><i class="fas fa-file-pdf"></i><b>' + (mine.length ? 'Nothing matches your search' : 'No ' + label + 's for ' + CLASS_LABELS[ck] + ' yet') + '</b><span>' + (mine.length ? 'Try another word or subject.' : 'Click “Add ' + label + '” to upload the first chapter PDF.') + '</span></div>')
+        + '</div>';
+    }
+    if (quiz) html += '<div id="mocks-quiz-host"></div>';
+    el.innerHTML = html;
+    el.querySelectorAll('#' + P + '-tabs .st-tab').forEach(function (b) { b.addEventListener('click', function () { S.ck = b.dataset.class; S.subj = ''; draw(); }); });
+    if (showsPdf(ck)) {
+      const qi = document.getElementById(P + '-q');
+      let tmr; qi.addEventListener('input', function () { clearTimeout(tmr); const v = qi.value; tmr = setTimeout(function () { S.q = v; draw(); const n = document.getElementById(P + '-q'); n.focus(); n.setSelectionRange(v.length, v.length); }, 200); });
+      el.querySelectorAll('.st-chipf').forEach(function (b) { b.addEventListener('click', function () { S.subj = b.dataset.subj; draw(); }); });
+      document.getElementById(P + '-add').addEventListener('click', function () { openForm(null); });
+      el.querySelectorAll('.st-row').forEach(function (row) {
+        const r = rows.find(function (x) { return String(x.id) === row.dataset.id; });
+        row.querySelector('[data-act=edit]').addEventListener('click', function () { openForm(r); });
+        row.querySelector('[data-act=del]').addEventListener('click', async function () {
+          if (!confirm('Delete "' + r.chapter_name + '" (' + r.subject + ', ' + CLASS_LABELS[r.class_key] + ')?\n\nStudents lose access to it immediately. This cannot be undone.')) return;
+          const { error } = await supa.from(kind).delete().eq('id', r.id);
+          if (error) { alert('Delete failed: ' + error.message); return; }
+          rows.splice(rows.indexOf(r), 1); counts[r.class_key]--; draw();
+          if (typeof showToast === 'function') showToast('Deleted.');
+        });
+      });
+    }
+    if (quiz) stDrawQuizTests(document.getElementById('mocks-quiz-host'), quiz, ck, function () { counts[ck] = rows.filter(function (r) { return r.class_key === ck; }).length + quiz[ck].length; const t = el.querySelector('#' + P + '-tabs .st-tab.on em'); if (t) t.textContent = counts[ck]; });
+  }
+
+  function openForm(r) {
+    const box = document.getElementById(P + '-form');
+    const editing = !!r;
+    const ck = editing ? r.class_key : S.ck;
+    const label = kind === 'mocks' ? 'mock' : 'note';
+    box.innerHTML = '<div class="st-form"><div class="st-form-h"><b><i class="fas ' + (editing ? 'fa-pen' : 'fa-plus') + '"></i> ' + (editing ? 'Edit ' + label : 'Add a new ' + label) + '</b><button type="button" class="cp-ic" data-x title="Close"><i class="fas fa-xmark"></i></button></div>'
+      + '<div class="field-row"><div class="field"><label>Class</label><select id="sf-class">' + CLASS_KEYS.filter(showsPdf).map(function (k) { return '<option value="' + k + '"' + (k === ck ? ' selected' : '') + '>' + CLASS_LABELS[k] + '</option>'; }).join('') + '</select></div>'
+      + '<div class="field"><label>Subject</label><select id="sf-subject">' + stSubjectOptions(ck, editing ? r.subject : (S.subj || ''), !editing) + '</select></div></div>'
+      + '<div class="field-row full"><div class="field"><label>Chapter name</label><input id="sf-chapter" value="' + stEsc(editing ? r.chapter_name : '') + '" placeholder="e.g. Ch 3 · Depreciation, Provisions and Reserves"></div></div>'
+      + '<label class="st-drop" id="sf-drop"><input type="file" accept="application/pdf" id="sf-file"><i class="fas fa-cloud-arrow-up"></i><b id="sf-file-name">' + (editing ? 'Drop a new PDF to replace the current one (optional)' : 'Drop the chapter PDF here, or click to choose') + '</b><span id="sf-file-meta">' + (editing ? '<a href="' + stEsc(r.pdf_url) + '" target="_blank" rel="noopener">Current PDF</a>' : 'PDF only') + '</span></label>'
+      + '<div class="st-seg" id="sf-mode"><button type="button" data-v="pdf" class="' + (editing && r.content_text ? '' : 'on') + '"><i class="fas fa-file-pdf"></i> Open as PDF<small>Opens in a new tab</small></button><button type="button" data-v="text" class="' + (editing && r.content_text ? 'on' : '') + '"><i class="fas fa-align-left"></i> Read in-app<small>Text + images shown inside the app</small></button></div>'
+      + '<div id="sf-text-wrap" style="display:' + (editing && r.content_text ? '' : 'none') + '"><div class="st-inline"><button type="button" class="btn btn-outline btn-sm" id="sf-extract"><i class="fas fa-file-import"></i> Extract text from the PDF</button><span class="imp-status" id="sf-extract-status"></span></div><textarea id="sf-text" rows="9" placeholder="Extracted text appears here — edit it freely. This is exactly what students read.">' + stEsc(editing ? (r.content_text || '') : '') + '</textarea></div>'
+      + '<div class="st-seg" id="sf-access"><button type="button" data-v="free" class="' + (editing && r.access_type === 'paid' ? '' : 'on') + '"><i class="fas fa-lock-open"></i> Free</button><button type="button" data-v="paid" class="' + (editing && r.access_type === 'paid' ? 'on' : '') + '"><i class="fas fa-indian-rupee-sign"></i> Paid</button></div>'
+      + '<div class="field-row" id="sf-price-row" style="display:' + (editing && r.access_type === 'paid' ? '' : 'none') + '"><div class="field"><label>Price (₹)</label><input type="number" min="1" id="sf-price" value="' + stEsc(editing && r.price ? r.price : (kind === 'mocks' ? MOCK_PRICE : NOTE_PRICE)) + '"></div><div class="field"><label>&nbsp;</label><p class="hint" style="margin:10px 0 0">Students with the Full Course get it free automatically.</p></div></div>'
+      + '<div class="st-form-f"><button type="button" class="btn btn-outline" data-x>Cancel</button><button type="button" class="btn btn-primary" id="sf-save"><i class="fas fa-' + (editing ? 'check' : 'cloud-arrow-up') + '"></i> ' + (editing ? 'Save changes' : 'Upload & publish') + '</button></div></div>';
+    box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    const $ = function (id) { return document.getElementById(id); };
+    let mode = editing && r.content_text ? 'text' : 'pdf', access = editing && r.access_type === 'paid' ? 'paid' : 'free';
+    box.querySelectorAll('[data-x]').forEach(function (b) { b.addEventListener('click', function () { box.innerHTML = ''; }); });
+    $('sf-class').addEventListener('change', function () { $('sf-subject').innerHTML = stSubjectOptions(this.value, '', true); });
+    function seg(id, cb) { box.querySelectorAll('#' + id + ' button').forEach(function (b) { b.addEventListener('click', function () { box.querySelectorAll('#' + id + ' button').forEach(function (x) { x.classList.toggle('on', x === b); }); cb(b.dataset.v); }); }); }
+    seg('sf-mode', function (v) { mode = v; $('sf-text-wrap').style.display = v === 'text' ? '' : 'none'; });
+    seg('sf-access', function (v) { access = v; $('sf-price-row').style.display = v === 'paid' ? '' : 'none'; });
+    const drop = $('sf-drop'), fileIn = $('sf-file');
+    function showFile() { const f = fileIn.files[0]; if (!f) return; $('sf-file-name').textContent = f.name; $('sf-file-meta').textContent = (f.size / 1048576).toFixed(2) + ' MB · ready to upload'; drop.classList.add('has'); }
+    fileIn.addEventListener('change', showFile);
+    ['dragenter', 'dragover'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('over'); }); });
+    ['dragleave', 'drop'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('over'); }); });
+    drop.addEventListener('drop', function (e) { const f = e.dataTransfer.files[0]; if (!f) return; if (!/pdf$/i.test(f.type) && !/\.pdf$/i.test(f.name)) { alert('Please drop a PDF file.'); return; } const dt = new DataTransfer(); dt.items.add(f); fileIn.files = dt.files; showFile(); });
+    $('sf-extract').addEventListener('click', async function () {
+      const f = fileIn.files[0], st = $('sf-extract-status');
+      if (!f) { st.className = 'imp-status err'; st.textContent = editing ? 'Drop the PDF above first (re-extracting needs the file).' : 'Choose the PDF above first.'; return; }
+      this.disabled = true; st.className = 'imp-status'; st.textContent = 'Reading PDF…';
+      try {
+        const result = await extractPdfTextAndImages(f);
+        let t = result.text;
+        if (result.images.length) { st.textContent = 'Uploading ' + result.images.length + ' image(s)…'; t = resolveImageMarkers(t, await uploadExtractedImages(result.images, kind === 'mocks' ? 'ua-mocks' : 'ua-notes', 'chapter-images')); }
+        else t = t.replace(/\[\[IMG:\d+\]\]\n?/g, '');
+        $('sf-text').value = t.trim(); st.className = 'imp-status ok'; st.textContent = 'Done — review the text below.';
+      } catch (err) { st.className = 'imp-status err'; st.textContent = err.message || 'Could not read that PDF.'; }
+      this.disabled = false;
+    });
+    $('sf-save').addEventListener('click', async function () {
+      const classKey = $('sf-class').value, subject = $('sf-subject').value, chapter = $('sf-chapter').value.trim(), f = fileIn.files[0];
+      const price = Math.round(Number($('sf-price').value) || 0), text = $('sf-text').value.trim();
+      if (!subject) { alert('Choose a subject.'); return; }
+      if (!chapter) { alert('Enter the chapter name.'); return; }
+      if (!editing && !f) { alert('Choose the chapter PDF to upload.'); return; }
+      if (access === 'paid' && price <= 0) { alert('Enter a price greater than ₹0, or make it Free.'); return; }
+      if (mode === 'text' && !text) { alert('Extract the text first (or switch to “Open as PDF”).'); return; }
+      const dupe = rows.find(function (x) { return x !== r && x.class_key === classKey && x.subject === subject && x.chapter_name.trim().toLowerCase() === chapter.toLowerCase(); });
+      if (dupe && !confirm('"' + chapter + '" already exists in ' + subject + '. Save another copy anyway?')) return;
+      const btn = this; btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + (f ? 'Uploading PDF…' : 'Saving…');
+      let url = editing ? r.pdf_url : null;
+      if (f) { url = await uploadToStorage(f, kind === 'mocks' ? 'ua-mocks' : 'ua-notes', classKey); if (!url) { btn.disabled = false; btn.innerHTML = 'Try again'; return; } }
+      const row = { class_key: classKey, subject: subject, chapter_name: chapter, pdf_url: url, access_type: access, price: access === 'paid' ? price : 0, content_text: mode === 'text' ? text : null };
+      const res2 = editing ? await supa.from(kind).update(row).eq('id', r.id) : await supa.from(kind).insert([row]);
+      if (res2.error) { btn.disabled = false; btn.innerHTML = 'Try again'; alert('Save failed: ' + res2.error.message); return; }
+      if (typeof showToast === 'function') showToast(editing ? 'Changes saved — live for students now.' : 'Uploaded — live for students now.');
+      S.ck = classKey; S.subj = ''; stRenderLibrary(kind);
+    });
+  }
+  draw();
+}
+
+// ---- Question-based tests (Mocks) ----
+function stDrawQuizTests(host, quiz, ck, onCount) {
+  const P = 'mocks-quiz';
+  const open = ST.active[P] = ST.active[P] || {};
+  const list = quiz[ck];
+  function issuesAll() {
+    const out = [];
+    CLASS_KEYS.forEach(function (k) {
+      quiz[k].forEach(function (t, i) {
+        const nm = t.chapterName || ('Untitled test ' + (i + 1));
+        if (!String(t.chapterName || '').trim()) out.push(CLASS_LABELS[k] + ': a test has no name');
+        if (!t.subject) out.push(nm + ': choose a subject');
+        if (t.access === 'paid' && !(Number(t.price) > 0)) out.push(nm + ': paid but no price');
+        const bad = (t.questions || []).filter(function (q) { return stQIssues(q).length; }).length;
+        if (bad) out.push(nm + ': ' + bad + ' question' + (bad === 1 ? '' : 's') + ' need attention');
+      });
+    });
+    return out;
+  }
+  function changed() { stSetDirty(P, JSON.stringify(quiz) !== ST.quizSaved, bar); }
+  function bar() { const b = document.getElementById('st-save-' + P); if (b) { b.outerHTML = stSaveBar(P, 'Save tests', issuesAll()); wireBar(); } }
+  function wireBar() {
+    const b = document.getElementById('st-save-' + P);
+    b.querySelector('[data-st-discard]').addEventListener('click', function () { if (!confirm('Discard unsaved changes to the question tests?')) return; ST.dirty[P] = false; stRenderLibrary('mocks'); });
+    b.querySelector('[data-st-save]').addEventListener('click', save);
+  }
+  async function save() {
+    const iss = issuesAll().filter(function (x) { return /no name|choose a subject|no price/.test(x); });
+    if (iss.length) { alert('Please fix these first:\n\n• ' + iss.join('\n• ')); return; }
+    const bad = issuesAll().filter(function (x) { return /need attention/.test(x); });
+    if (bad.length && !confirm('Some questions are incomplete:\n\n• ' + bad.join('\n• ') + '\n\nQuestions with no text are skipped. Save anyway?')) return;
+    const out = {};
+    CLASS_KEYS.forEach(function (k) {
+      out[k] = quiz[k].map(function (t) {
+        return { subject: t.subject, chapterName: String(t.chapterName).trim(), mockType: t.mockType === 'chapterwise' ? 'chapterwise' : 'subjectwise', duration: t.duration ? Number(t.duration) : null, access: t.access === 'paid' ? 'paid' : 'free', price: t.access === 'paid' ? Number(t.price) || 0 : 0, questions: stCleanQuestions(t.questions) };
+      });
+    });
+    const b = document.querySelector('#st-save-' + P + ' [data-st-save]'); b.disabled = true; b.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving…';
+    if (await setContent('ua_mock_quizzes', out)) { ST.quizSaved = JSON.stringify(quiz); ST.dirty[P] = false; bar(); if (typeof showToast === 'function') showToast('Tests saved — live for students now.'); }
+    else bar();
+  }
+  function draw() {
+    host.innerHTML = '<div class="card st-tests"><div class="st-lib-bar"><div class="st-lib-t"><h3><i class="fas fa-list-ol"></i> Question-based tests · ' + CLASS_LABELS[ck] + '</h3><p class="hint" style="margin:4px 0 0">Timed MCQ tests marked automatically. Subject Wise and Chapter Wise tests appear under their own tabs for students.</p></div>'
+      + '<button type="button" class="btn btn-primary" id="qt-add"><i class="fas fa-plus"></i> New test</button></div>'
+      + (list.length ? list.map(function (t, i) {
+          const qn = (t.questions || []).length, bad = (t.questions || []).filter(function (q) { return stQIssues(q).length; }).length, isOpen = open[ck + i];
+          return '<div class="st-test' + (isOpen ? ' open' : '') + '" data-i="' + i + '"><div class="st-test-h" data-toggle><span class="st-test-ic"><i class="fas fa-list-ol"></i></span>'
+            + '<div class="st-test-t"><b>' + stEsc(t.chapterName || 'Untitled test') + '</b><span>' + stEsc(t.subject || 'No subject') + ' · ' + (t.mockType === 'chapterwise' ? 'Chapter wise' : 'Subject wise') + ' · ' + (t.duration ? t.duration + ' min' : 'Untimed') + '</span></div>'
+            + '<span class="st-test-m"><span class="badge ' + (t.access === 'paid' ? 'badge-warn">₹' + (t.price || 0) : 'badge-success">Free') + '</span><span class="badge badge-info">' + qn + ' Qs</span>' + (bad ? '<span class="badge badge-danger">' + bad + ' to fix</span>' : '') + '</span>'
+            + '<i class="fas fa-chevron-down st-chev"></i></div>'
+            + (isOpen ? '<div class="st-test-b"><div class="field-row"><div class="field"><label>Test name</label><input data-k="chapterName" value="' + stEsc(t.chapterName) + '" placeholder="e.g. Partnership — Full chapter test"></div><div class="field"><label>Subject</label><select data-k="subject">' + stSubjectOptions(ck, t.subject, true) + '</select></div></div>'
+              + '<div class="field-row"><div class="field"><label>Shown under</label><select data-k="mockType"><option value="subjectwise"' + (t.mockType !== 'chapterwise' ? ' selected' : '') + '>Subject Wise Mocks</option><option value="chapterwise"' + (t.mockType === 'chapterwise' ? ' selected' : '') + '>Chapter Wise Mocks</option></select></div><div class="field"><label>Timer (minutes)</label><input type="number" min="1" data-k="duration" value="' + stEsc(t.duration || '') + '" placeholder="Blank = untimed"></div></div>'
+              + '<div class="field-row"><div class="field"><label>Access</label><select data-k="access"><option value="free"' + (t.access !== 'paid' ? ' selected' : '') + '>Free</option><option value="paid"' + (t.access === 'paid' ? ' selected' : '') + '>Paid</option></select></div><div class="field"' + (t.access === 'paid' ? '' : ' style="visibility:hidden"') + ' data-price><label>Price (₹)</label><input type="number" min="1" data-k="price" value="' + stEsc(t.price || MOCK_PRICE) + '"></div></div>'
+              + '<div class="st-qhost"></div><div class="st-test-f"><button type="button" class="btn btn-danger btn-sm" data-del><i class="fas fa-trash"></i> Delete test</button></div></div>' : '')
+            + '</div>';
+        }).join('') : '<div class="st-empty"><i class="fas fa-list-ol"></i><b>No question tests for ' + CLASS_LABELS[ck] + ' yet</b><span>Create one, then add questions by hand or import them from a PDF.</span></div>')
+      + stSaveBar(P, 'Save tests', issuesAll()) + '</div>';
+    wireBar();
+    document.getElementById('qt-add').addEventListener('click', function () {
+      list.push({ subject: '', chapterName: '', mockType: 'subjectwise', duration: null, access: 'free', price: 0, questions: [] });
+      open[ck + (list.length - 1)] = true; draw(); changed(); if (onCount) onCount();
+      const n = host.querySelector('.st-test.open:last-of-type input[data-k=chapterName]'); if (n) n.focus();
+    });
+    host.querySelectorAll('.st-test').forEach(function (card) {
+      const i = Number(card.dataset.i), t = list[i];
+      card.querySelector('[data-toggle]').addEventListener('click', function () { open[ck + i] = !open[ck + i]; draw(); });
+      if (!open[ck + i]) return;
+      card.querySelectorAll('[data-k]').forEach(function (inp) {
+        const ev = inp.tagName === 'SELECT' ? 'change' : 'input';
+        inp.addEventListener(ev, function () {
+          t[inp.dataset.k] = inp.dataset.k === 'duration' || inp.dataset.k === 'price' ? (inp.value === '' ? null : Number(inp.value)) : inp.value;
+          if (inp.dataset.k === 'access') { card.querySelector('[data-price]').style.visibility = inp.value === 'paid' ? 'visible' : 'hidden'; if (inp.value === 'paid' && !t.price) t.price = MOCK_PRICE; }
+          const h = card.querySelector('.st-test-t'); h.innerHTML = '<b>' + stEsc(t.chapterName || 'Untitled test') + '</b><span>' + stEsc(t.subject || 'No subject') + ' · ' + (t.mockType === 'chapterwise' ? 'Chapter wise' : 'Subject wise') + ' · ' + (t.duration ? t.duration + ' min' : 'Untimed') + '</span>';
+          changed();
+        });
+      });
+      t.questions = t.questions || [];
+      stQuestionEditor(card.querySelector('.st-qhost'), t.questions, { bucket: 'ua-mocks', prefix: 'question-images', onChange: function () {
+        changed();
+        const m = card.querySelector('.st-test-m'); const bad = t.questions.filter(function (q) { return stQIssues(q).length; }).length;
+        m.innerHTML = '<span class="badge ' + (t.access === 'paid' ? 'badge-warn">₹' + (t.price || 0) : 'badge-success">Free') + '</span><span class="badge badge-info">' + t.questions.length + ' Qs</span>' + (bad ? '<span class="badge badge-danger">' + bad + ' to fix</span>' : '');
+      }, onImport: function (cb) { openImportQuestionsModal(cb); } });
+      card.querySelector('[data-del]').addEventListener('click', function () {
+        if (!confirm('Delete the test "' + (t.chapterName || 'Untitled') + '" and its ' + t.questions.length + ' question(s)?\n\nIt disappears for students after you save.')) return;
+        list.splice(i, 1); Object.keys(open).forEach(function (k) { if (k.indexOf(ck) === 0) delete open[k]; }); draw(); changed(); if (onCount) onCount();
+      });
+    });
+  }
+  draw();
+}
+
+// ------------------------------------------------------------
+//  MOCK SUBMISSIONS
+// ------------------------------------------------------------
+async function stRenderSubmissions() {
+  const el = document.getElementById('panel-mock-submissions');
+  const S = ST.active.subs = ST.active.subs || { tab: 'pending', q: '', ck: '' };
+  el.innerHTML = '<div class="card"><p class="empty-note"><i class="fas fa-spinner fa-spin"></i> Loading answer copies…</p></div>';
+  const { data, error } = await supa.from('mock_submissions').select('*').order('submitted_at', { ascending: false }).limit(1000);
+  if (error) { el.innerHTML = '<div class="card"><p class="empty-note">Could not load submissions: ' + stEsc(error.message) + '</p></div>'; return; }
+  UA_SUBS_CACHE = data || [];
+  function draw() {
+    const all = UA_SUBS_CACHE, pend = all.filter(function (s) { return s.status !== 'checked'; }), done = all.filter(function (s) { return s.status === 'checked'; });
+    const oldest = pend.length ? pend.reduce(function (a, s) { return new Date(s.submitted_at) < new Date(a.submitted_at) ? s : a; }) : null;
+    const q = S.q.trim().toLowerCase();
+    let list = (S.tab === 'pending' ? pend.slice().sort(function (a, b) { return new Date(a.submitted_at) - new Date(b.submitted_at); }) : S.tab === 'checked' ? done : all)
+      .filter(function (s) { return (!S.ck || s.class_key === S.ck) && (!q || [s.user_name, s.user_email, s.chapter_name, s.subject].join(' ').toLowerCase().indexOf(q) > -1); });
+    const avg = done.filter(function (s) { return s.marks_total; }).map(function (s) { return s.marks_obtained / s.marks_total * 100; });
+    el.innerHTML = stHead('fa-file-signature', 'Mock Submissions', 'Students upload written answers from a mock — mark them, add feedback and return the checked copy. They see it instantly.',
+        [[pend.length, 'Waiting', pend.length ? 'warn' : ''], [done.length, 'Checked'], [avg.length ? Math.round(avg.reduce(function (a, b) { return a + b; }, 0) / avg.length) + '%' : '—', 'Average marks'], [oldest ? stAgo(oldest.submitted_at).replace(' ago', '') : '—', 'Oldest waiting']])
+      + '<div class="card"><div class="st-lib-bar"><div class="st-seg st-seg-sm" id="sb-tabs">' + [['pending', 'Waiting', pend.length], ['checked', 'Checked', done.length], ['all', 'All', all.length]].map(function (t) { return '<button type="button" data-v="' + t[0] + '" class="' + (S.tab === t[0] ? 'on' : '') + '">' + t[1] + ' <em>' + t[2] + '</em></button>'; }).join('') + '</div>'
+      + '<select id="sb-class" class="st-select"><option value="">All classes</option>' + CLASS_KEYS.map(function (k) { return '<option value="' + k + '"' + (S.ck === k ? ' selected' : '') + '>' + CLASS_LABELS[k] + '</option>'; }).join('') + '</select>'
+      + '<div class="st-search"><i class="fas fa-magnifying-glass"></i><input id="sb-q" placeholder="Student, chapter or subject…" value="' + stEsc(S.q) + '"></div></div>'
+      + (list.length ? '<div class="st-subs">' + list.map(card).join('') + '</div>' : '<div class="st-empty"><i class="fas fa-' + (S.tab === 'pending' ? 'mug-hot' : 'file-signature') + '"></i><b>' + (S.tab === 'pending' && !q && !S.ck ? 'All caught up!' : 'Nothing here') + '</b><span>' + (S.tab === 'pending' && !q && !S.ck ? 'No answer copies are waiting to be checked.' : 'Try another filter.') + '</span></div>')
+      + '</div>';
+    el.querySelectorAll('#sb-tabs button').forEach(function (b) { b.addEventListener('click', function () { S.tab = b.dataset.v; draw(); }); });
+    document.getElementById('sb-class').addEventListener('change', function () { S.ck = this.value; draw(); });
+    const qi = document.getElementById('sb-q'); let tm; qi.addEventListener('input', function () { clearTimeout(tm); const v = qi.value; tm = setTimeout(function () { S.q = v; draw(); const n = document.getElementById('sb-q'); n.focus(); n.setSelectionRange(v.length, v.length); }, 220); });
+    el.querySelectorAll('.st-sub').forEach(wire);
+  }
+  function card(s) {
+    const checked = s.status === 'checked', p = checked && s.marks_total ? Math.round(s.marks_obtained / s.marks_total * 100) : null;
+    const wait = !checked && (Date.now() - new Date(s.submitted_at)) > 2 * 86400000;
+    return '<div class="st-sub' + (checked ? ' done' : '') + '" data-id="' + stEsc(s.id) + '"><div class="st-sub-h"><span class="st-av">' + stEsc((s.user_name || '?').trim().charAt(0).toUpperCase()) + '</span>'
+      + '<div class="st-sub-t"><b>' + stEsc(s.user_name || 'Student') + '</b><span>' + stEsc(s.user_email || '') + '</span></div>'
+      + '<div class="st-sub-c"><b>' + stEsc(s.chapter_name || 'Answer copy') + '</b><span>' + stEsc(s.subject || '') + ' · ' + stEsc(CLASS_LABELS[s.class_key] || s.class_key || '') + '</span></div>'
+      + '<div class="st-sub-s">' + (checked ? '<span class="badge badge-success"><i class="fas fa-check" style="margin-right:4px"></i>Checked' + (p != null ? ' · ' + s.marks_obtained + '/' + s.marks_total : '') + '</span>' : '<span class="badge ' + (wait ? 'badge-danger' : 'badge-warn') + '">Waiting · ' + stAgo(s.submitted_at) + '</span>') + '</div>'
+      + '<a class="btn btn-outline btn-sm" href="' + stEsc(s.answer_pdf_url) + '" target="_blank" rel="noopener"><i class="fas fa-file-pdf"></i> Answer copy</a>'
+      + '<button type="button" class="btn ' + (checked ? 'btn-outline' : 'btn-primary') + ' btn-sm" data-open>' + (checked ? '<i class="fas fa-pen"></i> Edit result' : '<i class="fas fa-marker"></i> Check') + '</button></div>'
+      + '<div class="st-sub-b" hidden><div class="st-grade"><div class="field"><label>Marks obtained</label><input type="number" min="0" step="0.5" data-k="ob" value="' + stEsc(s.marks_obtained != null ? s.marks_obtained : '') + '" placeholder="e.g. 34"></div><span class="st-grade-of">/</span><div class="field"><label>Out of</label><input type="number" min="0" step="0.5" data-k="tot" value="' + stEsc(s.marks_total != null ? s.marks_total : '') + '" placeholder="e.g. 40"></div><div class="st-grade-p" data-pct>' + (p != null ? p + '%' : '—') + '</div></div>'
+      + '<div class="field"><label>Feedback for the student</label><textarea rows="3" data-k="mis" placeholder="What went well, what to fix — e.g. Q2: missed the depreciation adjustment">' + stEsc(s.mistakes || '') + '</textarea></div>'
+      + '<div class="st-files"><label class="st-drop sm' + (s.checked_pdf_url ? ' has' : '') + '"><input type="file" accept="application/pdf" data-f="checked"><i class="fas fa-file-circle-check"></i><b>' + (s.checked_pdf_url ? 'Checked copy attached' : 'Checked copy (PDF) *') + '</b><span>' + (s.checked_pdf_url ? 'Drop a new one to replace' : 'Drop or click to choose') + '</span></label>'
+      + '<label class="st-drop sm' + (s.marking_scheme_url ? ' has' : '') + '"><input type="file" accept="application/pdf" data-f="scheme"><i class="fas fa-scroll"></i><b>' + (s.marking_scheme_url ? 'Marking scheme attached' : 'Marking scheme (optional)') + '</b><span>' + (s.marking_scheme_url ? 'Drop a new one to replace' : 'Drop or click to choose') + '</span></label></div>'
+      + '<div class="st-form-f">' + (s.checked_pdf_url ? '<a class="btn btn-outline btn-sm" href="' + stEsc(s.checked_pdf_url) + '" target="_blank" rel="noopener"><i class="fas fa-eye"></i> Current checked copy</a>' : '') + '<button type="button" class="btn btn-primary" data-pub><i class="fas fa-paper-plane"></i> ' + (checked ? 'Update result' : 'Publish result') + '</button></div></div></div>';
+  }
+  function wire(cardEl) {
+    const s = UA_SUBS_CACHE.find(function (x) { return String(x.id) === cardEl.dataset.id; });
+    const body = cardEl.querySelector('.st-sub-b');
+    cardEl.querySelector('[data-open]').addEventListener('click', function () { body.hidden = !body.hidden; cardEl.classList.toggle('open', !body.hidden); if (!body.hidden) { const i = body.querySelector('[data-k=ob]'); i.focus(); } });
+    const ob = body.querySelector('[data-k=ob]'), tot = body.querySelector('[data-k=tot]'), pct = body.querySelector('[data-pct]');
+    function upd() { const a = Number(ob.value), b = Number(tot.value); pct.textContent = ob.value !== '' && b > 0 ? Math.round(a / b * 100) + '%' : '—'; pct.classList.toggle('over', ob.value !== '' && b > 0 && a > b); }
+    ob.addEventListener('input', upd); tot.addEventListener('input', upd);
+    body.querySelectorAll('.st-drop input').forEach(function (f) {
+      const lab = f.closest('.st-drop');
+      ['dragenter', 'dragover'].forEach(function (ev) { lab.addEventListener(ev, function (e) { e.preventDefault(); lab.classList.add('over'); }); });
+      ['dragleave', 'drop'].forEach(function (ev) { lab.addEventListener(ev, function (e) { e.preventDefault(); lab.classList.remove('over'); }); });
+      lab.addEventListener('drop', function (e) { const x = e.dataTransfer.files[0]; if (!x) return; const dt = new DataTransfer(); dt.items.add(x); f.files = dt.files; f.dispatchEvent(new Event('change')); });
+      f.addEventListener('change', function () { const x = f.files[0]; if (!x) return; lab.classList.add('has'); lab.querySelector('b').textContent = x.name; lab.querySelector('span').textContent = (x.size / 1048576).toFixed(2) + ' MB · ready'; });
+    });
+    body.querySelector('[data-pub]').addEventListener('click', async function () {
+      const cf = body.querySelector('[data-f=checked]').files[0], sf = body.querySelector('[data-f=scheme]').files[0];
+      if (!cf && !s.checked_pdf_url) { alert('Attach the checked answer copy (PDF) first.'); return; }
+      const a = ob.value === '' ? null : Number(ob.value), b = tot.value === '' ? null : Number(tot.value);
+      if ((a == null) !== (b == null)) { alert('Enter both the marks obtained and the total — or leave both empty.'); return; }
+      if (a != null && a > b && !confirm('Marks obtained (' + a + ') is higher than the total (' + b + '). Publish anyway?')) return;
+      const btn = this; btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publishing…';
+      const upd2 = { status: 'checked', checked_at: new Date().toISOString(), marks_obtained: a, marks_total: b, mistakes: body.querySelector('[data-k=mis]').value.trim() || null };
+      if (cf) { const u = await uploadToStorage(cf, 'ua-submissions', 'checked'); if (!u) { btn.disabled = false; btn.innerHTML = 'Try again'; return; } upd2.checked_pdf_url = u; }
+      if (sf) { const u2 = await uploadToStorage(sf, 'ua-submissions', 'marking-scheme'); if (!u2) { btn.disabled = false; btn.innerHTML = 'Try again'; return; } upd2.marking_scheme_url = u2; }
+      const { error: e2 } = await supa.from('mock_submissions').update(upd2).eq('id', s.id);
+      if (e2) { btn.disabled = false; btn.innerHTML = 'Try again'; alert('Save failed: ' + e2.message); return; }
+      Object.assign(s, upd2);
+      if (typeof showToast === 'function') showToast('Result published — ' + (s.user_name || 'the student') + ' can see it now.');
+      draw();
+    });
+  }
+  draw();
+}
+
+// ------------------------------------------------------------
+//  DAY-D LIVE MOCKS
+// ------------------------------------------------------------
+async function stRenderDayD() {
+  const el = document.getElementById('panel-dayd');
+  const P = 'dayd';
+  el.innerHTML = '<div class="card"><p class="empty-note"><i class="fas fa-spinner fa-spin"></i> Loading Day-D mocks…</p></div>';
+  await stEnsureSubjects();
+  const [raw, msRaw] = await Promise.all([getContent('ua_dayd_mocks', {}), getContent('ua_dayd_mastersheets', {})]);
+  const S = ST.active[P] = ST.active[P] || { ck: CLASS_KEYS[0], open: {} };
+  const dayd = {}, ms = {};
+  CLASS_KEYS.forEach(function (ck) {
+    dayd[ck] = (raw[ck] || []).map(function (it) {
+      if (typeof it === 'string') return { title: it, duration: null, questions: [], liveHours: null, price: MOCK_PRICE, publishedAt: null };
+      return { title: it.title || '', duration: it.duration || null, questions: (it.questions || []).map(function (q) { return Object.assign({}, q); }), liveHours: it.liveHours || null, price: it.price != null ? it.price : MOCK_PRICE, publishedAt: it.publishedAt || null };
+    });
+    ms[ck] = {};
+    stSubjects(ck).forEach(function (sub) { const e = (msRaw[ck] || {})[sub] || {}; ms[ck][sub] = { questions: Array.isArray(e.questions) ? e.questions : [], count: e.count || 10 }; });
+    Object.keys(msRaw[ck] || {}).forEach(function (sub) { if (!ms[ck][sub]) ms[ck][sub] = { questions: msRaw[ck][sub].questions || [], count: msRaw[ck][sub].count || 10, orphan: true }; });
+  });
+  let saved = JSON.stringify([dayd, ms]);
+  function status(t) {
+    if (!t.publishedAt) return ['draft', 'Draft — not live yet', 'badge-info'];
+    if (!t.liveHours) return ['live', 'Live (no end time)', 'badge-success'];
+    const end = new Date(t.publishedAt).getTime() + Number(t.liveHours) * 3600000;
+    if (Date.now() < end) { const h = Math.floor((end - Date.now()) / 3600000), m = Math.floor((end - Date.now()) / 60000) % 60; return ['live', 'Live · ' + (h ? h + 'h ' : '') + m + 'm left', 'badge-success']; }
+    return ['past', 'In Previous Dose · ₹' + (t.price || 0), 'badge-warn'];
+  }
+  function issues() {
+    const out = [];
+    CLASS_KEYS.forEach(function (k) {
+      const seen = {};
+      dayd[k].forEach(function (t, i) {
+        const n = String(t.title || '').trim();
+        if (!n) out.push(CLASS_LABELS[k] + ': a Day-D mock has no name');
+        else if (seen[n.toLowerCase()]) out.push(CLASS_LABELS[k] + ': two mocks are named "' + n + '"');
+        seen[n.toLowerCase()] = 1;
+        const bad = t.questions.filter(function (q) { return stQIssues(q).length; }).length;
+        if (bad) out.push((n || 'Untitled') + ': ' + bad + ' question' + (bad === 1 ? '' : 's') + ' need attention');
+        if (t.publishedAt && !t.questions.length) out.push((n || 'Untitled') + ': live but has no questions');
+      });
+    });
+    return out;
+  }
+  function changed() { stSetDirty(P, JSON.stringify([dayd, ms]) !== saved, refreshBar); }
+  function refreshBar() { const b = document.getElementById('st-save-' + P); if (b) { b.outerHTML = stSaveBar(P, 'Save Day-D', issues()); wireBar(); } }
+  function wireBar() {
+    const b = document.getElementById('st-save-' + P);
+    b.querySelector('[data-st-discard]').addEventListener('click', function () { if (!confirm('Discard unsaved Day-D changes?')) return; ST.dirty[P] = false; stRenderDayD(); });
+    b.querySelector('[data-st-save]').addEventListener('click', save);
+  }
+  async function save() {
+    const hard = issues().filter(function (x) { return /no name|two mocks/.test(x); });
+    if (hard.length) { alert('Please fix these first:\n\n• ' + hard.join('\n• ')); return; }
+    const soft = issues().filter(function (x) { return !/no name|two mocks/.test(x); });
+    if (soft.length && !confirm('Heads up:\n\n• ' + soft.join('\n• ') + '\n\nSave anyway?')) return;
+    const out = {}, msOut = {};
+    CLASS_KEYS.forEach(function (k) {
+      out[k] = dayd[k].map(function (t) { return { title: String(t.title).trim(), duration: t.duration ? Number(t.duration) : null, questions: stCleanQuestions(t.questions), liveHours: t.liveHours ? Number(t.liveHours) : null, price: t.price != null && t.price !== '' ? Number(t.price) : MOCK_PRICE, publishedAt: t.publishedAt || null }; });
+      msOut[k] = {}; Object.keys(ms[k]).forEach(function (sub) { msOut[k][sub] = { questions: ms[k][sub].questions || [], count: Number(ms[k][sub].count) || 10 }; });
+    });
+    const b = document.querySelector('#st-save-' + P + ' [data-st-save]'); b.disabled = true; b.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving…';
+    const ok = await setContent('ua_dayd_mocks', out) && await setContent('ua_dayd_mastersheets', msOut);
+    if (ok) { saved = JSON.stringify([dayd, ms]); ST.dirty[P] = false; draw(); if (typeof showToast === 'function') showToast('Day-D saved — live for students now.'); } else refreshBar();
+  }
+  function uniqueTitle(ck, base) {
+    const names = dayd[ck].map(function (t) { return String(t.title).toLowerCase(); });
+    if (names.indexOf(base.toLowerCase()) === -1) return base;
+    let n = 2; while (names.indexOf((base + ' #' + n).toLowerCase()) > -1) n++;
+    return base + ' #' + n;
+  }
+  function draw() {
+    const ck = S.ck, list = dayd[ck];
+    const all = CLASS_KEYS.reduce(function (a, k) { return a.concat(dayd[k]); }, []);
+    const counts = {}; CLASS_KEYS.forEach(function (k) { counts[k] = dayd[k].length; });
+    const subs = Object.keys(ms[ck]);
+    const bankTotal = subs.reduce(function (a, s) { return a + Math.min(ms[ck][s].count || 0, ms[ck][s].questions.length); }, 0);
+    el.innerHTML = stHead('fa-bolt', 'Day-D Live Mocks', 'Short daily tests that are live for a set time, count on the leaderboard, then move to “Previous Dose” as a paid practice test.',
+        [[all.filter(function (t) { return status(t)[0] === 'live'; }).length, 'Live now', 'ok'], [all.filter(function (t) { return status(t)[0] === 'draft'; }).length, 'Drafts'], [all.filter(function (t) { return status(t)[0] === 'past'; }).length, 'Previous Dose'], [all.length, 'Total']])
+      + stClassTabs(ck, counts, 'dd-tabs')
+      + '<div class="st-dd-grid"><div class="card st-gen"><h3><i class="fas fa-wand-magic-sparkles"></i> Generate today’s Day-D</h3><p class="hint">Picks random questions from each subject’s master sheet and creates one ready-to-go mock for ' + CLASS_LABELS[ck] + '.</p>'
+      + '<div class="st-gen-sum"><b>' + bankTotal + '</b><span>questions will be picked from ' + subs.filter(function (s) { return ms[ck][s].questions.length; }).length + ' subject' + (subs.filter(function (s) { return ms[ck][s].questions.length; }).length === 1 ? '' : 's') + '</span></div>'
+      + '<div class="field-row"><div class="field"><label>Live for (hours)</label><input type="number" min="1" id="dd-hours" placeholder="e.g. 24 (blank = no end)"></div><div class="field"><label>Timer (minutes)</label><input type="number" min="1" id="dd-dur" placeholder="Blank = untimed"></div></div>'
+      + '<div class="field-row"><div class="field"><label>Price in Previous Dose (₹)</label><input type="number" min="0" id="dd-price" value="' + MOCK_PRICE + '"></div><div class="field"><label>Go live</label><select id="dd-golive"><option value="now">Immediately</option><option value="draft">Save as draft</option></select></div></div>'
+      + '<button type="button" class="btn btn-primary" id="dd-gen"' + (bankTotal ? '' : ' disabled') + '><i class="fas fa-wand-magic-sparkles"></i> Generate mock</button>' + (bankTotal ? '' : '<p class="hint" style="margin:10px 0 0">Upload at least one master sheet first →</p>') + '</div>'
+      + '<div class="card st-ms"><h3><i class="fas fa-database"></i> Master sheets · ' + CLASS_LABELS[ck] + '</h3><p class="hint">One big question bank per subject. Upload once, reuse every day.</p>'
+      + (subs.length ? subs.map(function (s) {
+          const b = ms[ck][s];
+          return '<div class="st-msrow" data-s="' + stEsc(s) + '"><div class="st-msrow-t"><b>' + stEsc(s) + (b.orphan ? ' <span class="badge badge-warn">not in subject list</span>' : '') + '</b><span>' + (b.questions.length ? b.questions.length + ' questions in bank' : 'No bank yet') + '</span></div>'
+            + '<label class="st-mspick">Pick <input type="number" min="0" data-c value="' + stEsc(b.count) + '"></label>'
+            + '<button type="button" class="btn btn-outline btn-sm" data-up><i class="fas fa-file-import"></i> ' + (b.questions.length ? 'Replace' : 'Upload') + '</button>'
+            + (b.questions.length ? '<button type="button" class="cp-ic del" data-clr title="Clear bank"><i class="fas fa-trash"></i></button>' : '') + '</div>';
+        }).join('') : '<div class="st-empty sm"><i class="fas fa-book"></i><span>Add subjects for ' + CLASS_LABELS[ck] + ' in “Courses, Subjects &amp; Pricing” first.</span></div>')
+      + '</div></div>'
+      + '<div class="card"><div class="st-lib-bar"><div class="st-lib-t"><h3><i class="fas fa-bolt"></i> Day-D mocks · ' + CLASS_LABELS[ck] + '</h3></div><button type="button" class="btn btn-outline" id="dd-add"><i class="fas fa-plus"></i> Blank mock</button></div>'
+      + (list.length ? list.map(function (t, i) { return i; }).sort(function (a, b) { const sa = status(list[a])[0], sb = status(list[b])[0], o = { live: 0, draft: 1, past: 2 }; return o[sa] - o[sb] || new Date(list[b].publishedAt || 0) - new Date(list[a].publishedAt || 0); }).map(function (i) {
+          const t = list[i], st = status(t), isOpen = S.open[ck + i];
+          const bad = t.questions.filter(function (q) { return stQIssues(q).length; }).length;
+          return '<div class="st-test dd-' + st[0] + (isOpen ? ' open' : '') + '" data-i="' + i + '"><div class="st-test-h" data-toggle><span class="st-test-ic">' + (st[0] === 'live' ? '<span class="ud-pulse"></span>' : '<i class="fas fa-' + (st[0] === 'draft' ? 'pen-ruler' : 'clock-rotate-left') + '"></i>') + '</span>'
+            + '<div class="st-test-t"><b>' + stEsc(t.title || 'Untitled Day-D') + '</b><span>' + (t.duration ? t.duration + ' min' : 'Untimed') + ' · ' + (t.liveHours ? 'live ' + t.liveHours + 'h' : 'no end time') + (t.publishedAt ? ' · published ' + new Date(t.publishedAt).toLocaleString('en-IN', { day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }) : '') + '</span></div>'
+            + '<span class="st-test-m"><span class="badge ' + st[2] + '">' + st[1] + '</span><span class="badge badge-info">' + t.questions.length + ' Qs</span>' + (bad ? '<span class="badge badge-danger">' + bad + ' to fix</span>' : '') + '</span><i class="fas fa-chevron-down st-chev"></i></div>'
+            + (isOpen ? '<div class="st-test-b"><div class="field-row"><div class="field"><label>Mock name <small style="color:var(--muted)">(must be unique — attempts are tracked by name)</small></label><input data-k="title" value="' + stEsc(t.title) + '"></div><div class="field"><label>Timer (minutes)</label><input type="number" min="1" data-k="duration" value="' + stEsc(t.duration || '') + '" placeholder="Blank = untimed"></div></div>'
+              + '<div class="field-row"><div class="field"><label>Live for (hours)</label><input type="number" min="1" data-k="liveHours" value="' + stEsc(t.liveHours || '') + '" placeholder="Blank = no end"></div><div class="field"><label>Price in Previous Dose (₹)</label><input type="number" min="0" data-k="price" value="' + stEsc(t.price) + '"></div></div>'
+              + '<div class="st-inline"><button type="button" class="btn btn-primary btn-sm" data-pub><i class="fas fa-tower-broadcast"></i> ' + (t.publishedAt ? 'Restart live window now' : 'Go live now') + '</button>' + (t.publishedAt ? '<button type="button" class="btn btn-outline btn-sm" data-unpub><i class="fas fa-eye-slash"></i> Back to draft</button>' : '') + '<span class="hint" style="margin:0">Changes go live when you click “Save Day-D”.</span></div>'
+              + '<div class="st-qhost"></div><div class="st-test-f"><button type="button" class="btn btn-danger btn-sm" data-del><i class="fas fa-trash"></i> Delete mock</button></div></div>' : '')
+            + '</div>';
+        }).join('') : '<div class="st-empty"><i class="fas fa-bolt"></i><b>No Day-D mocks for ' + CLASS_LABELS[ck] + ' yet</b><span>Generate one from your master sheets, or start a blank mock.</span></div>')
+      + stSaveBar(P, 'Save Day-D', issues()) + '</div>';
+    wireBar();
+    el.querySelectorAll('#dd-tabs .st-tab').forEach(function (b) { b.addEventListener('click', function () { S.ck = b.dataset.class; draw(); }); });
+    el.querySelectorAll('.st-msrow').forEach(function (row) {
+      const s = row.dataset.s;
+      row.querySelector('[data-c]').addEventListener('input', function () { ms[ck][s].count = Number(this.value) || 0; changed(); const g = el.querySelector('.st-gen-sum b'); if (g) g.textContent = subs.reduce(function (a, x) { return a + Math.min(ms[ck][x].count || 0, ms[ck][x].questions.length); }, 0); });
+      row.querySelector('[data-up]').addEventListener('click', function () {
+        openImportQuestionsModal(function (chosen) { chosen.forEach(function (q) { q.correct = stNormAns(q.correct) || q.correct; }); ms[ck][s].questions = chosen; changed(); draw(); if (typeof showToast === 'function') showToast(chosen.length + ' questions loaded into ' + s + ' — remember to save.'); }, { title: 'Master sheet — ' + s, confirmLabel: 'Use as master sheet' });
+      });
+      const c = row.querySelector('[data-clr]');
+      if (c) c.addEventListener('click', function () { if (!confirm('Clear the ' + s + ' question bank? Mocks already generated keep their questions.')) return; ms[ck][s].questions = []; changed(); draw(); });
+    });
+    const gen = document.getElementById('dd-gen');
+    if (gen) gen.addEventListener('click', function () {
+      let qs = [];
+      subs.forEach(function (s) { const b = ms[ck][s]; if (b.questions.length && b.count) qs = qs.concat(shuffleArray(b.questions).slice(0, Math.min(b.count, b.questions.length)).map(function (q) { return Object.assign({}, q, { correct: stNormAns(q.correct) || q.correct }); })); });
+      if (!qs.length) return;
+      const now = new Date();
+      const title = uniqueTitle(ck, 'Day-D · ' + now.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }));
+      const hours = document.getElementById('dd-hours').value, dur = document.getElementById('dd-dur').value, price = document.getElementById('dd-price').value;
+      dayd[ck].push({ title: title, duration: dur ? Number(dur) : null, questions: qs, liveHours: hours ? Number(hours) : null, price: price !== '' ? Number(price) : MOCK_PRICE, publishedAt: document.getElementById('dd-golive').value === 'now' ? now.toISOString() : null });
+      S.open[ck + (dayd[ck].length - 1)] = true; changed(); draw();
+      if (typeof showToast === 'function') showToast('“' + title + '” created with ' + qs.length + ' questions — click Save Day-D to publish.');
+    });
+    document.getElementById('dd-add').addEventListener('click', function () {
+      dayd[ck].push({ title: uniqueTitle(ck, 'Day-D · ' + new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })), duration: null, questions: [], liveHours: 24, price: MOCK_PRICE, publishedAt: null });
+      S.open[ck + (dayd[ck].length - 1)] = true; changed(); draw();
+    });
+    el.querySelectorAll('.st-test').forEach(function (card) {
+      const i = Number(card.dataset.i), t = list[i];
+      card.querySelector('[data-toggle]').addEventListener('click', function () { S.open[ck + i] = !S.open[ck + i]; draw(); });
+      if (!S.open[ck + i]) return;
+      card.querySelectorAll('[data-k]').forEach(function (inp) { inp.addEventListener('input', function () { t[inp.dataset.k] = inp.dataset.k === 'title' ? inp.value : (inp.value === '' ? null : Number(inp.value)); changed(); }); });
+      card.querySelector('[data-pub]').addEventListener('click', function () { if (!t.questions.length && !confirm('This mock has no questions yet. Make it live anyway?')) return; t.publishedAt = new Date().toISOString(); changed(); draw(); });
+      const up = card.querySelector('[data-unpub]'); if (up) up.addEventListener('click', function () { t.publishedAt = null; changed(); draw(); });
+      stQuestionEditor(card.querySelector('.st-qhost'), t.questions, { bucket: 'ua-mocks', prefix: 'question-images', onChange: changed, onImport: function (cb) { openImportQuestionsModal(cb); } });
+      card.querySelector('[data-del]').addEventListener('click', function () {
+        if (!confirm('Delete "' + (t.title || 'this mock') + '" with its ' + t.questions.length + ' question(s)?' + (t.publishedAt ? '\n\nIt is already published — students lose it (and its Previous Dose copy) after you save.' : ''))) return;
+        list.splice(i, 1); S.open = {}; changed(); draw();
+      });
+    });
+  }
+  draw();
+}
+
+// ------------------------------------------------------------
+//  LECTURES
+// ------------------------------------------------------------
+async function stRenderLectures() {
+  const el = document.getElementById('panel-lectures');
+  const P = 'lectures';
+  el.innerHTML = '<div class="card"><p class="empty-note"><i class="fas fa-spinner fa-spin"></i> Loading lectures…</p></div>';
+  await stEnsureSubjects();
+  const raw = await getContent('ua_lectures', {});
+  const L = {}; CLASS_KEYS.forEach(function (ck) { L[ck] = (raw[ck] || []).map(function (c) { return { subject: c.subject || '', chapter: c.chapter || '', telegram: c.telegram || '', thumbnail: c.thumbnail || '', topics: (c.topics || []).map(function (t) { return { name: t.name || '' }; }) }; }); });
+  let saved = JSON.stringify(L);
+  const S = ST.active[P] = ST.active[P] || { ck: CLASS_KEYS[0], subj: '', open: {} };
+  const tgOk = function (u) { return !u || /^https?:\/\/(t\.me|telegram\.me|telegram\.dog)\//i.test(u.trim()); };
+  function issues() {
+    const out = [];
+    CLASS_KEYS.forEach(function (k) { L[k].forEach(function (c, i) {
+      const n = c.chapter || 'Chapter ' + (i + 1);
+      if (!c.chapter.trim()) out.push(CLASS_LABELS[k] + ': a chapter has no name');
+      if (!c.subject) out.push(n + ': choose a subject');
+      if (!c.telegram) out.push(n + ': no Telegram link');
+      else if (!tgOk(c.telegram)) out.push(n + ': Telegram link looks wrong');
+    }); });
+    return out;
+  }
+  function changed() { stSetDirty(P, JSON.stringify(L) !== saved, refreshBar); }
+  function refreshBar() { const b = document.getElementById('st-save-' + P); if (b) { b.outerHTML = stSaveBar(P, 'Save lectures', issues()); wireBar(); } }
+  function wireBar() {
+    const b = document.getElementById('st-save-' + P);
+    b.querySelector('[data-st-discard]').addEventListener('click', function () { if (!confirm('Discard unsaved lecture changes?')) return; ST.dirty[P] = false; stRenderLectures(); });
+    b.querySelector('[data-st-save]').addEventListener('click', async function () {
+      const hard = issues().filter(function (x) { return /no name|choose a subject/.test(x); });
+      if (hard.length) { alert('Please fix these first:\n\n• ' + hard.join('\n• ')); return; }
+      const soft = issues().filter(function (x) { return !/no name|choose a subject/.test(x); });
+      if (soft.length && !confirm('Heads up:\n\n• ' + soft.join('\n• ') + '\n\nSave anyway?')) return;
+      const out = {}; CLASS_KEYS.forEach(function (k) { out[k] = L[k].map(function (c) { return { subject: c.subject, chapter: c.chapter.trim(), telegram: c.telegram.trim(), thumbnail: (c.thumbnail || '').trim(), topics: c.topics.filter(function (t) { return t.name.trim(); }).map(function (t) { return { name: t.name.trim() }; }) }; }); });
+      this.disabled = true; this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving…';
+      if (await setContent('ua_lectures', out)) { saved = JSON.stringify(L); ST.dirty[P] = false; draw(); if (typeof showToast === 'function') showToast('Lectures saved — live for students now.'); } else refreshBar();
+    });
+  }
+  function draw() {
+    const ck = S.ck, list = L[ck];
+    const counts = {}; CLASS_KEYS.forEach(function (k) { counts[k] = L[k].length; });
+    const topics = CLASS_KEYS.reduce(function (a, k) { return a + L[k].reduce(function (b, c) { return b + c.topics.length; }, 0); }, 0);
+    const subs = Array.from(new Set(stSubjects(ck).concat(list.map(function (c) { return c.subject; })))).filter(Boolean);
+    const idxs = list.map(function (c, i) { return i; }).filter(function (i) { return !S.subj || list[i].subject === S.subj; });
+    el.innerHTML = stHead('fa-chalkboard-user', 'Lectures', 'Chapter-wise lectures for Full Course students. Each chapter links to its Telegram group, where the videos are posted.',
+        [[CLASS_KEYS.reduce(function (a, k) { return a + L[k].length; }, 0), 'Chapters'], [topics, 'Topics'], [CLASS_KEYS.reduce(function (a, k) { return a + L[k].filter(function (c) { return c.telegram && tgOk(c.telegram); }).length; }, 0), 'With Telegram']])
+      + stClassTabs(ck, counts, 'lc-tabs')
+      + '<div class="card"><div class="st-lib-bar"><div class="st-lib-t"><h3><i class="fas fa-chalkboard-user"></i> ' + CLASS_LABELS[ck] + ' chapters</h3></div><button type="button" class="btn btn-primary" id="lc-add"><i class="fas fa-plus"></i> Add chapter</button></div>'
+      + (subs.length > 1 ? '<div class="st-chips"><button type="button" class="st-chipf' + (!S.subj ? ' on' : '') + '" data-subj="">All <em>' + list.length + '</em></button>' + subs.map(function (s) { return '<button type="button" class="st-chipf' + (S.subj === s ? ' on' : '') + '" data-subj="' + stEsc(s) + '">' + stEsc(s) + ' <em>' + list.filter(function (c) { return c.subject === s; }).length + '</em></button>'; }).join('') + '</div>' : '')
+      + (idxs.length ? '<div class="st-lec-grid">' + idxs.map(function (i) {
+          const c = list[i], open = S.open[ck + i], bad = !c.chapter.trim() || !c.subject || !c.telegram || !tgOk(c.telegram);
+          return '<div class="st-lec' + (open ? ' open' : '') + (bad ? ' bad' : '') + '" data-i="' + i + '"><div class="st-lec-top" data-toggle><div class="st-lec-th">' + (c.thumbnail ? '<img src="' + stEsc(c.thumbnail) + '" alt="">' : '<i class="fas fa-play"></i>') + '</div>'
+            + '<div class="st-lec-t"><span class="st-lec-s">' + stEsc(c.subject || 'No subject') + '</span><b>' + stEsc(c.chapter || 'Untitled chapter') + '</b><span>' + c.topics.length + ' topic' + (c.topics.length === 1 ? '' : 's') + ' · ' + (c.telegram ? (tgOk(c.telegram) ? '<i class="fab fa-telegram" style="color:#229ED9"></i> Telegram linked' : '<span style="color:var(--bad)">Telegram link looks wrong</span>') : '<span style="color:var(--bad)">No Telegram link</span>') + '</span></div><i class="fas fa-chevron-down st-chev"></i></div>'
+            + (open ? '<div class="st-lec-b"><div class="field-row"><div class="field"><label>Subject</label><select data-k="subject">' + stSubjectOptions(ck, c.subject, true) + '</select></div><div class="field"><label>Chapter name</label><input data-k="chapter" value="' + stEsc(c.chapter) + '" placeholder="e.g. Ch 2 · Goodwill"></div></div>'
+              + '<div class="field-row full"><div class="field"><label>Telegram group link</label><input data-k="telegram" value="' + stEsc(c.telegram) + '" placeholder="https://t.me/…"><small class="st-help" data-tghelp>' + (c.telegram && !tgOk(c.telegram) ? '<span style="color:var(--bad)">Should start with https://t.me/</span>' : '') + '</small></div></div>'
+              + '<div class="field"><label>Thumbnail</label>' + fieldInputHTML({ key: 'thumbnail', type: 'image' }, c.thumbnail) + '</div>'
+              + '<div class="field" style="margin-top:12px"><label>Topics <small style="color:var(--muted)">(students tap a topic to open the Telegram group)</small></label><div class="st-topics">' + c.topics.map(function (t, j) {
+                  return '<div class="st-topic" data-j="' + j + '"><span>' + (j + 1) + '</span><input value="' + stEsc(t.name) + '" placeholder="Topic name"><button type="button" class="cp-ic" data-ta="up"' + (j ? '' : ' disabled') + '><i class="fas fa-arrow-up"></i></button><button type="button" class="cp-ic" data-ta="down"' + (j < c.topics.length - 1 ? '' : ' disabled') + '><i class="fas fa-arrow-down"></i></button><button type="button" class="cp-ic del" data-ta="del"><i class="fas fa-xmark"></i></button></div>';
+                }).join('') + '<input class="st-topic-add" placeholder="+ Type a topic and press Enter (paste many lines to add them all)"></div></div>'
+              + '<div class="st-test-f"><button type="button" class="btn btn-danger btn-sm" data-del><i class="fas fa-trash"></i> Delete chapter</button></div></div>' : '')
+            + '</div>';
+        }).join('') + '</div>' : '<div class="st-empty"><i class="fas fa-chalkboard-user"></i><b>No chapters ' + (S.subj ? 'in ' + stEsc(S.subj) : 'for ' + CLASS_LABELS[ck]) + ' yet</b><span>Add a chapter, link its Telegram group and list its topics.</span></div>')
+      + stSaveBar(P, 'Save lectures', issues()) + '</div>';
+    wireBar();
+    el.querySelectorAll('#lc-tabs .st-tab').forEach(function (b) { b.addEventListener('click', function () { S.ck = b.dataset.class; S.subj = ''; draw(); }); });
+    el.querySelectorAll('.st-chipf').forEach(function (b) { b.addEventListener('click', function () { S.subj = b.dataset.subj; draw(); }); });
+    document.getElementById('lc-add').addEventListener('click', function () { list.push({ subject: S.subj || '', chapter: '', telegram: '', thumbnail: '', topics: [] }); S.open[ck + (list.length - 1)] = true; changed(); draw(); const n = el.querySelector('.st-lec.open:last-child input[data-k=chapter]'); if (n) n.focus(); });
+    el.querySelectorAll('.st-lec').forEach(function (card) {
+      const i = Number(card.dataset.i), c = list[i];
+      card.querySelector('[data-toggle]').addEventListener('click', function () { S.open[ck + i] = !S.open[ck + i]; draw(); });
+      if (!S.open[ck + i]) return;
+      wireImageUploadsIn(card, 'ua-lectures', 'thumbnails');
+      card.querySelectorAll('[data-k]').forEach(function (inp) {
+        inp.addEventListener(inp.tagName === 'SELECT' ? 'change' : 'input', function () {
+          c[inp.dataset.k] = inp.value; changed();
+          if (inp.dataset.k === 'telegram') card.querySelector('[data-tghelp]').innerHTML = inp.value && !tgOk(inp.value) ? '<span style="color:var(--bad)">Should start with https://t.me/</span>' : '';
+          const t = card.querySelector('.st-lec-t b'); if (t) t.textContent = c.chapter || 'Untitled chapter';
+        });
+      });
+      const th = card.querySelector('input[data-key=thumbnail]');
+      if (th) {
+        th.addEventListener('input', function () { c.thumbnail = th.value; changed(); });
+        const up = card.querySelector('.adm-img-upload'); if (up) up.addEventListener('change', function () { const t0 = Date.now(); (function w() { if (th.value !== c.thumbnail) { c.thumbnail = th.value; changed(); } else if (Date.now() - t0 < 20000) setTimeout(w, 300); })(); });
+      }
+      card.querySelectorAll('.st-topic').forEach(function (row) {
+        const j = Number(row.dataset.j);
+        row.querySelector('input').addEventListener('input', function () { c.topics[j].name = this.value; changed(); });
+        row.querySelectorAll('[data-ta]').forEach(function (b) { b.addEventListener('click', function () {
+          const a = b.dataset.ta;
+          if (a === 'up' && j) c.topics.splice(j - 1, 0, c.topics.splice(j, 1)[0]);
+          if (a === 'down' && j < c.topics.length - 1) c.topics.splice(j + 1, 0, c.topics.splice(j, 1)[0]);
+          if (a === 'del') c.topics.splice(j, 1);
+          changed(); draw();
+        }); });
+      });
+      const add = card.querySelector('.st-topic-add');
+      add.addEventListener('keydown', function (e) { if (e.key === 'Enter' && add.value.trim()) { e.preventDefault(); c.topics.push({ name: add.value.trim() }); changed(); draw(); const n = el.querySelector('.st-lec[data-i="' + i + '"] .st-topic-add'); if (n) n.focus(); } });
+      add.addEventListener('paste', function (e) { const t = (e.clipboardData || window.clipboardData).getData('text'); if (t && t.indexOf('\n') > -1) { e.preventDefault(); t.split(/\r?\n/).map(function (x) { return x.replace(/^\s*[\d.)\-•]+\s*/, '').trim(); }).filter(Boolean).forEach(function (x) { c.topics.push({ name: x }); }); changed(); draw(); } });
+      card.querySelector('[data-del]').addEventListener('click', function () { if (!confirm('Delete the chapter "' + (c.chapter || 'Untitled') + '" and its ' + c.topics.length + ' topic(s)?')) return; list.splice(i, 1); S.open = {}; changed(); draw(); });
+    });
+  }
+  draw();
+}
+
+// ------------------------------------------------------------
+//  VIDEOS (YouTube)
+// ------------------------------------------------------------
+function stYouTubeId(input) {
+  const s = String(input || '').trim();
+  if (/^[a-zA-Z0-9_-]{11}$/.test(s)) return s;
+  const m = s.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?.*v=|embed\/|shorts\/|live\/))([a-zA-Z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+async function stRenderVideos() {
+  const el = document.getElementById('panel-videos');
+  const P = 'videos';
+  el.innerHTML = '<div class="card"><p class="empty-note"><i class="fas fa-spinner fa-spin"></i> Loading videos…</p></div>';
+  await stEnsureSubjects();
+  const V = (await getContent('ua_videos', [])).map(function (v) { return Object.assign({ title: '', subject: '', category: '', id: '', duration: '', chapter: '', topic: '' }, v); });
+  let saved = JSON.stringify(V);
+  const S = ST.active[P] = ST.active[P] || { cat: '', open: {} };
+  const LBL2KEY = {}; CLASS_KEYS.forEach(function (k) { LBL2KEY[CLASS_LABELS[k]] = k; });
+  function issues() {
+    const out = [], seen = {};
+    V.forEach(function (v, i) {
+      const n = v.title || 'Video ' + (i + 1), id = stYouTubeId(v.id);
+      if (!v.title.trim()) out.push('A video has no title');
+      if (!id) out.push(n + ': YouTube link not recognised');
+      else if (seen[id]) out.push(n + ': same video added twice');
+      if (id) seen[id] = 1;
+      if (!v.category) out.push(n + ': choose a class');
+    });
+    return out;
+  }
+  function changed() { stSetDirty(P, JSON.stringify(V) !== saved, refreshBar); }
+  function refreshBar() { const b = document.getElementById('st-save-' + P); if (b) { b.outerHTML = stSaveBar(P, 'Publish videos', issues()); wireBar(); } }
+  function wireBar() {
+    const b = document.getElementById('st-save-' + P);
+    b.querySelector('[data-st-discard]').addEventListener('click', function () { if (!confirm('Discard unsaved video changes?')) return; ST.dirty[P] = false; stRenderVideos(); });
+    b.querySelector('[data-st-save]').addEventListener('click', async function () {
+      const hard = issues().filter(function (x) { return /no title|not recognised/.test(x); });
+      if (hard.length) { alert('Please fix these first:\n\n• ' + hard.join('\n• ')); return; }
+      const soft = issues().filter(function (x) { return !/no title|not recognised/.test(x); });
+      if (soft.length && !confirm('Heads up:\n\n• ' + soft.join('\n• ') + '\n\nPublish anyway?')) return;
+      const out = V.map(function (v) { return { title: v.title.trim(), subject: v.subject, category: v.category, id: stYouTubeId(v.id), duration: v.duration.trim(), chapter: v.chapter.trim(), topic: v.topic.trim() }; });
+      this.disabled = true; this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publishing…';
+      if (await setContent('ua_videos', out)) { out.forEach(function (o, i) { V[i].id = o.id; }); saved = JSON.stringify(V); ST.dirty[P] = false; draw(); if (typeof showToast === 'function') showToast('Videos published to the Videos page.'); } else refreshBar();
+    });
+  }
+  function draw() {
+    const idxs = V.map(function (v, i) { return i; }).filter(function (i) { return !S.cat || V[i].category === S.cat; });
+    el.innerHTML = stHead('fa-circle-play', 'Videos', 'Free YouTube lessons shown on the public Videos page — anyone can watch them, no login needed.',
+        [[V.length, 'Videos'], [new Set(V.map(function (v) { return v.subject; }).filter(Boolean)).size, 'Subjects'], [V.filter(function (v) { return !stYouTubeId(v.id); }).length, 'Broken links', V.some(function (v) { return !stYouTubeId(v.id); }) ? 'warn' : '']])
+      + '<div class="card"><div class="st-lib-bar"><div class="st-seg st-seg-sm" id="vd-cats"><button type="button" data-v="" class="' + (!S.cat ? 'on' : '') + '">All <em>' + V.length + '</em></button>' + CLASS_KEYS.map(function (k) { const l = CLASS_LABELS[k]; return '<button type="button" data-v="' + stEsc(l) + '" class="' + (S.cat === l ? 'on' : '') + '">' + l + ' <em>' + V.filter(function (v) { return v.category === l; }).length + '</em></button>'; }).join('') + '</div>'
+      + '<div class="st-paste"><i class="fab fa-youtube"></i><input id="vd-paste" placeholder="Paste a YouTube link to add a video…"></div></div>'
+      + (idxs.length ? '<div class="st-vids">' + idxs.map(function (i) {
+          const v = V[i], id = stYouTubeId(v.id), open = S.open[i];
+          const ck = LBL2KEY[v.category];
+          return '<div class="st-vid' + (open ? ' open' : '') + (id ? '' : ' bad') + '" data-i="' + i + '"><div class="st-vid-top"><div class="st-vid-th">' + (id ? '<img src="https://i.ytimg.com/vi/' + id + '/mqdefault.jpg" alt="" loading="lazy"><a class="st-vid-play" href="https://www.youtube.com/watch?v=' + id + '" target="_blank" rel="noopener" title="Watch on YouTube"><i class="fas fa-play"></i></a>' : '<span><i class="fas fa-link-slash"></i>Link not recognised</span>') + (v.duration ? '<em>' + stEsc(v.duration) + '</em>' : '') + '</div>'
+            + '<div class="st-vid-t" data-toggle><span class="st-lec-s">' + stEsc(v.category || 'No class') + (v.subject ? ' · ' + stEsc(v.subject) : '') + '</span><b>' + stEsc(v.title || 'Untitled video') + '</b><span>' + stEsc([v.chapter, v.topic].filter(Boolean).join(' · ') || 'No chapter / topic') + '</span></div>'
+            + '<div class="st-vid-a"><button type="button" class="cp-ic" data-va="up"' + (i ? '' : ' disabled') + ' title="Move up"><i class="fas fa-arrow-up"></i></button><button type="button" class="cp-ic" data-va="down"' + (i < V.length - 1 ? '' : ' disabled') + ' title="Move down"><i class="fas fa-arrow-down"></i></button><button type="button" class="cp-ic" data-toggle title="Edit"><i class="fas fa-pen"></i></button><button type="button" class="cp-ic del" data-va="del" title="Remove"><i class="fas fa-trash"></i></button></div></div>'
+            + (open ? '<div class="st-vid-b"><div class="field-row"><div class="field"><label>Title</label><input data-k="title" value="' + stEsc(v.title) + '"></div><div class="field"><label>YouTube link</label><input data-k="id" value="' + stEsc(v.id) + '" placeholder="https://youtu.be/…"></div></div>'
+              + '<div class="field-row"><div class="field"><label>Class</label><select data-k="category"><option value="">— Choose class —</option>' + CLASS_KEYS.map(function (k) { return '<option' + (v.category === CLASS_LABELS[k] ? ' selected' : '') + '>' + CLASS_LABELS[k] + '</option>'; }).join('') + '</select></div><div class="field"><label>Subject</label><select data-k="subject">' + (ck ? stSubjectOptions(ck, v.subject, true) : '<option value="' + stEsc(v.subject) + '">' + stEsc(v.subject || 'Choose a class first') + '</option>') + '</select></div></div>'
+              + '<div class="field-row"><div class="field"><label>Chapter</label><input data-k="chapter" value="' + stEsc(v.chapter) + '"></div><div class="field"><label>Topic</label><input data-k="topic" value="' + stEsc(v.topic) + '"></div></div>'
+              + '<div class="field-row"><div class="field"><label>Duration</label><input data-k="duration" value="' + stEsc(v.duration) + '" placeholder="e.g. 24:10"></div><div class="field"></div></div></div>' : '')
+            + '</div>';
+        }).join('') + '</div>' : '<div class="st-empty"><i class="fab fa-youtube"></i><b>No videos ' + (S.cat ? 'for ' + stEsc(S.cat) : 'yet') + '</b><span>Paste a YouTube link above to add one.</span></div>')
+      + stSaveBar(P, 'Publish videos', issues()) + '</div>';
+    wireBar();
+    el.querySelectorAll('#vd-cats button').forEach(function (b) { b.addEventListener('click', function () { S.cat = b.dataset.v; draw(); }); });
+    const paste = document.getElementById('vd-paste');
+    function addFrom(val) {
+      const id = stYouTubeId(val);
+      if (!id) { alert('That doesn’t look like a YouTube link. Try copying it from the Share button on YouTube.'); return; }
+      if (V.some(function (v) { return stYouTubeId(v.id) === id; }) && !confirm('This video is already in the list. Add it again?')) return;
+      V.unshift({ title: '', subject: '', category: S.cat || '', id: 'https://youtu.be/' + id, duration: '', chapter: '', topic: '' });
+      const o = {}; Object.keys(S.open).forEach(function (k) { o[Number(k) + 1] = S.open[k]; }); o[0] = true; S.open = o;
+      changed(); draw(); const t = el.querySelector('.st-vid[data-i="0"] input[data-k=title]'); if (t) t.focus();
+    }
+    paste.addEventListener('paste', function () { setTimeout(function () { if (paste.value.trim()) addFrom(paste.value); }, 0); });
+    paste.addEventListener('keydown', function (e) { if (e.key === 'Enter' && paste.value.trim()) addFrom(paste.value); });
+    el.querySelectorAll('.st-vid').forEach(function (card) {
+      const i = Number(card.dataset.i), v = V[i];
+      card.querySelectorAll('[data-toggle]').forEach(function (t) { t.addEventListener('click', function () { S.open[i] = !S.open[i]; draw(); }); });
+      card.querySelectorAll('[data-va]').forEach(function (b) { b.addEventListener('click', function () {
+        const a = b.dataset.va;
+        if (a === 'del') { if (!confirm('Remove "' + (v.title || 'this video') + '"?')) return; V.splice(i, 1); }
+        if (a === 'up' && i) V.splice(i - 1, 0, V.splice(i, 1)[0]);
+        if (a === 'down' && i < V.length - 1) V.splice(i + 1, 0, V.splice(i, 1)[0]);
+        S.open = {}; changed(); draw();
+      }); });
+      card.querySelectorAll('[data-k]').forEach(function (inp) {
+        inp.addEventListener(inp.tagName === 'SELECT' ? 'change' : 'input', function () {
+          v[inp.dataset.k] = inp.value; changed();
+          if (inp.dataset.k === 'category') { draw(); return; }
+          if (inp.dataset.k === 'id') {
+            const id = stYouTubeId(inp.value), th = card.querySelector('.st-vid-th');
+            card.classList.toggle('bad', !id);
+            th.innerHTML = (id ? '<img src="https://i.ytimg.com/vi/' + id + '/mqdefault.jpg" alt=""><a class="st-vid-play" href="https://www.youtube.com/watch?v=' + id + '" target="_blank" rel="noopener"><i class="fas fa-play"></i></a>' : '<span><i class="fas fa-link-slash"></i>Link not recognised</span>') + (v.duration ? '<em>' + stEsc(v.duration) + '</em>' : '');
+            return;
+          }
+          const t = card.querySelector('.st-vid-t');
+          t.querySelector('b').textContent = v.title || 'Untitled video';
+          t.querySelector('span:last-child').textContent = [v.chapter, v.topic].filter(Boolean).join(' · ') || 'No chapter / topic';
+        });
+      });
+    });
+  }
+  draw();
+}
+
+PANEL_LOADERS['mocks'] = function () { stRenderLibrary('mocks'); };
+PANEL_LOADERS['notes'] = function () { stRenderLibrary('notes'); };
+PANEL_LOADERS['mock-submissions'] = stRenderSubmissions;
+PANEL_LOADERS['dayd'] = stRenderDayD;
+PANEL_LOADERS['lectures'] = stRenderLectures;
+PANEL_LOADERS['videos'] = stRenderVideos;
+
 window.uaAdminLogin = doLogin;
 window.uaAdminLogout = doLogout;
 window.uaAdminCheckSession = checkSession;
@@ -15202,6 +16291,29 @@ window.uaAdminCheckSession = checkSession;
       return ownsFullCourseFor(classKey) ? html.replace(', Purchased)', ', Included)') : html;
     };
     window.quizMockRowHtml = quizMockRowHtml;
+  }
+})();
+
+/* ---------- Answer-key safety net ----------
+   Staff used to type the correct answer free-hand ("a", " A", "Option A",
+   "(b)", "2"…). Normalise it to the A–D letter the test screen uses, so a
+   right answer is never marked wrong. */
+(function () {
+  function norm(v) {
+    var s = String(v == null ? '' : v).trim().toUpperCase();
+    var m = /^(?:OPTION|OPT|ANS(?:WER)?)?[\s.:)(-]*\(?([ABCD1-4])\b/.exec(s);
+    if (!m) return s;
+    var c = m[1];
+    return '1234'.indexOf(c) > -1 ? 'ABCD'['1234'.indexOf(c)] : c;
+  }
+  window.uaNormAnswer = norm;
+  if (typeof openQuizInstructions === 'function') {
+    var _o = openQuizInstructions;
+    openQuizInstructions = function (meta) {
+      if (meta && Array.isArray(meta.questions)) meta = Object.assign({}, meta, { questions: meta.questions.map(function (q) { return q && typeof q === 'object' ? Object.assign({}, q, { correct: norm(q.correct) }) : q; }) });
+      return _o.call(this, meta);
+    };
+    window.openQuizInstructions = openQuizInstructions;
   }
 })();
 
