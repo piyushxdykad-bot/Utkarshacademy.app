@@ -3115,6 +3115,7 @@ body.staff-open #wa-widget,body.staff-open .back-top{display:none!important}
 #ua-admin .st-q-img .thumb-wrap input[type=text]{min-width:0}
 @media (max-width:640px){#ua-admin .st-q-opts{grid-template-columns:minmax(0,1fr)}#ua-admin .st-q{padding:12px}#ua-admin .st-test-b{padding:4px 12px 14px}#ua-admin .st-opt-tick{font-size:0}#ua-admin .st-opt-tick i{font-size:12px}}
 #ua-admin .st-q-img .thumb-wrap input[type=text],#ua-admin .st-lec-b .thumb-wrap input[type=text]{height:40px;border-radius:11px;border:1px solid var(--line-2);background:#fff;padding:0 11px;font-size:13px;outline:none}
+#ua-admin .st-msadd{display:flex;gap:8px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}#ua-admin .st-msadd input{flex:1;min-width:0;height:38px;border-radius:11px;border:1.5px dashed var(--line-2);background:var(--paper);padding:0 12px;font-size:13.5px;outline:none}#ua-admin .st-msadd input:focus{border-style:solid;border-color:var(--blue);background:#fff}
 
 /* ============================== STUDENT DASHBOARD ============================== */
 body.has-dash #page-home > *:not(#ua-dash):not(footer){display:none!important}
@@ -15444,11 +15445,14 @@ async function stRenderDayD() {
       + '<div class="card st-ms"><h3><i class="fas fa-database"></i> Master sheets · ' + CLASS_LABELS[ck] + '</h3><p class="hint">One big question bank per subject. Upload once, reuse every day.</p>'
       + (subs.length ? subs.map(function (s) {
           const b = ms[ck][s];
-          return '<div class="st-msrow" data-s="' + stEsc(s) + '"><div class="st-msrow-t"><b>' + stEsc(s) + (b.orphan ? ' <span class="badge badge-warn">not in subject list</span>' : '') + '</b><span>' + (b.questions.length ? b.questions.length + ' questions in bank' : 'No bank yet') + '</span></div>'
+          return '<div class="st-msrow" data-s="' + stEsc(s) + '"><div class="st-msrow-t"><b>' + stEsc(s) + (b.orphan ? ' <span class="badge badge-info">Day-D only</span>' : '') + '</b><span>' + (b.questions.length ? b.questions.length + ' questions in bank' : 'No bank yet') + '</span></div>'
             + '<label class="st-mspick">Pick <input type="number" min="0" data-c value="' + stEsc(b.count) + '"></label>'
             + '<button type="button" class="btn btn-outline btn-sm" data-up><i class="fas fa-file-import"></i> ' + (b.questions.length ? 'Replace' : 'Upload') + '</button>'
-            + (b.questions.length ? '<button type="button" class="cp-ic del" data-clr title="Clear bank"><i class="fas fa-trash"></i></button>' : '') + '</div>';
-        }).join('') : '<div class="st-empty sm"><i class="fas fa-book"></i><span>Add subjects for ' + CLASS_LABELS[ck] + ' in “Courses, Subjects &amp; Pricing” first.</span></div>')
+            + (b.questions.length ? '<button type="button" class="cp-ic del" data-clr title="Clear bank"><i class="fas fa-trash"></i></button>' : '')
+            + (b.orphan ? '<button type="button" class="cp-ic del" data-rm title="Remove subject"><i class="fas fa-xmark"></i></button>' : '') + '</div>';
+        }).join('') : '<div class="st-empty sm"><i class="fas fa-book"></i><span>No subjects yet for ' + CLASS_LABELS[ck] + ' — add one below.</span></div>')
+      + '<div class="st-msadd"><input id="dd-newsub" placeholder="Add a subject, e.g. General Test or Mixed Revision" maxlength="60"><button type="button" class="btn btn-outline btn-sm" id="dd-addsub"><i class="fas fa-plus"></i> Add subject</button></div>'
+      + '<p class="hint" style="margin:8px 0 0;font-size:12px">Subjects added here are only for Day-D question banks. To sell a subject at checkout, add it in “Courses, Subjects &amp; Pricing”.</p>'
       + '</div></div>'
       + '<div class="card"><div class="st-lib-bar"><div class="st-lib-t"><h3><i class="fas fa-bolt"></i> Day-D mocks · ' + CLASS_LABELS[ck] + '</h3></div><button type="button" class="btn btn-outline" id="dd-add"><i class="fas fa-plus"></i> Blank mock</button></div>'
       + (list.length ? list.map(function (t, i) { return i; }).sort(function (a, b) { const sa = status(list[a])[0], sb = status(list[b])[0], o = { live: 0, draft: 1, past: 2 }; return o[sa] - o[sb] || new Date(list[b].publishedAt || 0) - new Date(list[a].publishedAt || 0); }).map(function (i) {
@@ -15472,9 +15476,23 @@ async function stRenderDayD() {
       row.querySelector('[data-up]').addEventListener('click', function () {
         openImportQuestionsModal(function (chosen) { chosen.forEach(function (q) { q.correct = stNormAns(q.correct) || q.correct; }); ms[ck][s].questions = chosen; changed(); draw(); if (typeof showToast === 'function') showToast(chosen.length + ' questions loaded into ' + s + ' — remember to save.'); }, { title: 'Master sheet — ' + s, confirmLabel: 'Use as master sheet' });
       });
+      const rm = row.querySelector('[data-rm]');
+      if (rm) rm.addEventListener('click', function () { if (ms[ck][s].questions.length && !confirm('Remove "' + s + '" and its ' + ms[ck][s].questions.length + ' bank question(s)? Mocks already generated keep their questions.')) return; delete ms[ck][s]; changed(); draw(); });
       const c = row.querySelector('[data-clr]');
       if (c) c.addEventListener('click', function () { if (!confirm('Clear the ' + s + ' question bank? Mocks already generated keep their questions.')) return; ms[ck][s].questions = []; changed(); draw(); });
     });
+    const nsIn = document.getElementById('dd-newsub');
+    function addSub() {
+      const n = nsIn.value.trim().replace(/\s+/g, ' ');
+      if (!n) { nsIn.focus(); return; }
+      if (Object.keys(ms[ck]).some(function (x) { return x.toLowerCase() === n.toLowerCase(); })) { alert('"' + n + '" is already in the list for ' + CLASS_LABELS[ck] + '.'); return; }
+      ms[ck][n] = { questions: [], count: 10, orphan: stSubjects(ck).indexOf(n) === -1 };
+      changed(); draw();
+      const up = el.querySelector('.st-msrow[data-s="' + CSS.escape(n) + '"] [data-up]'); if (up) up.focus();
+      if (typeof showToast === 'function') showToast('"' + n + '" added — upload its master sheet, then save.');
+    }
+    document.getElementById('dd-addsub').addEventListener('click', addSub);
+    nsIn.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); addSub(); } });
     const gen = document.getElementById('dd-gen');
     if (gen) gen.addEventListener('click', function () {
       let qs = [];
